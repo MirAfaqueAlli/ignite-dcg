@@ -1,26 +1,162 @@
 @import "tailwindcss";
 
+/* ════════════════════════════════════════
+   JARVIS PRESENTATION — Design System
+   Rich warm palette: cream + maroon + gold
+   ════════════════════════════════════════ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream:        #FBF4E6;
+  --cream-light:  #FEF9F0;
+  --cream-dark:   #F0E4C8;
+  --maroon:       #7A1A1A;
+  --maroon-dark:  #5C0F0F;
+  --maroon-light: #9B2929;
+  --gold:         #C8912A;
+  --gold-light:   #E5B94A;
+  --gold-dark:    #A07020;
+  --brown-text:   #3D1F1F;
+  --muted-text:   #7A5A4A;
+  --card-bg:      #FFFFFF;
+  --card-border:  #E8D5B0;
+  --shadow-sm:    0 2px 8px rgba(90,30,10,0.08);
+  --shadow-md:    0 4px 20px rgba(90,30,10,0.12);
+  --shadow-lg:    0 8px 40px rgba(90,30,10,0.18);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--brown-text);
+  font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--maroon); border-radius: 2px; }
+
+/* ── Card ───────────────────────────────── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Gradient bg ────────────────────────── */
+.app-bg {
+  background: linear-gradient(145deg, #FBF4E6 0%, #F5E8CC 50%, #EFD9B0 100%);
+}
+
+/* ── Gold accent line ───────────────────── */
+.gold-line {
+  background: linear-gradient(90deg, var(--maroon), var(--gold), var(--maroon));
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* ── Pill badge ─────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge-maroon {
+  background: var(--maroon);
+  color: #FEF9F0;
+}
+
+.badge-gold {
+  background: var(--gold);
+  color: #3D1F1F;
+}
+
+.badge-outline {
+  background: transparent;
+  border: 1.5px solid var(--maroon);
+  color: var(--maroon);
+}
+
+/* ── Buttons ─────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--maroon);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(122,26,26,0.35);
+}
+.btn-primary:hover { background: var(--maroon-dark); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--brown-text);
+  box-shadow: 0 4px 14px rgba(200,145,42,0.35);
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--maroon);
+  border: 1.5px solid var(--card-border);
+}
+.btn-ghost:hover { background: var(--cream-dark); border-color: var(--maroon); }
+
+/* ── Speaking pulse ─────────────────────── */
+@keyframes speakPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(122,26,26,0.4); }
+  50%       { box-shadow: 0 0 0 14px rgba(122,26,26,0); }
+}
+.speak-pulse {
+  animation: speakPulse 1.2s ease-in-out infinite;
+}
+
+/* ── Slide transitions ──────────────────── */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Gold shimmer ───────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.gold-shimmer {
+  background: linear-gradient(90deg, var(--maroon), var(--gold), var(--maroon), var(--gold));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+.float-anim {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(-10deg); }
+  50%       { transform: rotate(20deg); }
 }

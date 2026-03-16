@@ -1,0 +1,109 @@
+{
+  "eventTitle": "Coding Club Inauguration",
+  "eventSubtitle": "Where Innovation Meets Collaboration",
+  "date": "March 16, 2026",
+  "venue": "Main Auditorium",
+  "slides": [
+    {
+      "id": "slide-1",
+      "type": "intro",
+      "title": "Welcome to the Coding Club",
+      "content": "Coding Club Inauguration — March 2026",
+      "speech": "Good evening, everyone. Welcome to the official inauguration of the Coding Club. I am JARVIS., your AI host for tonight's event. We are gathered here to celebrate a new era of innovation, collaboration, and excellence in technology. Let the journey begin."
+    },
+    {
+      "id": "slide-2",
+      "type": "content",
+      "title": "Our Mission",
+      "content": "The Coding Club is a community of passionate students dedicated to exploring the boundaries of technology. Our goal is to foster creativity, collaboration, and real-world problem solving through hands-on projects and events.",
+      "bulletPoints": [
+        "Foster a culture of innovation and curiosity",
+        "Bridge academia and industry through practical projects",
+        "Build a strong tech community on campus",
+        "Host hackathons, workshops, and coding challenges"
+      ],
+      "speech": "Our mission is clear. The Coding Club exists to empower students with the skills, mindset, and network needed to thrive in the tech industry. We believe that great things are built by great teams, and tonight marks the beginning of building extraordinary things together."
+    },
+    {
+      "id": "slide-3",
+      "type": "content",
+      "title": "What We Do",
+      "content": "From competitive programming to AI projects, web development to open source contributions — we cover it all.",
+      "bulletPoints": [
+        "Weekly coding sessions and workshops",
+        "Annual hackathon with industry mentors",
+        "Open source contribution programs",
+        "AI and Machine Learning study circles",
+        "Industry guest lecture series"
+      ],
+      "speech": "The Coding Club is more than just writing code. We organize weekly workshops, host hackathons with real industry mentors, and guide students through open source contributions. Whether you are a beginner or an experienced developer, there is a place for you here."
+    },
+    {
+      "id": "slide-4",
+      "type": "speaker",
+      "title": "Presidential Address",
+      "speakerName": "Club President",
+      "speakerRole": "President, Coding Club",
+      "speech": "I would now like to invite our distinguished Club President to address the audience. Please welcome them to the stage.",
+      "pause": true
+    },
+    {
+      "id": "slide-5",
+      "type": "content",
+      "title": "Our Core Teams",
+      "content": "The club is structured into specialized teams, each focusing on different domains of technology.",
+      "bulletPoints": [
+        "🤖 AI & Machine Learning Team",
+        "🌐 Web Development Team",
+        "🔒 Cybersecurity Team",
+        "📱 Mobile Development Team",
+        "🎮 Game Development Team"
+      ],
+      "speech": "Our club is organized into five specialized teams. The A.I. and Machine Learning team, the Web Development team, the Cybersecurity team, the Mobile Development team, and the Game Development team. Each domain has dedicated mentors and project leads to guide members."
+    },
+    {
+      "id": "slide-6",
+      "type": "content",
+      "title": "Upcoming Events",
+      "content": "We have an exciting calendar planned for the year ahead.",
+      "bulletPoints": [
+        "🏆 HackFest 2026 — April 2026",
+        "🎓 AI Workshop Series — Starting May 2026",
+        "💼 Tech Talk: Industry Leaders — June 2026",
+        "🚀 Project Showcase — August 2026",
+        "🌟 Annual Coding Championship — December 2026"
+      ],
+      "speech": "Looking ahead, we have an incredible lineup of events. HackFest 2026 in April, our A.I. Workshop Series beginning in May, industry leader talks in June, a project showcase in August, and our annual coding championship in December. This is going to be a phenomenal year."
+    },
+    {
+      "id": "slide-7",
+      "type": "speaker",
+      "title": "Faculty Advisor Address",
+      "speakerName": "Faculty Advisor",
+      "speakerRole": "Faculty Advisor, Coding Club",
+      "speech": "It is now my honor to invite our esteemed Faculty Advisor to share some words of wisdom and guidance with us.",
+      "pause": true
+    },
+    {
+      "id": "slide-8",
+      "type": "content",
+      "title": "Join the Revolution",
+      "content": "Membership is open to all students across all years and departments. No prior coding experience required.",
+      "bulletPoints": [
+        "✅ Free membership for all students",
+        "✅ Access to premium learning resources",
+        "✅ Mentorship from senior developers",
+        "✅ Networking with industry professionals",
+        "✅ Certifications and recognition"
+      ],
+      "speech": "Joining the Coding Club is completely free and open to every student regardless of their department or experience level. Members get access to premium learning resources, mentorship from senior developers, and direct networking opportunities with industry professionals."
+    },
+    {
+      "id": "slide-9",
+      "type": "outro",
+      "title": "The Future is Code",
+      "content": "Together, we will build, innovate, and inspire. The journey of a thousand projects begins with a single line of code.",
+      "speech": "As we conclude tonight's inauguration, I want to leave you with this thought. The future belongs to those who dare to build it. Every great application, every revolutionary system, every world-changing platform — it all began with a single line of code. Welcome to the Coding Club. Let us build the future together. Thank you."
+    }
+  ]
+}
