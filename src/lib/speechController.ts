@@ -39,43 +39,58 @@ class SpeechController {
     this.isPausedFlag   = false;
 
     try {
-      /* 1) Try server-side TTS route → Microsoft Aria Neural */
-      let res = await fetch('/api/tts', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ text }),
-      });
+      /* 1) Try checking for local MP3 file matching the slide (e.g. ElevenLabs audio) */
+      let useLocalAudio = false;
+      let localUrl = '';
 
-      if (!res.ok) {
-        console.warn('[TTS] Retrying API after error..');
-        res = await fetch('/api/tts', {
+      if (slideId) {
+        localUrl = `/audio/${slideId}.mp3`;
+        try {
+          // Check if file exists, HEAD request to avoid downloading full file immediately
+          const checkRes = await fetch(localUrl, { method: 'HEAD' });
+          if (checkRes.ok) {
+            useLocalAudio = true;
+          }
+        } catch {
+          // fetch failed, ignore
+        }
+      }
+
+      if (useLocalAudio) {
+        if (currentSpeakId !== this.speakCounter) return;
+        this.audio = new Audio(localUrl);
+        this.currentUrl = localUrl;
+      } else {
+        /* 2) Fallback to server-side TTS route (Microsoft Aria Neural) */
+        let res = await fetch('/api/tts', {
           method:  'POST',
           headers: { 'Content-Type': 'application/json' },
           body:    JSON.stringify({ text }),
         });
-      }
 
-      if (!res.ok) throw new Error(`TTS API: ${res.status}`);
-      if (currentSpeakId !== this.speakCounter) return;
+        if (!res.ok) {
+          console.warn('[TTS] Retrying API after error..');
+          res = await fetch('/api/tts', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ text }),
+          });
+        }
 
-      const blob = await res.blob();
-      if (currentSpeakId !== this.speakCounter) return;
-      const url  = URL.createObjectURL(blob);
+        if (!res.ok) throw new Error(`TTS API: ${res.status}`);
+        if (currentSpeakId !== this.speakCounter) return;
 
-      this.audio      = new Audio(url);
-      this.currentUrl = url;
+        const blob = await res.blob();
+        if (currentSpeakId !== this.speakCounter) return;
+        const url  = URL.createObjectURL(blob);
 
-    } catch (apiErr) {
-      console.warn('[TTS] API failed, falling back to local MP3 cache:', apiErr);
-
-      /* 2) Fallback to local high-quality MP3 if the API goes down */
-      if (slideId) {
-        const url = `/audio/${slideId}.mp3`;
         this.audio      = new Audio(url);
         this.currentUrl = url;
-      } else {
-        throw new Error('No slideId provided for local cache fallback');
       }
+
+    } catch (apiErr) {
+      console.warn('[TTS] Both Local MP3 and API failed, cannot generate audio:', apiErr);
+      throw apiErr; // Fall through to robotic native speech
     }
 
     try {
