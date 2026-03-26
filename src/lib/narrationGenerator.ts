@@ -1,87 +1,46 @@
 import { Slide } from '@/types/slide';
 
 /**
- * Generate narration for slides that don't have explicit speech text
- * Uses template-based logic — no external APIs required
+ * Generate narration for a slide.
+ * Priority: explicit `speech` from edithScript.json → template fallback
  */
-
-const INTRO_TEMPLATES = [
-  "Let me introduce this topic: {content}",
-  "Allow me to present: {content}",
-  "Here is an important point — {content}",
-];
-
-const CONTENT_TEMPLATES = [
-  "On this slide, we will explore {title}. {content}",
-  "Let us take a closer look at {title}. {content}",
-  "Next, I would like to highlight {title}. {content}",
-];
-
-const BULLET_INTRO_TEMPLATES = [
-  "Key highlights include: ",
-  "The main points to note are: ",
-  "Here are the core elements: ",
-];
-
-function pickRandom<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function interpolate(template: string, vars: Record<string, string>): string {
-  return template.replace(/\{(\w+)\}/g, (_, key) => vars[key] || '');
-}
-
 export function generateNarration(slide: Slide): string {
-  // If explicit speech is provided, use it
+  // Always prefer the explicit EDITH script injected from edithScript.json
   if (slide.speech && slide.speech.trim().length > 0) {
-    return slide.speech;
+    return slide.speech.trim();
   }
 
   const title = slide.title || '';
-  const content = slide.content || '';
-
-  let narration = '';
 
   switch (slide.type) {
-    case 'intro': {
-      const template = pickRandom(INTRO_TEMPLATES);
-      narration = interpolate(template, { title, content });
-      break;
-    }
+    case 'intro':
+      return `Welcome, everyone. ${title}. ${slide.subtitle ?? ''} ${slide.tagline ?? ''}`.trim();
 
-    case 'content': {
-      const template = pickRandom(CONTENT_TEMPLATES);
-      narration = interpolate(template, { title, content });
-
-      if (slide.bulletPoints && slide.bulletPoints.length > 0) {
-        const bulletIntro = pickRandom(BULLET_INTRO_TEMPLATES);
-        // Strip emoji and clean bullet text for speech
-        const cleanBullets = slide.bulletPoints.map(b =>
-          b.replace(/[\u{1F000}-\u{1FFFF}]/gu, '').replace(/[✅🤖🌐🔒📱🎮🏆🎓💼🚀🌟]/g, '').trim()
-        );
-        narration += ' ' + bulletIntro + cleanBullets.join(', ') + '.';
-      }
-      break;
-    }
+    case 'ceremony':
+      return `We now begin the ${title}. ${slide.subtitle ?? ''}`.trim();
 
     case 'speaker': {
-      const speakerName = slide.speakerName || 'our guest speaker';
-      const speakerRole = slide.speakerRole ? `, ${slide.speakerRole}` : '';
-      narration = `I would like to invite ${speakerName}${speakerRole} to address the audience. Please welcome them to the stage.`;
-      break;
+      const name = slide.speaker?.name || slide.speakerName || 'our distinguished guest';
+      const role = slide.speaker?.role || slide.speakerRole || '';
+      return `I now invite ${name}${role ? `, ${role},` : ''} to address the gathering. Please welcome them to the stage.`;
     }
 
-    case 'outro': {
-      narration = content
-        ? `In closing — ${content}`
-        : `Thank you for joining us today. This concludes the presentation.`;
-      break;
+    case 'reveal':
+      return `Ladies and gentlemen — it is time for the ${title}. ${slide.subtitle ?? ''}`.trim();
+
+    case 'content': {
+      const left  = slide.leftColumn?.points?.slice(0, 3).join('. ') ?? '';
+      const right = slide.rightColumn?.points?.slice(0, 3).join('. ') ?? '';
+      return `Let us now look at ${title}. ${left} ${right}`.trim();
     }
 
-    default: {
-      narration = content || title || 'Please proceed to the next slide.';
-    }
+    case 'team':
+      return `Allow me to introduce the founding team of the guild. ${slide.subtitle ?? ''}`.trim();
+
+    case 'outro':
+      return (slide.closingLines?.join(' ') ?? `Thank you. ${title}`).trim();
+
+    default:
+      return title;
   }
-
-  return narration.trim();
 }

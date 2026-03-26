@@ -24,6 +24,12 @@ class SpeechController {
   private isInitialized  = false;
   private speakCounter   = 0;
 
+  /* ─── Realtime Lipsync (AudioContext) ─── */
+  private audioContext: AudioContext | null = null;
+  private analyser: AnalyserNode | null = null;
+  private dataArray: Uint8Array | null = null;
+  private sourceNode: MediaElementAudioSourceNode | null = null;
+
   /* ─── Init ─── */
   init(options: SpeechControllerOptions = {}) {
     this.options       = options;
@@ -38,58 +44,42 @@ class SpeechController {
     const currentSpeakId = ++this.speakCounter;
     this.isPausedFlag   = false;
 
+    if (!slideId) {
+      console.warn('[TTS] Offline mode: Cannot play audio without a valid slideId.');
+      this._fallbackSpeak(text);
+      return;
+    }
+
     try {
-      /* 1) Try checking for local MP3 file matching the slide (e.g. ElevenLabs audio) */
-      let useLocalAudio = false;
-      let localUrl = '';
+      /* Play the pre-generated offline MP3 */
+      const url = `/audio/${slideId}.mp3`;
+      if (!this.audio) {
+        this.audio = new Audio();
+        this.audio.crossOrigin = 'anonymous'; // Important for AnalyserNode
 
-      if (slideId) {
-        localUrl = `/audio/${slideId}.mp3`;
-        try {
-          // Check if file exists, HEAD request to avoid downloading full file immediately
-          const checkRes = await fetch(localUrl, { method: 'HEAD' });
-          if (checkRes.ok) {
-            useLocalAudio = true;
-          }
-        } catch {
-          // fetch failed, ignore
-        }
+        // Initialize Web Audio Context once per app lifecycle
+        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+        this.audioContext = new AudioCtx();
+        this.analyser = this.audioContext.createAnalyser();
+        this.analyser.fftSize = 256;
+        this.analyser.smoothingTimeConstant = 0.5;
+        this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+
+        this.sourceNode = this.audioContext.createMediaElementSource(this.audio);
+        this.sourceNode.connect(this.analyser);
+        this.analyser.connect(this.audioContext.destination);
       }
 
-      if (useLocalAudio) {
-        if (currentSpeakId !== this.speakCounter) return;
-        this.audio = new Audio(localUrl);
-        this.currentUrl = localUrl;
-      } else {
-        /* 2) Fallback to server-side TTS route (Microsoft Aria Neural) */
-        let res = await fetch('/api/tts', {
-          method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body:    JSON.stringify({ text }),
-        });
-
-        if (!res.ok) {
-          console.warn('[TTS] Retrying API after error..');
-          res = await fetch('/api/tts', {
-            method:  'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body:    JSON.stringify({ text }),
-          });
-        }
-
-        if (!res.ok) throw new Error(`TTS API: ${res.status}`);
-        if (currentSpeakId !== this.speakCounter) return;
-
-        const blob = await res.blob();
-        if (currentSpeakId !== this.speakCounter) return;
-        const url  = URL.createObjectURL(blob);
-
-        this.audio      = new Audio(url);
-        this.currentUrl = url;
+      // Resume context if browser suspended it
+      if (this.audioContext?.state === 'suspended') {
+        await this.audioContext.resume();
       }
+
+      this.audio.src = url;
+      this.currentUrl = url;
 
     } catch (apiErr) {
-      console.warn('[TTS] Both Local MP3 and API failed, cannot generate audio:', apiErr);
+      console.warn('[TTS] API failed, falling back to browser speech:', apiErr);
       throw apiErr; // Fall through to robotic native speech
     }
 
@@ -168,6 +158,26 @@ class SpeechController {
   get speaking() { return this.isSpeakingFlag; }
   get paused()   { return this.isPausedFlag;   }
 
+  /* ─── Realtime Volume for Lip Sync ─── */
+  getVolume(): number {
+    if (!this.analyser || !this.dataArray || !this.isSpeakingFlag || this.isPausedFlag) return 0;
+    this.analyser.getByteFrequencyData(this.dataArray as any);
+    
+    // Sum only the lower-mid vocal frequencies (approx bins 3-15 out of 128)
+    let sum = 0;
+    for (let i = 3; i < 15; i++) {
+        sum += this.dataArray[i];
+    }
+    
+    // Average and normalize, multiplied to boost small sounds
+    const avg = sum / 12; 
+    let vol = avg / 255;
+    
+    // Apply a subtle noise gate and multiplier
+    vol = vol > 0.05 ? vol * 2.5 : 0; 
+    return Math.min(1.0, vol);
+  }
+
   /* ─── Private helpers ─── */
   private _cleanup() {
     this.currentUrl = null;
@@ -212,3 +222,6 @@ class SpeechController {
 }
 
 export const speechController = new SpeechController();
+if (typeof window !== 'undefined') {
+  (window as any).speechController = speechController;
+}

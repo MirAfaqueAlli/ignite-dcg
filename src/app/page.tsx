@@ -5,16 +5,52 @@ import { useEffect, useCallback, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import SlideRenderer from '@/components/SlideRenderer';
+import type { RevealType } from '@/components/CurtainRevealOverlay';
 import { usePresentationStore } from '@/lib/presentationStore';
 import { speechController }     from '@/lib/speechController';
 import { slideEngine }          from '@/lib/slideEngine';
 import eventData                from '@/data/event.json';
-import { EventData, PresentationStatus } from '@/types/slide';
+import edithScript              from '@/data/edithScript.json';
+import { EventData, Slide, PresentationStatus } from '@/types/slide';
 
 const Avatar = dynamic(() => import('@/components/Avatar'), {
   ssr: false,
   loading: () => <div className="w-full h-full" />,
 });
+
+const CurtainRevealOverlay = dynamic(() => import('@/components/CurtainRevealOverlay'), {
+  ssr: false,
+  loading: () => null,
+});
+
+/* ─── Merge visual slides (event.json) with AIRA's speech (edithScript.json) ─── */
+function buildMergedSlides(): EventData {
+  const speechMap: Record<string, string> = {};
+  const pauseMap:  Record<string, boolean> = {};
+
+  // Index edithScript slides by id
+  (edithScript as { slides: { id: string; speech?: string; pause?: boolean }[] }).slides.forEach(s => {
+    if (s.id && s.speech) speechMap[s.id] = s.speech;
+    if (s.id && s.pause)  pauseMap[s.id]  = true;
+  });
+
+  const merged: Slide[] = (eventData as EventData).slides.map(slide => ({
+    ...slide,
+    speech: slide.id ? (speechMap[slide.id] ?? slide.speech ?? '') : (slide.speech ?? ''),
+    pause:  slide.id ? (pauseMap[slide.id]  ?? slide.pause ?? false) : (slide.pause ?? false),
+  }));
+
+  return { ...(eventData as EventData), slides: merged };
+}
+
+const mergedEventData = buildMergedSlides();
+
+/* ─── Reveal slide ID → curtain type mapping ─── */
+const REVEAL_SLIDE_MAP: Record<string, RevealType> = {
+  'slide-4a': 'logo',
+  'slide-4b': 'poster',
+  'slide-4c': 'website',
+};
 
 /* ─── tiny icon helpers ─── */
 const IcoPause = () => (
@@ -69,11 +105,16 @@ export default function PresentationPage() {
   const [hasStarted, setHasStarted] = useState(false);
   const hideT = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* ── Init ── */
+  /* ── Curtain reveal state ── */
+  const [curtainRevealType, setCurtainRevealType] = useState<RevealType>(null);
+
+  /* ── Opening inauguration curtain (shown before anything else) ── */
+  const [showOpeningCurtain, setShowOpeningCurtain] = useState(true);
+
+  /* ── Init: Load merged data ── */
   useEffect(() => {
-    const data = eventData as EventData;
-    setEventData(data);
-    slideEngine.load(data);
+    setEventData(mergedEventData);
+    slideEngine.load(mergedEventData);
     speechController.init({
       rate: 0.90, pitch: 1.35,
       onStart: () => setStatus('speaking'),
@@ -92,6 +133,8 @@ export default function PresentationPage() {
     const slide = slides[currentSlideIndex];
     if (!slide) return;
     speechController.stop();
+    // Reset curtain when slide changes
+    setCurtainRevealType(null);
     const text = slideEngine.getNarration(slide);
     if (!isMuted && text) {
       const t = setTimeout(() => {
@@ -99,7 +142,13 @@ export default function PresentationPage() {
           onEnd: () => {
             setStatus('idle');
             nav.current = false;
-            if (slide.pause) { setStatus('waiting'); return; }
+            if (slide.pause) {
+              setStatus('waiting');
+              // If this is a reveal slide, show the curtain
+              const revType = slide.id ? REVEAL_SLIDE_MAP[slide.id] ?? null : null;
+              if (revType) setCurtainRevealType(revType);
+              return;
+            }
             const a = setTimeout(() => {
               const nxt = currentSlideIndex + 1;
               if (nxt < slides.length) setCurrentSlide(nxt);
@@ -113,6 +162,9 @@ export default function PresentationPage() {
       return () => clearTimeout(t);
     } else if (slide.pause) {
       setStatus('waiting');
+      // Muted path — still show curtain for reveal slides
+      const revType = slide.id ? REVEAL_SLIDE_MAP[slide.id] ?? null : null;
+      if (revType) setCurtainRevealType(revType);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSlideIndex, slides, isMuted, hasStarted]);
@@ -154,13 +206,20 @@ export default function PresentationPage() {
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (e.repeat) return;
+      // Block ALL keyboard shortcuts while opening curtain is showing
+      if (showOpeningCurtain) return;
       const k = e.key;
-      if (k === 'ArrowRight' || k === 'PageDown') { e.preventDefault(); handleNext(); }
+      // Block ArrowRight from advancing slide while curtain is shown
+      // (the curtain itself handles its own ArrowRight -> onDone)
+      if (k === 'ArrowRight' || k === 'PageDown') {
+        e.preventDefault();
+        if (!curtainRevealType) handleNext();
+      }
       if (k === 'ArrowLeft'  || k === 'PageUp')   { e.preventDefault(); handlePrev(); }
-      if (k === ' ')  { 
-        e.preventDefault(); 
+      if (k === ' ')  {
+        e.preventDefault();
         if (!hasStarted) setHasStarted(true);
-        else handleSpace(); 
+        else handleSpace();
       }
       if (k === 'f' || k === 'F') toggleFS();
       if (k === 'm' || k === 'M') handleMute();
@@ -168,7 +227,7 @@ export default function PresentationPage() {
     window.addEventListener('keydown', h);
     return () => window.removeEventListener('keydown', h);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status, isMuted]);
+  }, [status, isMuted, hasStarted, curtainRevealType, showOpeningCurtain]);
 
   const handleNext = useCallback(() => {
     if (nav.current) return;
@@ -177,6 +236,21 @@ export default function PresentationPage() {
     nextSlide();
     setTimeout(() => { nav.current = false; }, 300);
   }, [nextSlide]);
+
+  /* Called by CurtainRevealOverlay after the user presses → post-reveal */
+  const handleCurtainDone = useCallback(() => {
+    setCurtainRevealType(null);
+    if (nav.current) return;
+    nav.current = true;
+    speechController.stop();
+    nextSlide();
+    setTimeout(() => { nav.current = false; }, 300);
+  }, [nextSlide]);
+
+  /* Called when the opening inauguration curtain is cut */
+  const handleOpeningCurtainDone = useCallback(() => {
+    setShowOpeningCurtain(false);
+  }, []);
 
   const handlePrev = useCallback(() => {
     if (nav.current) return;
@@ -207,34 +281,85 @@ export default function PresentationPage() {
   const isFinished   = status === 'finished';
 
   return (
-    /* ══════════════ ROOT — true full screen ══════════════ */
     <div
       className="app-bg w-screen h-screen overflow-hidden relative"
       onMouseMove={bumpUI}
     >
+      {/* ════ OPENING INAUGURATION CURTAIN ════ */}
+      {showOpeningCurtain && (
+        <CurtainRevealOverlay
+          revealType="opening"
+          onDone={handleOpeningCurtainDone}
+        />
+      )}
 
+      {/* ════ MID-PRESENTATION CURTAIN REVEAL OVERLAY ════ */}
+      {!showOpeningCurtain && curtainRevealType && (
+        <CurtainRevealOverlay
+          revealType={curtainRevealType}
+          onDone={handleCurtainDone}
+        />
+      )}
       {/* ════ SLIDE — bounded by left side and avatar ════ */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 p-8 lg:p-12 xl:p-16 overflow-hidden"
         style={{
+          paddingTop: '6rem', // give room for top floating UI
+          paddingBottom: '5.5rem', // give room for bottom player UI
           paddingLeft: '5vw',
           paddingRight: 'clamp(280px, 34%, 500px)'
         }}
       >
+        {/* Start screen overlay */}
+        <AnimatePresence>
+          {!hasStarted && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-6"
+              style={{ background: 'rgba(251,244,230,0.95)', backdropFilter: 'blur(4px)' }}
+            >
+              <motion.div
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="flex flex-col items-center gap-4 text-center"
+              >
+                <div
+                  className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-black text-white shadow-xl"
+                  style={{ background: 'var(--maroon)' }}
+                >
+                  E
+                </div>
+                <h1 className="text-4xl font-extrabold" style={{ color: 'var(--maroon)' }}>
+                  {stored?.eventTitle ?? mergedEventData.eventTitle}
+                </h1>
+                <p className="text-base" style={{ color: 'var(--muted-text)' }}>
+                  {stored?.eventSubtitle ?? mergedEventData.eventSubtitle}
+                </p>
+                <div className="gold-line w-32 mt-1" />
+                <p className="text-sm mt-2" style={{ color: 'var(--muted-text)' }}>
+                  Press <kbd className="px-2 py-0.5 rounded bg-white border text-xs font-mono" style={{ borderColor: 'var(--card-border)' }}>Space</kbd> to begin — AIRA will guide you
+                </p>
+                <button
+                  onClick={() => setHasStarted(true)}
+                  className="btn btn-primary mt-2 px-8 py-3 text-base"
+                >
+                  Begin Presentation
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {currentSlide
           ? <SlideRenderer slide={currentSlide} slideIndex={currentSlideIndex} />
           : <div className="h-full flex items-center justify-center text-[#A08060]">Loading…</div>
         }
       </div>
 
-
-
       {/* ════ VRM CHARACTER — floats right, full height, transparent ════ */}
-      {/* 
-        Width 34% of screen, full height.  
-        Sits on top of slide (z-10). No background → slide shows through.
-        pointer-events-none so the slide and buttons remain clickable.
-      */}
       <div
         className="absolute top-0 right-0 bottom-0 z-10 pointer-events-none"
         style={{ width: '34%', minWidth: 280, maxWidth: 500 }}
@@ -262,7 +387,7 @@ export default function PresentationPage() {
               <div
                 className="w-7 h-7 rounded-lg flex items-center justify-center font-black text-sm text-white"
                 style={{ background: 'var(--maroon)' }}
-              >J</div>
+              >E</div>
               <div>
                 <div className="text-xs font-bold leading-none" style={{ color: 'var(--maroon)' }}>
                   {stored?.eventTitle ?? 'Coding Club Inauguration'}
@@ -289,7 +414,7 @@ export default function PresentationPage() {
                   }}
                 />
                 <span style={{ color: 'var(--maroon)' }}>
-                  {isSpeaking ? 'Speaking' : isPaused ? 'Paused' : isWaiting ? 'Waiting…' : isFinished ? 'Done' : 'Ready'}
+                  AIRA — {isSpeaking ? 'Speaking' : isPaused ? 'Paused' : isWaiting ? 'Waiting…' : isFinished ? 'Done' : 'Ready'}
                 </span>
               </div>
 
@@ -323,8 +448,6 @@ export default function PresentationPage() {
               ))}
             </div>
 
-
-
             {/* ── BOTTOM CONTROL BAR ── */}
             <div
               className="absolute bottom-5 left-1/2 -translate-x-1/2 pointer-events-auto
@@ -353,6 +476,16 @@ export default function PresentationPage() {
                 />
               </div>
 
+              {/* Prev */}
+              <button
+                onClick={handlePrev}
+                disabled={currentSlideIndex === 0}
+                className="btn btn-ghost px-3 py-1.5 text-xs cursor-pointer disabled:opacity-30"
+                style={{ color: 'var(--maroon)' }}
+              >
+                ←
+              </button>
+
               {/* Pause / Resume */}
               {isSpeaking && (
                 <button
@@ -371,6 +504,14 @@ export default function PresentationPage() {
                   <IcoPlay /> Resume
                 </button>
               )}
+              {isWaiting && (
+                <button
+                  onClick={handleNext}
+                  className="btn btn-primary px-3 py-1.5 text-xs cursor-pointer"
+                >
+                  <IcoPlay /> Continue →
+                </button>
+              )}
               {isFinished && (
                 <button
                   onClick={handleRestart}
@@ -379,6 +520,16 @@ export default function PresentationPage() {
                   Restart
                 </button>
               )}
+
+              {/* Next */}
+              <button
+                onClick={handleNext}
+                disabled={currentSlideIndex === slides.length - 1}
+                className="btn btn-ghost px-3 py-1.5 text-xs cursor-pointer disabled:opacity-30"
+                style={{ color: 'var(--maroon)' }}
+              >
+                →
+              </button>
 
               {/* Mute */}
               <button

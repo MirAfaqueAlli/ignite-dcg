@@ -1,109 +1,429 @@
 {
-  "eventTitle": "Coding Club Inauguration",
-  "eventSubtitle": "Where Innovation Meets Collaboration",
-  "date": "March 16, 2026",
-  "venue": "Main Auditorium",
+  "eventTitle": "DRIEMS Coders Guild",
+  "eventSubtitle": "Official Inauguration Ceremony",
+  "tagline": "Code. Create. Conquer.",
+  "date": "[DATE]",
+  "venue": "GF-01, Academic Block - I, DRIEMS University",
   "slides": [
     {
       "id": "slide-1",
+      "segment": 1,
       "type": "intro",
-      "title": "Welcome to the Coding Club",
-      "content": "Coding Club Inauguration — March 2026",
-      "speech": "Good evening, everyone. Welcome to the official inauguration of the Coding Club. I am JARVIS., your AI host for tonight's event. We are gathered here to celebrate a new era of innovation, collaboration, and excellence in technology. Let the journey begin."
+      "title": "DRIEMS Coders Guild",
+      "subtitle": "Official Inauguration Ceremony",
+      "tagline": "Code. Create. Conquer.",
+      "details": [
+        "📍 GF-01, Academic Block - I, DRIEMS University",
+        "📅 [DATE]",
+        "🤖 Hosted by AIRA — AI Anchor"
+      ]
     },
     {
       "id": "slide-2",
-      "type": "content",
-      "title": "Our Mission",
-      "content": "The Coding Club is a community of passionate students dedicated to exploring the boundaries of technology. Our goal is to foster creativity, collaboration, and real-world problem solving through hands-on projects and events.",
-      "bulletPoints": [
-        "Foster a culture of innovation and curiosity",
-        "Bridge academia and industry through practical projects",
-        "Build a strong tech community on campus",
-        "Host hackathons, workshops, and coding challenges"
-      ],
-      "speech": "Our mission is clear. The Coding Club exists to empower students with the skills, mindset, and network needed to thrive in the tech industry. We believe that great things are built by great teams, and tonight marks the beginning of building extraordinary things together."
+      "segment": 2,
+      "type": "ceremony",
+      "title": "🪔 Lamp Lighting Ceremony",
+      "subtitle": "Illuminating the Path of Knowledge, Innovation & Excellence",
+      "leftColumn": {
+        "heading": "Significance of the Lamp",
+        "points": [
+          "Light — symbol of knowledge over ignorance",
+          "Wisdom guiding every action",
+          "Purpose conquering all doubt",
+          "DRIEMS Coders Guild lights its first flame today"
+        ]
+      },
+      "rightColumn": {
+        "heading": "Dignitaries on the Dais",
+        "points": [
+          "Prof. (Dr.) Prakash Kumar Hota — Hon'ble Vice-Chancellor, DRIEMS University",
+          "Prof. (Dr.) Nayan Ranjan Samal — Dean, School of Engineering & Technology",
+          "Dr. Amiya Kumar Sahoo — Head of Department, CSE | Convenor",
+          "Prof. Surajit Mohanty — Head of Department, CSE AI ML | Convenor"
+        ]
+      }
     },
     {
       "id": "slide-3",
-      "type": "content",
-      "title": "What We Do",
-      "content": "From competitive programming to AI projects, web development to open source contributions — we cover it all.",
-      "bulletPoints": [
-        "Weekly coding sessions and workshops",
-        "Annual hackathon with industry mentors",
-        "Open source contribution programs",
-        "AI and Machine Learning study circles",
-        "Industry guest lecture series"
-      ],
-      "speech": "The Coding Club is more than just writing code. We organize weekly workshops, host hackathons with real industry mentors, and guide students through open source contributions. Whether you are a beginner or an experienced developer, there is a place for you here."
-    },
-    {
-      "id": "slide-4",
+      "segment": 3,
       "type": "speaker",
       "title": "Presidential Address",
-      "speakerName": "Club President",
-      "speakerRole": "President, Coding Club",
-      "speech": "I would now like to invite our distinguished Club President to address the audience. Please welcome them to the stage.",
-      "pause": true
+      "subtitle": "Vision, Motto & Goals",
+      "speaker": {
+        "name": "Mir Afaque Alli",
+        "role": "President, DRIEMS Coders Guild"
+      },
+      "agenda": [
+        "Introduction — What is DRIEMS Coders Guild?",
+        "Why this guild? — The need for something better",
+        "Our Vision — Where we are headed",
+        "Our Motto — The words we stand by",
+        "Our Goals — What we commit to achieve"
+      ]
+    },
+    {
+      "id": "slide-4-invite",
+      "segment": "4-invite",
+      "type": "content",
+      "title": "Unveiling Our Identity",
+      "subtitle": "The Dignitaries take the stage",
+      "leftColumn": {
+        "heading": "The Core Identity",
+        "points": [
+          "Every great movement carries a mark",
+          "A symbol of excellence and innovation",
+          "The face of the future"
+        ]
+      },
+      "rightColumn": {
+        "heading": "The Guiding Forces",
+        "points": [
+          "Prof. (Dr.) Prakash Kumar Hota",
+          "Prof. (Dr.) Nayan Ranjan Samal",
+          "Dr. Amiya Kumar Sahoo",
+          "Prof. Surajit Mohanty"
+        ]
+      }
+    },
+    {
+      "id": "slide-4a",
+      "segment": "4a",
+      "type": "reveal",
+      "title": "Official Logo Reveal",
+      "subtitle": "Unveiling the Identity of DRIEMS Coders Guild",
+      "countdown": [
+        "3",
+        "2",
+        "1",
+        "⚡"
+      ],
+      "points": [
+        "The mark that stands for excellence",
+        "The mark that stands for innovation",
+        "The face of a future that starts today",
+        "Revealed by Prof. (Dr.) Prakash Kumar Hota"
+      ],
+      "revealLine": "The symbol of DRIEMS Coders Guild — now official"
+    },
+    {
+      "id": "slide-4b",
+      "segment": "4b",
+      "type": "reveal",
+      "title": "Official Poster Reveal",
+      "subtitle": "Carrying our vision to the world",
+      "countdown": [
+        "3",
+        "2",
+        "1",
+        "🖼️"
+      ],
+      "points": [
+        "Visualizing our mission",
+        "A beacon for every coder",
+        "The start of our journey",
+        "Revealed by Prof. (Dr.) Nayan Ranjan Samal"
+      ],
+      "revealLine": "The poster that defines our movement is now unveiled."
+    },
+    {
+      "id": "slide-4c",
+      "segment": "4c",
+      "type": "reveal",
+      "title": "Official Website Reveal",
+      "subtitle": "Our digital home goes live",
+      "countdown": [
+        "3",
+        "2",
+        "1",
+        "🌐"
+      ],
+      "points": [
+        "The central hub of our guild",
+        "Showcasing our projects and members",
+        "Connecting DRIEMS to the global tech community",
+        "Revealed by Dr. Amiya Kumar Sahoo & Prof. Surajit Mohanty"
+      ],
+      "revealLine": "The website is live. The world is watching."
     },
     {
       "id": "slide-5",
-      "type": "content",
-      "title": "Our Core Teams",
-      "content": "The club is structured into specialized teams, each focusing on different domains of technology.",
-      "bulletPoints": [
-        "🤖 AI & Machine Learning Team",
-        "🌐 Web Development Team",
-        "🔒 Cybersecurity Team",
-        "📱 Mobile Development Team",
-        "🎮 Game Development Team"
-      ],
-      "speech": "Our club is organized into five specialized teams. The A.I. and Machine Learning team, the Web Development team, the Cybersecurity team, the Mobile Development team, and the Game Development team. Each domain has dedicated mentors and project leads to guide members."
+      "segment": "5a",
+      "type": "speaker",
+      "title": "Address by Hon'ble Vice-Chancellor",
+      "speaker": {
+        "name": "Prof. (Dr.) P. K. Hota",
+        "role": "Hon'ble Vice-Chancellor, DRIEMS University",
+        "guildRole": "Chairperson — DRIEMS Coders Guild",
+        "photo": "/images/vcsir.png"
+      },
+      "highlights": [
+        "Highest academic authority of DRIEMS University",
+        "Visionary leader shaping thousands of student futures",
+        "Under his leadership — DRIEMS is a center of excellence",
+        "Sharing words of wisdom & inspiration"
+      ]
     },
     {
       "id": "slide-6",
-      "type": "content",
-      "title": "Upcoming Events",
-      "content": "We have an exciting calendar planned for the year ahead.",
-      "bulletPoints": [
-        "🏆 HackFest 2026 — April 2026",
-        "🎓 AI Workshop Series — Starting May 2026",
-        "💼 Tech Talk: Industry Leaders — June 2026",
-        "🚀 Project Showcase — August 2026",
-        "🌟 Annual Coding Championship — December 2026"
-      ],
-      "speech": "Looking ahead, we have an incredible lineup of events. HackFest 2026 in April, our A.I. Workshop Series beginning in May, industry leader talks in June, a project showcase in August, and our annual coding championship in December. This is going to be a phenomenal year."
+      "segment": "5b",
+      "type": "speaker",
+      "title": "Address by Dean, SOET",
+      "speaker": {
+        "name": "Prof. (Dr.) Nayan Ranjan Samal",
+        "role": "Dean, School of Engineering & Technology",
+        "guildRole": "Vice-Chairperson — DRIEMS Coders Guild",
+        "photo": "/images/deansir.png"
+      },
+      "highlights": [
+        "Pillar of engineering education at DRIEMS",
+        "Dedicated to raising technical learning standards",
+        "Bridges academia with real-world engineering",
+        "Sharing guidance for the guild's journey ahead"
+      ]
     },
     {
       "id": "slide-7",
+      "segment": "5c",
       "type": "speaker",
-      "title": "Faculty Advisor Address",
-      "speakerName": "Faculty Advisor",
-      "speakerRole": "Faculty Advisor, Coding Club",
-      "speech": "It is now my honor to invite our esteemed Faculty Advisor to share some words of wisdom and guidance with us.",
-      "pause": true
+      "title": "Address by HOD, Computer Science & Engineering",
+      "speaker": {
+        "name": "Dr. Amiya Kumar Sahoo",
+        "role": "Head of Department, CSE",
+        "guildRole": "Convenor — DRIEMS Coders Guild",
+        "photo": "/images/amyasir.webp"
+      },
+      "highlights": [
+        "Foundational force behind DRIEMS Coders Guild",
+        "Provided institutional support, structure & resources",
+        "Gave this vision the space & strength to grow",
+        "Sharing the path forward for CSE students"
+      ]
     },
     {
       "id": "slide-8",
-      "type": "content",
-      "title": "Join the Revolution",
-      "content": "Membership is open to all students across all years and departments. No prior coding experience required.",
-      "bulletPoints": [
-        "✅ Free membership for all students",
-        "✅ Access to premium learning resources",
-        "✅ Mentorship from senior developers",
-        "✅ Networking with industry professionals",
-        "✅ Certifications and recognition"
-      ],
-      "speech": "Joining the Coding Club is completely free and open to every student regardless of their department or experience level. Members get access to premium learning resources, mentorship from senior developers, and direct networking opportunities with industry professionals."
+      "segment": "5d",
+      "type": "speaker",
+      "title": "Address by HOD, CSE Artificial Intelligence & ML",
+      "speaker": {
+        "name": "Prof. Surajit Mohanty",
+        "role": "Head of Department, CSE AI ML",
+        "guildRole": "Convenor — DRIEMS Coders Guild",
+        "photo": "/images/surajitsir.jpg"
+      },
+      "highlights": [
+        "Expert in Artificial Intelligence & Machine Learning",
+        "The most exciting frontier of our generation",
+        "Adds a forward-looking dimension to the guild",
+        "Sharing his vision for AI-driven student development"
+      ]
     },
     {
       "id": "slide-9",
+      "segment": "6+7",
+      "type": "content",
+      "title": "Core Activities & Expected Outcomes",
+      "subtitle": "What DRIEMS Coders Guild Will Actually Do",
+      "speaker": {
+        "name": "Sonali Sahoo",
+        "role": "Technical Lead, DRIEMS Coders Guild"
+      },
+      "leftColumn": {
+        "heading": "⚙️ Core Activities",
+        "points": [
+          "Weekly hands-on coding sessions & workshops",
+          "Real-world project development from scratch",
+          "Hackathons & competitive programming",
+          "Domain-specific learning tracks",
+          "Peer-to-peer mentorship programs",
+          "Open source contribution drives",
+          "Industry guest lecture series"
+        ]
+      },
+      "rightColumn": {
+        "heading": "🎯 Expected Outcomes",
+        "points": [
+          "Industry-ready technical skills",
+          "Strong problem-solving & critical thinking",
+          "Portfolio of real, deployable projects",
+          "Team collaboration & leadership abilities",
+          "Competitive programming experience",
+          "Professional network & industry connections",
+          "Certifications & recognition"
+        ]
+      }
+    },
+    {
+      "id": "slide-10",
+      "segment": 8,
+      "type": "team",
+      "title": "Meet the Founding Guild",
+      "subtitle": "The people who will build the future of DRIEMS Coders Guild",
+      "facultyMentors": {
+        "heading": "👨‍🏫 Faculty Mentors",
+        "members": [
+          {
+            "name": "Dr. Subhasish Mohapatra",
+            "role": "Faculty Mentor, CSE"
+          },
+          {
+            "name": "Mr. Suvendu Tripathy",
+            "role": "Faculty Mentor & PIC, CSE"
+          }
+        ]
+      },
+      "executiveBoard": {
+        "heading": "👑 Student Executive Board",
+        "members": [
+          {
+            "name": "Mir Afaque Alli",
+            "role": "President"
+          },
+          {
+            "name": "Om Prakash Nayak",
+            "role": "Vice President"
+          },
+          {
+            "name": "Ahmed Raza Khan",
+            "role": "General Secretary"
+          },
+          {
+            "name": "Abhijeet Nayak",
+            "role": "Treasurer"
+          },
+          {
+            "name": "Sonali Sahoo",
+            "role": "Technical Lead"
+          }
+        ]
+      },
+      "coreTeam": {
+        "heading": "⚙️ Core Team",
+        "members": [
+          {
+            "name": "Soyam Sudha Rout",
+            "role": "Event Coordinator"
+          },
+          {
+            "name": "Aniket Parida",
+            "role": "Event Coordinator"
+          },
+          {
+            "name": "Surya Prakash Baral",
+            "role": "Discipline Coordinator (Head)"
+          },
+          {
+            "name": "Sai Pradyumna Samal",
+            "role": "Volunteer"
+          },
+          {
+            "name": "Sujit Kumar Dash",
+            "role": "Volunteer"
+          },
+          {
+            "name": "Puspalata Panigrahi",
+            "role": "Project Lead"
+          },
+          {
+            "name": "Md. Ibrahim",
+            "role": "Project Lead"
+          },
+          {
+            "name": "Subhalaxmi Sahoo",
+            "role": "Social Media & PR"
+          },
+          {
+            "name": "Saistuti Mohapatra",
+            "role": "Social Media & PR"
+          }
+        ]
+      },
+      "domainLeads": {
+        "heading": "🔬 Domain Leads",
+        "members": [
+          {
+            "name": "Jayaprakash Sahoo",
+            "role": "Web & App Development Lead"
+          },
+          {
+            "name": "Surya Snata Panigrahi",
+            "role": "AI / ML Lead"
+          },
+          {
+            "name": "Sibansundar Barik",
+            "role": "Cybersecurity Lead"
+          }
+        ]
+      }
+    },
+    {
+      "id": "slide-11",
+      "segment": "9+10",
+      "type": "content",
+      "title": "Membership & Future Plans",
+      "subtitle": "Join the Movement — Your Journey Starts Here",
+      "speakers": [
+        {
+          "name": "Abhijeet Nayak",
+          "role": "Treasurer"
+        }
+      ],
+      "leftColumn": {
+        "heading": "✅ How to Join",
+        "points": [
+          "Open to ALL DRIEMS University students",
+          "No prior coding experience required",
+          "Fill the official membership form",
+          "Attend the onboarding orientation session",
+          "Pick your domain of interest",
+          "Start building — from day one"
+        ]
+      },
+      "rightColumn": {
+        "heading": "📅 Future Plans",
+        "points": [
+          "Monthly coding workshops & skill-building sessions",
+          "Inter-college hackathons & competitions",
+          "Industry guest lecture series",
+          "Open source contribution drives",
+          "Annual project showcase & exhibition",
+          "Certifications & recognition programs"
+        ]
+      },
+      "banner": "The best time to join a movement — is at the very beginning."
+    },
+    {
+      "id": "slide-12",
+      "segment": 11,
+      "type": "speaker",
+      "title": "Vote of Thanks",
+      "speaker": {
+        "name": "Om Prakash Nayak",
+        "role": "Vice President, DRIEMS Coders Guild"
+      },
+      "acknowledgements": [
+        "Prof. (Dr.) P. K. Hota — Hon'ble Vice-Chancellor",
+        "Prof. (Dr.) Nayan Ranjan Samal — Dean, SOET",
+        "Dr. Amiya Kumar Sahoo — HOD, CSE",
+        "Prof. Surajit Mohanty — HOD, CSE AI ML",
+        "Dr. Subhasish Mohapatra & Mr. Suvendu Tripathy — Faculty Mentors",
+        "The entire founding team of DRIEMS Coders Guild",
+        "Every student who showed up and made this moment real"
+      ]
+    },
+    {
+      "id": "slide-13",
+      "segment": 12,
       "type": "outro",
-      "title": "The Future is Code",
-      "content": "Together, we will build, innovate, and inspire. The journey of a thousand projects begins with a single line of code.",
-      "speech": "As we conclude tonight's inauguration, I want to leave you with this thought. The future belongs to those who dare to build it. Every great application, every revolutionary system, every world-changing platform — it all began with a single line of code. Welcome to the Coding Club. Let us build the future together. Thank you."
+      "title": "The Guild Has Risen",
+      "subtitle": "DRIEMS Coders Guild — Official & Alive",
+      "tagline": "Code. Create. Conquer.",
+      "closingLines": [
+        "What ends here is only a ceremony.",
+        "What begins here — is a legacy.",
+        "Every revolution begins with a single line of code.",
+        "Build something the world has never seen before."
+      ],
+      "footer": "DRIEMS Coders Guild | GF-01, Academic Block - I | DRIEMS University | [DATE]"
     }
   ]
 }
