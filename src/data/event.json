@@ -225,7 +225,8 @@
       "speaker": {
         "name": "Mr. Suvendu Tripathy",
         "role": "Asst. Professor, CSE",
-        "guildRole": "Person-In-Charge — DRIEMS Coders Guild"
+        "guildRole": "Person-In-Charge — DRIEMS Coders Guild",
+        "photo": "/images/suvenduSir.jpeg"
       },
       "highlights": [
         "The silent backbone of DRIEMS Coders Guild",
@@ -242,7 +243,8 @@
       "speaker": {
         "name": "Dr. Subhasish Mohapatra",
         "role": "Asst. Professor, CSE",
-        "guildRole": "Advisor — DRIEMS Coders Guild"
+        "guildRole": "Advisor — DRIEMS Coders Guild",
+        "photo": "/images/subhasishSir.jpg"
       },
       "highlights": [
         "Guiding light behind the guild since its conception",
