@@ -648,7 +648,7 @@ function OutroSlide({ slide }: { slide: Slide }) {
         )}
 
         <motion.div variants={stagger} className="flex gap-2 flex-wrap justify-center">
-          {['Code', 'Create', 'Conquer'].map((w) => (
+          {['Code', 'Create', 'Collab'].map((w) => (
             <motion.span key={w} variants={pop}
               className="px-4 py-1.5 rounded-full border font-bold tracking-widest"
               style={{ fontSize: 11, borderColor: M, color: M, textTransform: 'uppercase', letterSpacing: '0.1em' }}>

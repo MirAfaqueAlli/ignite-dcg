@@ -1,6 +1,6 @@
 {
     "eventTitle": "DRIEMS Coders Guild — Official Inauguration",
-    "eventSubtitle": "Code. Create. Conquer.",
+    "eventSubtitle": "Code. Create. Collab.",
     "date": "[DATE]",
     "venue": "GF-01, Academic Block - I, DRIEMS University",
     "aiAnchorName": "AIRA",
@@ -22,7 +22,7 @@
             "title": "Lamp Lighting Ceremony",
             "content": "Illuminating the Path of Knowledge, Innovation, and Excellence.",
             "speaker": "AIRA (AI Anchor) + Dignitaries",
-            "speech": "We now commence our proceedings with one of the most sacred and cherished traditions—the lighting of the lamp. In our culture, light is not merely illumination; it symbolizes knowledge conquering ignorance, wisdom guiding action, and purpose overcoming doubt. As these flames rise in this hall today, let them stand as a testament—that the DRIEMS Coders Guild will shine as a beacon of technical excellence for every student who walks through this institution. I now respectfully invite our distinguished dignitaries to grace the dais and illuminate this occasion. Please extend a warm welcome to Prof. (Dr.) Prakash Kumar Hota, Hon’ble Vice-Chancellor of DRIEMS University and Chairperson of DRIEMS Coders Guild; Prof. Dr. Nayan Ranjan Samal, Dean, School of Engineering and Technology and Vice-Chairperson; Dr. Amiya Kumar Sahoo, Head of Department, Computer Science and Engineering and Convenor; Prof. Surajit Mohanty, Head of Department, CSE Artificial Intelligence and Machine Learning and Convenor; along with all the respected faculty members present here today. Sirs and Ma’am, we humbly await your gracious presence at the dais.",
+            "speech": "We now commence our proceedings with one of the most sacred and cherished traditions—the lighting of the lamp. In our culture, light is not merely illumination; it symbolizes knowledge conquering ignorance, wisdom guiding action, and purpose overcoming doubt. As these flames rise in this hall today, let them stand as a testament—that the DRIEMS Coders Guild will shine as a beacon of technical excellence for every student who walks through this institution. I now respectfully invite our distinguished dignitaries to grace the dais and illuminate this occasion. Please extend a warm welcome to Prof. (Dr.) Prakash Kumar Hota, Hon’ble Vice-Chancellor of DRIEMS University and Chairperson of DRIEMS Coders Guild; Prof. Dr. Nayan Ranjan Samal, Dean, School of Engineering and Technology and Vice-Chairperson; Dr. Amiya Kumar Sahoo, Head of Department, Computer Science and Engineering and Convenor; Prof. Surajit Mohanty, Co-Convenor of DRIEMS Coders Guild and Faculty, CSE; along with all the respected faculty members present here today. Sirs and Ma’am, we humbly await your gracious presence at the dais.",
             "pause": true,
             "pauseNote": "Wait for all dignitaries to light the lamp. Resume after ceremony concludes."
         },
@@ -45,7 +45,7 @@
             "title": "Unveiling Our Identity",
             "content": "Inviting the dignitaries to the stage.",
             "speaker": "AIRA (AI Anchor)",
-            "speech": "Ladies and gentlemen — every great movement carries a mark. An identity. Today, DRIEMS Coders Guild steps out of the shadows to reveal that identity to the world. But before we do, we need the guiding forces of this institution to do the honors. I respectfully invite our Hon'ble Vice-Chancellor, Prof. (Dr.) Prakash Kumar Hota, our Dean, Prof. (Dr.) Nayan Ranjan Samal, and our HODs, Dr. Amiya Kumar Sahoo and Prof. Surajit Mohanty, to please step up to the screen for the official reveals.",
+            "speech": "Ladies and gentlemen — every great movement carries a mark. An identity. Today, DRIEMS Coders Guild steps out of the shadows to reveal that identity to the world. But before we do, we need the guiding forces of this institution to do the honors. I respectfully invite our Hon'ble Vice-Chancellor, Prof. (Dr.) Prakash Kumar Hota, our Dean, Prof. (Dr.) Nayan Ranjan Samal, and Dr. Amiya Kumar Sahoo, HOD CSE, and Prof. Surajit Mohanty, Co-Convenor, to please step up to the screen for the official reveals.",
             "pause": true,
             "pauseNote": "Wait for all dignitaries to walk up to the stage and take their positions. Press Next when they are ready."
         },
@@ -128,13 +128,37 @@
             "id": "slide-8",
             "segment": "5d",
             "type": "speaker",
-            "title": "Address by HOD, CSE AI ML",
+            "title": "Address by Co-Convenor, DRIEMS Coders Guild",
             "speakerName": "Prof. Surajit Mohanty",
-            "speakerRole": "Head of Department, CSE AI ML | Convenor, DRIEMS Coders Guild",
+            "speakerRole": "Co-Convenor, DRIEMS Coders Guild | Faculty, CSE",
             "speaker": "AIRA (AI Anchor) → Handoff to Prof. Surajit Mohanty",
-            "speech": "And to close this distinguished panel of faculty addresses — I invite a gentleman whose domain is perhaps the most exciting frontier of our generation — Artificial Intelligence and Machine Learning. His expertise adds a forward-looking, visionary dimension to everything this guild will pursue. I invite Prof. Surajit Mohanty — Head of Department, CSE Artificial Intelligence and Machine Learning, and Convenor of DRIEMS Coders Guild — to speak. Professor, you have the stage.",
+            "speech": "Our next address comes from a gentleman who has stood alongside the founding vision of this guild from the very beginning — a pillar of support, guidance, and encouragement. As Co-Convenor of DRIEMS Coders Guild, his dedication to seeing this initiative take shape has been invaluable. I now invite Prof. Surajit Mohanty — Co-Convenor of DRIEMS Coders Guild and Faculty, CSE — to address this gathering. Professor, the stage is yours.",
             "pause": true,
-            "pauseNote": "HOD, CSE AI ML speaks. Full segment under his discretion."
+            "pauseNote": "Co-Convenor, Prof. Surajit Mohanty speaks. Full segment under his discretion."
+        },
+        {
+            "id": "slide-8a",
+            "segment": "5e",
+            "type": "speaker",
+            "title": "Address by PIC, DRIEMS Coders Guild",
+            "speakerName": "Mr. Suvendu Tripathy",
+            "speakerRole": "Person-In-Charge, DRIEMS Coders Guild | Asst. Professor, CSE",
+            "speaker": "AIRA (AI Anchor) → Handoff to Mr. Suvendu Tripathy",
+            "speech": "And now, I have the privilege of inviting the one individual who has been the silent backbone of this guild — the person who turned this idea into an institution, who ensured every plan found its place, every process had its pillar, and every student found their footing. I now invite Mr. Suvendu Tripathy — Assistant Professor, Department of Computer Science and Engineering, and Person-In-Charge of DRIEMS Coders Guild — to address this gathering. Sir, the stage is yours.",
+            "pause": true,
+            "pauseNote": "PIC, Mr. Suvendu Tripathy speaks. Full segment under his discretion."
+        },
+        {
+            "id": "slide-8b",
+            "segment": "5f",
+            "type": "speaker",
+            "title": "Address by Advisor, DRIEMS Coders Guild",
+            "speakerName": "Dr. Subhasish Mohapatra",
+            "speakerRole": "Advisor, DRIEMS Coders Guild | Asst. Professor, CSE",
+            "speaker": "AIRA (AI Anchor) → Handoff to Dr. Subhasish Mohapatra",
+            "speech": "To close this distinguished sequence of faculty addresses, I invite a gentleman whose academic depth and mentoring spirit have been a guiding light for this guild since its very conception. As Advisor to DRIEMS Coders Guild, he brings not just expertise — but wisdom, perspective, and a commitment to seeing every student grow beyond what they believe they are capable of. I respectfully invite Dr. Subhasish Mohapatra — Assistant Professor, Department of Computer Science and Engineering, and Advisor of DRIEMS Coders Guild — to address this gathering. Sir, please.",
+            "pause": true,
+            "pauseNote": "Advisor, Dr. Subhasish Mohapatra speaks. Full segment under his discretion."
         },
         {
             "id": "slide-9",
@@ -271,7 +295,7 @@
             "segment": 12,
             "type": "outro",
             "title": "Closing — The Guild Has Risen",
-            "content": "Code. Create. Conquer. — DRIEMS Coders Guild",
+            "content": "Code. Create. Collab. — DRIEMS Coders Guild",
             "speaker": "AIRA (AI Anchor)",
             "speech": "And with that — the official inauguration of DRIEMS Coders Guild is complete. But understand this: what ends here tonight is only a ceremony. What begins here tonight — is a legacy. Every line of code you will write. Every problem you will solve. Every project you will ship. Every competition you will enter. Every skill you will master. It all traces back to this room. This day. This moment. The world does not change by accident. It changes because somewhere, a group of people decided they were going to build something better. You are those people. DRIEMS Coders Guild is your platform. Use it. I am AIRA. It has been my deepest honor to anchor this historic occasion. On behalf of the entire DRIEMS Coders Guild — to our dignitaries, our faculty, our mentors, our team, and every student in this hall — thank you. Now go. And build something the world has never seen before.",
             "postSpeechNote": "Poster distribution / closing activity follows. AIRA may play a closing musical score or transition graphic if integrated into the 3D AI anchor system."

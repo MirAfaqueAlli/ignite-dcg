@@ -1,7 +1,7 @@
 {
   "eventTitle": "DRIEMS Coders Guild",
   "eventSubtitle": "Official Inauguration Ceremony",
-  "tagline": "Code. Create. Conquer.",
+  "tagline": "Code. Create. Collab.",
   "date": "[DATE]",
   "venue": "GF-01, Academic Block - I, DRIEMS University",
   "slides": [
@@ -11,7 +11,7 @@
       "type": "intro",
       "title": "DRIEMS Coders Guild",
       "subtitle": "Official Inauguration Ceremony",
-      "tagline": "Code. Create. Conquer.",
+      "tagline": "Code. Create. Collab.",
       "details": [
         "📍 GF-01, Academic Block - I, DRIEMS University",
         "📅 [DATE]",
@@ -39,7 +39,7 @@
           "Prof. (Dr.) Prakash Kumar Hota — Hon'ble Vice-Chancellor, DRIEMS University",
           "Prof. (Dr.) Nayan Ranjan Samal — Dean, School of Engineering & Technology",
           "Dr. Amiya Kumar Sahoo — Head of Department, CSE | Convenor",
-          "Prof. Surajit Mohanty — Head of Department, CSE AI ML | Convenor"
+          "Prof. Surajit Mohanty — Co-Convenor, DRIEMS Coders Guild | Faculty, CSE"
         ]
       }
     },
@@ -203,18 +203,52 @@
       "id": "slide-8",
       "segment": "5d",
       "type": "speaker",
-      "title": "Address by HOD, CSE Artificial Intelligence & ML",
+      "title": "Address by Co-Convenor, DRIEMS Coders Guild",
       "speaker": {
         "name": "Prof. Surajit Mohanty",
-        "role": "Head of Department, CSE AI ML",
-        "guildRole": "Convenor — DRIEMS Coders Guild",
+        "role": "Co-Convenor, DRIEMS Coders Guild | Faculty, CSE",
+        "guildRole": "Co-Convenor — DRIEMS Coders Guild",
         "photo": "/images/surajitsir.jpg"
       },
       "highlights": [
-        "Expert in Artificial Intelligence & Machine Learning",
-        "The most exciting frontier of our generation",
-        "Adds a forward-looking dimension to the guild",
-        "Sharing his vision for AI-driven student development"
+        "Co-Convenor \u0026 driving force behind DRIEMS Coders Guild",
+        "Instrumental in shaping the guild's vision \u0026 structure",
+        "Dedicated to empowering students through technical excellence",
+        "Sharing his guidance for the guild's journey ahead"
+      ]
+    },
+    {
+      "id": "slide-8a",
+      "segment": "5e",
+      "type": "speaker",
+      "title": "Address by PIC, DRIEMS Coders Guild",
+      "speaker": {
+        "name": "Mr. Suvendu Tripathy",
+        "role": "Asst. Professor, CSE",
+        "guildRole": "Person-In-Charge — DRIEMS Coders Guild"
+      },
+      "highlights": [
+        "The silent backbone of DRIEMS Coders Guild",
+        "Turned the idea into a functioning institution",
+        "Ensured every plan found its pillar",
+        "Sharing his perspective on the guild's journey"
+      ]
+    },
+    {
+      "id": "slide-8b",
+      "segment": "5f",
+      "type": "speaker",
+      "title": "Address by Advisor, DRIEMS Coders Guild",
+      "speaker": {
+        "name": "Dr. Subhasish Mohapatra",
+        "role": "Asst. Professor, CSE",
+        "guildRole": "Advisor — DRIEMS Coders Guild"
+      },
+      "highlights": [
+        "Guiding light behind the guild since its conception",
+        "Brings academic depth \u0026 mentoring wisdom",
+        "Committed to seeing every student grow beyond limits",
+        "Sharing words of guidance for the road ahead"
       ]
     },
     {
@@ -404,7 +438,7 @@
         "Prof. (Dr.) P. K. Hota — Hon'ble Vice-Chancellor",
         "Prof. (Dr.) Nayan Ranjan Samal — Dean, SOET",
         "Dr. Amiya Kumar Sahoo — HOD, CSE",
-        "Prof. Surajit Mohanty — HOD, CSE AI ML",
+        "Prof. Surajit Mohanty — Co-Convenor, DRIEMS Coders Guild",
         "Dr. Subhasish Mohapatra & Mr. Suvendu Tripathy — Faculty Mentors",
         "The entire founding team of DRIEMS Coders Guild",
         "Every student who showed up and made this moment real"
@@ -416,7 +450,7 @@
       "type": "outro",
       "title": "The Guild Has Risen",
       "subtitle": "DRIEMS Coders Guild — Official & Alive",
-      "tagline": "Code. Create. Conquer.",
+      "tagline": "Code. Create. Collab.",
       "closingLines": [
         "What ends here is only a ceremony.",
         "What begins here — is a legacy.",

@@ -458,6 +458,7 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
     gsap.to(botSwayRef.current, { skewX: -0.6, duration: 3.5, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: 0.5 });
   }, []);
 
+
   /* ── Cut / Reveal handler ── */
   const handleCut = useCallback(() => {
     if (hasCut) return;
@@ -527,6 +528,18 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
       .to([seam1Ref.current, seam2Ref.current], { opacity: 0, duration: 0.4 }, '-=0.8')
       .to(curtainRef.current, { opacity: 0, duration: 0.55, ease: 'power2.out' }, '-=0.2');
   }, [hasCut]);
+
+  /* ── Enter / Space key → cut ribbon ── */
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => {
+      if ((e.key === 'Enter' || e.key === ' ') && isReady && !hasCut) {
+        e.preventDefault();
+        handleCut();
+      }
+    };
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, [isReady, hasCut, handleCut]);
 
   /* label shown on curtain */
   const curtainLabel =
