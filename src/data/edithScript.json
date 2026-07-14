@@ -141,12 +141,12 @@
             "segment": "5e",
             "type": "speaker",
             "title": "Address by PIC, DRIEMS Coders Guild",
-            "speakerName": "Mr. Suvendu Tripathy",
+            "speakerName": "Prof. Suvendu Tripathy",
             "speakerRole": "Person-In-Charge, DRIEMS Coders Guild | Asst. Professor, CSE",
-            "speaker": "AIRA (AI Anchor) → Handoff to Mr. Suvendu Tripathy",
-            "speech": "And now, I have the privilege of inviting the one individual who has been the silent backbone of this guild — the person who turned this idea into an institution, who ensured every plan found its place, every process had its pillar, and every student found their footing. I now invite Mr. Suvendu Tripathy — Assistant Professor, Department of Computer Science and Engineering, and Person-In-Charge of DRIEMS Coders Guild — to address this gathering. Sir, the stage is yours.",
+            "speaker": "AIRA (AI Anchor) → Handoff to Prof. Suvendu Tripathy",
+            "speech": "And now, I have the privilege of inviting the one individual who has been the silent backbone of this guild — the person who turned this idea into an institution, who ensured every plan found its place, every process had its pillar, and every student found their footing. I now invite Prof. Suvendu Tripathy — Assistant Professor, Department of Computer Science and Engineering, and Person-In-Charge of DRIEMS Coders Guild — to address this gathering. Sir, the stage is yours.",
             "pause": true,
-            "pauseNote": "PIC, Mr. Suvendu Tripathy speaks. Full segment under his discretion."
+            "pauseNote": "PIC, Prof. Suvendu Tripathy speaks. Full segment under his discretion."
         },
         {
             "id": "slide-8b",
@@ -185,7 +185,7 @@
                     "role": "Faculty Mentor, CSE"
                 },
                 {
-                    "name": "Mr. Suvendu Tripathy",
+                    "name": "Prof. Suvendu Tripathy",
                     "role": "Faculty Mentor & PIC, CSE"
                 }
             ],
@@ -263,7 +263,7 @@
                     "role": "Cybersecurity Lead"
                 }
             ],
-            "speech": "Every great movement is built by extraordinary people. And behind DRIEMS Coders Guild stands a team that chose responsibility over comfort — action over observation. I want you to meet them. Before I introduce our student team, I want to acknowledge the two faculty mentors whose guidance keeps this guild grounded and growing — Dr. Subhasish Mohapatra, Faculty Mentor from CSE, and Mr. Suvendu Tripathy, Faculty Mentor and Person-In-Charge from CSE. Your support means everything. Now — as I call each name, please stand and be recognized by this audience. Student Executive Board — our President, Mir Afaque Alli. Vice President, Om Prakash Nayak. General Secretary, Ahmed Raza Khan. Treasurer, Abhijeet Nayak. Technical Lead, Sonali Sahoo. Core Team — Event Coordinators, Soyam Sudha Rout and Aniket Parida. Discipline Coordinator, Surya Prakash Baral. Volunteers, Sai Pradyumna Samal and Sujit Kumar Dash. Project Leads, Puspalata Panigrahi and Md. Ibrahim. Social Media and PR, Subhalaxmi Sahoo and Saistuti Mohapatra. Domain Leads — Web and App Development Lead, Jayaprakash Sahoo. AI and Machine Learning Lead, Surya Snata Panigrahi. And Cybersecurity Lead, Sibansundar Barik. Ladies and gentlemen — please give a thunderous round of applause to the founding team of DRIEMS Coders Guild.",
+            "speech": "Every great movement is built by extraordinary people. And behind DRIEMS Coders Guild stands a team that chose responsibility over comfort — action over observation. I want you to meet them. Before I introduce our student team, I want to acknowledge the two faculty mentors whose guidance keeps this guild grounded and growing — Dr. Subhasish Mohapatra, Faculty Mentor from CSE, and Prof. Suvendu Tripathy, Faculty Mentor and Person-In-Charge from CSE. Your support means everything. Now — as I call each name, please stand and be recognized by this audience. Student Executive Board — our President, Mir Afaque Alli. Vice President, Om Prakash Nayak. General Secretary, Ahmed Raza Khan. Treasurer, Abhijeet Nayak. Technical Lead, Sonali Sahoo. Core Team — Event Coordinators, Soyam Sudha Rout and Aniket Parida. Discipline Coordinator, Surya Prakash Baral. Volunteers, Sai Pradyumna Samal and Sujit Kumar Dash. Project Leads, Puspalata Panigrahi and Md. Ibrahim. Social Media and PR, Subhalaxmi Sahoo and Saistuti Mohapatra. Domain Leads — Web and App Development Lead, Jayaprakash Sahoo. AI and Machine Learning Lead, Surya Snata Panigrahi. And Cybersecurity Lead, Sibansundar Barik. Ladies and gentlemen — please give a thunderous round of applause to the founding team of DRIEMS Coders Guild.",
             "pauseNote": "Allow each member to stand and be acknowledged. Pause naturally between categories."
         },
         {

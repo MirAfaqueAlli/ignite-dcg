@@ -6,20 +6,20 @@ import { Slide } from '@/types/slide';
 interface SlideRendererProps { slide: Slide; slideIndex: number; }
 
 /* ── transitions ── */
-const enter      = { opacity: 0, x: 48, scale: 0.97 };
-const center     = { opacity: 1, x: 0,  scale: 1    };
-const exit_      = { opacity: 0, x: -48, scale: 0.97 };
-const spring     = { type: 'spring' as const, stiffness: 280, damping: 28 };
+const enter = { opacity: 0, x: 48, scale: 0.97 };
+const center = { opacity: 1, x: 0, scale: 1 };
+const exit_ = { opacity: 0, x: -48, scale: 0.97 };
+const spring = { type: 'spring' as const, stiffness: 280, damping: 28 };
 
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.07, delayChildren: 0.04 } } };
-const up  = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 200, damping: 22 } } };
+const up = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 200, damping: 22 } } };
 const pop = { hidden: { opacity: 0, scale: 0.7 }, show: { opacity: 1, scale: 1, transition: { type: 'spring' as const, stiffness: 300, damping: 20 } } };
 const fade = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.55 } } };
 
 /* ── tokens ── */
-const M  = 'var(--maroon)';
+const M = 'var(--maroon)';
 const MD = 'var(--maroon-dark)';
-const G  = 'var(--gold)';
+const G = 'var(--gold)';
 const GD = 'var(--gold-dark)';
 
 /* ══════════════════════════════════════════════════════════════
@@ -124,7 +124,7 @@ function IntroSlide({ slide }: { slide: Slide }) {
    SLIDE 2 — CEREMONY  (Split accent + cards)
 ══════════════════════════════════════════════════════════════ */
 function CeremonySlide({ slide }: { slide: Slide }) {
-  const leftPts  = slide.leftColumn?.points  ?? [];
+  const leftPts = slide.leftColumn?.points ?? [];
   const rightPts = slide.rightColumn?.points ?? [];
 
   const ColumnCard = ({ heading, points, accent }: { heading: string; points: string[]; accent: boolean }) => (
@@ -188,7 +188,7 @@ function CeremonySlide({ slide }: { slide: Slide }) {
 
       {/* Two columns */}
       <div className="flex gap-5 flex-1 min-h-0">
-        {slide.leftColumn  && <ColumnCard heading={slide.leftColumn.heading}  points={leftPts}  accent={true}  />}
+        {slide.leftColumn && <ColumnCard heading={slide.leftColumn.heading} points={leftPts} accent={true} />}
         {slide.rightColumn && <ColumnCard heading={slide.rightColumn.heading} points={rightPts} accent={false} />}
       </div>
 
@@ -201,11 +201,11 @@ function CeremonySlide({ slide }: { slide: Slide }) {
    SPEAKER SLIDE  (Dramatic portrait + list)
 ══════════════════════════════════════════════════════════════ */
 function SpeakerSlide({ slide }: { slide: Slide }) {
-  const name      = slide.speaker?.name || slide.speakerName || 'Guest Speaker';
-  const role      = slide.speaker?.role || slide.speakerRole || '';
-  const gRole     = slide.speaker?.guildRole;
-  const photo     = slide.speaker?.photo;
-  const initials  = name.split(' ').map((w: string) => w[0]).slice(0, 2).join('').toUpperCase();
+  const name = slide.speaker?.name || slide.speakerName || 'Guest Speaker';
+  const role = slide.speaker?.role || slide.speakerRole || '';
+  const gRole = slide.speaker?.guildRole;
+  const photo = slide.speaker?.photo;
+  const initials = name.split(' ').map((w: string) => w[0]).slice(0, 2).join('').toUpperCase();
   const listItems = slide.agenda || slide.highlights || slide.acknowledgements || [];
 
   return (
@@ -490,7 +490,7 @@ function ContentSlide({ slide }: { slide: Slide }) {
       </motion.div>
 
       <div className="flex gap-4 flex-1 min-h-0 pb-1">
-        {slide.leftColumn  && <Col col={slide.leftColumn}  accent={true}  />}
+        {slide.leftColumn && <Col col={slide.leftColumn} accent={true} />}
         {slide.rightColumn && <Col col={slide.rightColumn} accent={false} />}
       </div>
 
@@ -578,7 +578,7 @@ function TeamSlide({ slide }: { slide: Slide }) {
             </Section>
           )}
         </div>
-        
+
         {slide.coreTeam && (
           <Section heading={slide.coreTeam.heading} className="flex-1">
             <div className="grid grid-cols-3 gap-1 h-full content-center">
@@ -586,7 +586,7 @@ function TeamSlide({ slide }: { slide: Slide }) {
             </div>
           </Section>
         )}
-        
+
         {slide.domainLeads && (
           <Section heading={slide.domainLeads.heading} className="shrink-0">
             <div className="grid grid-cols-3 gap-1 h-full content-center">
@@ -696,13 +696,13 @@ export default function SlideRenderer({ slide, slideIndex }: SlideRendererProps)
         transition={spring}
         className="h-full w-full overflow-hidden"
       >
-        {slide.type === 'intro'    && <IntroSlide    slide={slide} />}
+        {slide.type === 'intro' && <IntroSlide slide={slide} />}
         {slide.type === 'ceremony' && <CeremonySlide slide={slide} />}
-        {slide.type === 'speaker'  && <SpeakerSlide  slide={slide} />}
-        {slide.type === 'reveal'   && <RevealSlide   slide={slide} />}
-        {slide.type === 'content'  && <ContentSlide  slide={slide} />}
-        {slide.type === 'team'     && <TeamSlide     slide={slide} />}
-        {slide.type === 'outro'    && <OutroSlide    slide={slide} />}
+        {slide.type === 'speaker' && <SpeakerSlide slide={slide} />}
+        {slide.type === 'reveal' && <RevealSlide slide={slide} />}
+        {slide.type === 'content' && <ContentSlide slide={slide} />}
+        {slide.type === 'team' && <TeamSlide slide={slide} />}
+        {slide.type === 'outro' && <OutroSlide slide={slide} />}
       </motion.div>
     </AnimatePresence>
   );
