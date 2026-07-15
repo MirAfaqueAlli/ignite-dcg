@@ -148,7 +148,7 @@ function CeremonySlide({ slide }: { slide: Slide }) {
       </div>
 
       {/* Bullets */}
-      <ul className="flex flex-col gap-2 px-5 pb-5 flex-1 justify-evenly">
+      <ul className="flex flex-col gap-3 px-5 py-4">
         {points.map((p, i) => (
           <motion.li key={i} variants={up}
             className="flex items-center gap-3 px-4 py-2.5 rounded-2xl"
@@ -300,7 +300,7 @@ function SpeakerSlide({ slide }: { slide: Slide }) {
                 {slide.agenda ? 'Agenda' : slide.acknowledgements ? 'Acknowledgements' : 'Highlights'}
               </span>
             </div>
-            <ul className="flex flex-col gap-2 flex-1 justify-evenly">
+            <ul className="flex flex-col gap-2.5 py-2">
               {listItems.map((p, i) => (
                 <motion.li key={i} variants={up}
                   className="flex items-center gap-3 px-4 py-2.5 rounded-2xl"
@@ -448,7 +448,7 @@ function ContentSlide({ slide }: { slide: Slide }) {
         <div className="w-1 rounded-full" style={{ height: 16, background: accent ? `linear-gradient(to bottom,${M},${G})` : `linear-gradient(to bottom,${G},${M})` }} />
         <span className="font-black uppercase tracking-widest" style={{ fontSize: 10, color: MD }}>{col.heading}</span>
       </div>
-      <ul className="flex flex-col gap-1.5 px-4 py-2.5 flex-1 justify-evenly">
+      <ul className="flex flex-col gap-2 px-4 py-3">
         {col.points.map((p, i) => (
           <motion.li key={i} variants={up}
             className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl"
@@ -565,14 +565,14 @@ function TeamSlide({ slide }: { slide: Slide }) {
         <div className="grid grid-cols-[1fr_2.5fr] gap-1.5 shrink-0">
           {slide.facultyMentors && (
             <Section heading={slide.facultyMentors.heading}>
-              <div className="grid grid-cols-1 gap-1 h-full content-center">
+              <div className="grid grid-cols-1 gap-1 py-0.5">
                 {slide.facultyMentors.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={false} />)}
               </div>
             </Section>
           )}
           {slide.executiveBoard && (
             <Section heading={slide.executiveBoard.heading}>
-              <div className="grid grid-cols-3 gap-1 h-full content-center">
+              <div className="grid grid-cols-3 gap-1 py-0.5">
                 {slide.executiveBoard.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={true} />)}
               </div>
             </Section>
@@ -581,7 +581,7 @@ function TeamSlide({ slide }: { slide: Slide }) {
 
         {slide.coreTeam && (
           <Section heading={slide.coreTeam.heading} className="flex-1">
-            <div className="grid grid-cols-3 gap-1 h-full content-center">
+            <div className="grid grid-cols-3 gap-1 py-0.5">
               {slide.coreTeam.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={i % 2 === 0} />)}
             </div>
           </Section>
@@ -589,7 +589,7 @@ function TeamSlide({ slide }: { slide: Slide }) {
 
         {slide.domainLeads && (
           <Section heading={slide.domainLeads.heading} className="shrink-0">
-            <div className="grid grid-cols-3 gap-1 h-full content-center">
+            <div className="grid grid-cols-3 gap-1 py-0.5">
               {slide.domainLeads.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={i % 2 !== 0} />)}
             </div>
           </Section>

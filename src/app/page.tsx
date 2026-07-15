@@ -302,7 +302,7 @@ export default function PresentationPage() {
       )}
       {/* ════ SLIDE — bounded by left side and avatar ════ */}
       <div
-        className="absolute inset-0 p-8 lg:p-12 xl:p-16 overflow-hidden"
+        className="absolute inset-0 overflow-hidden"
         style={{
           paddingTop: '6rem', // give room for top floating UI
           paddingBottom: '5.5rem', // give room for bottom player UI
