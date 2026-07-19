@@ -544,17 +544,17 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
   /* label shown on curtain */
   const curtainLabel =
     revealType === 'opening'  ? 'DRIEMS Coders Guild'
-    : revealType === 'logo'   ? 'Official Logo'
-    : revealType === 'poster' ? 'Official Poster'
-    : revealType === 'website'? 'Official Website'
+    : revealType === 'logo'   ? 'Logo Reveal'
+    : revealType === 'poster' ? 'Poster Reveal'
+    : revealType === 'website'? 'Website Reveal'
     : 'Reveal';
 
   const curtainSubtitle =
-    revealType === 'opening'  ? 'Official Inauguration Ceremony'
-    : 'DRIEMS Coders Guild · Inauguration';
+    revealType === 'opening'  ? 'Expansion Ceremony'
+    : 'DRIEMS Coders Guild · Expansion Ceremony';
 
   const ribbonText =
-    revealType === 'opening'  ? '✦ Unveil the Inauguration ✦'
+    revealType === 'opening'  ? '✦ Unveil the Ceremony ✦'
     : '✦ Click to Reveal ✦';
 
   /* The emoji icon for the ribbon */

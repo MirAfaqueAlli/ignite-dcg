@@ -1,6 +1,6 @@
 {
   "eventTitle": "DRIEMS Coders Guild",
-  "eventSubtitle": "Official Inauguration Ceremony",
+  "eventSubtitle": "Expansion Ceremony",
   "tagline": "Code. Create. Collab.",
   "date": "[DATE]",
   "venue": "GF-01, Academic Block - I, DRIEMS University",
@@ -10,7 +10,7 @@
       "segment": 1,
       "type": "intro",
       "title": "DRIEMS Coders Guild",
-      "subtitle": "Official Inauguration Ceremony",
+      "subtitle": "Expansion Ceremony",
       "tagline": "Code. Create. Collab.",
       "details": [
         "📍 GF-01, Academic Block - I, DRIEMS University",
@@ -38,28 +38,10 @@
         "points": [
           "Prof. (Dr.) Prakash Kumar Hota — Hon'ble Vice-Chancellor, DRIEMS University",
           "Prof. (Dr.) Nayan Ranjan Samal — Dean, School of Engineering & Technology",
-          "Dr. Amiya Kumar Sahoo — Head of Department, CSE | Convenor",
-          "Prof. Surajit Mohanty — Co-Convenor, DRIEMS Coders Guild | Faculty, CSE"
+          "Dr. Amiya Kumar Sahoo — Head of Department, CSE",
+          "Prof. (Dr.) Alok Ranjan Biswal — Director IQAC, DRIEMS University"
         ]
       }
-    },
-    {
-      "id": "slide-3",
-      "segment": 3,
-      "type": "speaker",
-      "title": "Presidential Address",
-      "subtitle": "Vision, Motto & Goals",
-      "speaker": {
-        "name": "Mir Afaque Alli",
-        "role": "President, DRIEMS Coders Guild"
-      },
-      "agenda": [
-        "Introduction — What is DRIEMS Coders Guild?",
-        "Why this guild? — The need for something better",
-        "Our Vision — Where we are headed",
-        "Our Motto — The words we stand by",
-        "Our Goals — What we commit to achieve"
-      ]
     },
     {
       "id": "slide-4-invite",
@@ -81,7 +63,7 @@
           "Prof. (Dr.) Prakash Kumar Hota",
           "Prof. (Dr.) Nayan Ranjan Samal",
           "Dr. Amiya Kumar Sahoo",
-          "Prof. Surajit Mohanty"
+          "Prof. (Dr.) Alok Ranjan Biswal"
         ]
       }
     },
@@ -89,7 +71,7 @@
       "id": "slide-4a",
       "segment": "4a",
       "type": "reveal",
-      "title": "Official Logo Reveal",
+      "title": "Logo Reveal",
       "subtitle": "Unveiling the Identity of DRIEMS Coders Guild",
       "countdown": [
         "3",
@@ -103,13 +85,13 @@
         "The face of a future that starts today",
         "Revealed by Prof. (Dr.) Prakash Kumar Hota"
       ],
-      "revealLine": "The symbol of DRIEMS Coders Guild — now official"
+      "revealLine": "The symbol of DRIEMS Coders Guild — revealed"
     },
     {
       "id": "slide-4b",
       "segment": "4b",
       "type": "reveal",
-      "title": "Official Poster Reveal",
+      "title": "Poster Reveal",
       "subtitle": "Carrying our vision to the world",
       "countdown": [
         "3",
@@ -129,7 +111,7 @@
       "id": "slide-4c",
       "segment": "4c",
       "type": "reveal",
-      "title": "Official Website Reveal",
+      "title": "Website Reveal",
       "subtitle": "Our digital home goes live",
       "countdown": [
         "3",
@@ -141,7 +123,7 @@
         "The central hub of our guild",
         "Showcasing our projects and members",
         "Connecting DRIEMS to the global tech community",
-        "Revealed by Dr. Amiya Kumar Sahoo & Prof. Surajit Mohanty"
+        "Revealed by Dr. Amiya Kumar Sahoo & Prof. (Dr.) Alok Ranjan Biswal"
       ],
       "revealLine": "The website is live. The world is watching."
     },
@@ -153,7 +135,6 @@
       "speaker": {
         "name": "Prof. (Dr.) P. K. Hota",
         "role": "Hon'ble Vice-Chancellor, DRIEMS University",
-        "guildRole": "Chairperson — DRIEMS Coders Guild",
         "photo": "/images/vcsir.png"
       },
       "highlights": [
@@ -171,7 +152,6 @@
       "speaker": {
         "name": "Prof. (Dr.) Nayan Ranjan Samal",
         "role": "Dean, School of Engineering & Technology",
-        "guildRole": "Vice-Chairperson — DRIEMS Coders Guild",
         "photo": "/images/deansir.png"
       },
       "highlights": [
@@ -189,7 +169,6 @@
       "speaker": {
         "name": "Dr. Amiya Kumar Sahoo",
         "role": "Head of Department, CSE",
-        "guildRole": "Convenor — DRIEMS Coders Guild",
         "photo": "/images/amyasir.webp"
       },
       "highlights": [
@@ -200,93 +179,57 @@
       ]
     },
     {
-      "id": "slide-8",
+      "id": "slide-alok",
       "segment": "5d",
       "type": "speaker",
-      "title": "Address by Co-Convenor, DRIEMS Coders Guild",
+      "title": "Address by Director IQAC",
       "speaker": {
-        "name": "Prof. Surajit Mohanty",
-        "role": "Co-Convenor, DRIEMS Coders Guild | Faculty, CSE",
-        "guildRole": "Co-Convenor — DRIEMS Coders Guild",
-        "photo": "/images/surajitsir.jpg"
+        "name": "Prof. (Dr.) Alok Ranjan Biswal",
+        "role": "Director IQAC, DRIEMS University",
+        "photo": "/images/alokSir.jpg"
       },
       "highlights": [
-        "Co-Convenor \u0026 driving force behind DRIEMS Coders Guild",
-        "Instrumental in shaping the guild's vision \u0026 structure",
-        "Dedicated to empowering students through technical excellence",
-        "Sharing his guidance for the guild's journey ahead"
-      ]
-    },
-    {
-      "id": "slide-8a",
-      "segment": "5e",
-      "type": "speaker",
-      "title": "Address by PIC, DRIEMS Coders Guild",
-      "speaker": {
-        "name": "Prof. Suvendu Tripathy",
-        "role": "Asst. Professor, CSE",
-        "guildRole": "Person-In-Charge — DRIEMS Coders Guild",
-        "photo": "/images/suvenduSir.jpeg"
-      },
-      "highlights": [
-        "The silent backbone of DRIEMS Coders Guild",
-        "Turned the idea into a functioning institution",
-        "Ensured every plan found its pillar",
-        "Sharing his perspective on the guild's journey"
+        "Distinguished academician committed to institutional excellence",
+        "Benchmark-setter for educational quality standards at DRIEMS",
+        "Brings deep insight into academic development & innovation",
+        "Sharing his vision for the guild's role in shaping futures"
       ]
     },
     {
       "id": "slide-8b",
-      "segment": "5f",
+      "segment": "5e",
       "type": "speaker",
-      "title": "Address by Advisor, DRIEMS Coders Guild",
+      "title": "Address by Coordinator, DRIEMS Coders Guild",
       "speaker": {
         "name": "Dr. Subhasish Mohapatra",
         "role": "Asst. Professor, CSE",
-        "guildRole": "Advisor — DRIEMS Coders Guild",
+        "guildRole": "Coordinator — DRIEMS Coders Guild",
         "photo": "/images/subhasishSir.jpg"
       },
       "highlights": [
         "Guiding light behind the guild since its conception",
-        "Brings academic depth \u0026 mentoring wisdom",
+        "Brings academic depth & mentoring wisdom",
         "Committed to seeing every student grow beyond limits",
         "Sharing words of guidance for the road ahead"
       ]
     },
     {
-      "id": "slide-9",
-      "segment": "6+7",
-      "type": "content",
-      "title": "Core Activities & Expected Outcomes",
-      "subtitle": "What DRIEMS Coders Guild Will Actually Do",
+      "id": "slide-3",
+      "segment": "5f",
+      "type": "speaker",
+      "title": "Presidential Address",
+      "subtitle": "Vision, Motto, Goals & Core Activities",
       "speaker": {
-        "name": "Sonali Sahoo",
-        "role": "Technical Lead, DRIEMS Coders Guild"
+        "name": "Mir Afaque Alli",
+        "role": "President, DRIEMS Coders Guild"
       },
-      "leftColumn": {
-        "heading": "⚙️ Core Activities",
-        "points": [
-          "Weekly hands-on coding sessions & workshops",
-          "Real-world project development from scratch",
-          "Hackathons & competitive programming",
-          "Domain-specific learning tracks",
-          "Peer-to-peer mentorship programs",
-          "Open source contribution drives",
-          "Industry guest lecture series"
-        ]
-      },
-      "rightColumn": {
-        "heading": "🎯 Expected Outcomes",
-        "points": [
-          "Industry-ready technical skills",
-          "Strong problem-solving & critical thinking",
-          "Portfolio of real, deployable projects",
-          "Team collaboration & leadership abilities",
-          "Competitive programming experience",
-          "Professional network & industry connections",
-          "Certifications & recognition"
-        ]
-      }
+      "agenda": [
+        "Introduction — What is DRIEMS Coders Guild?",
+        "Our Vision, Motto & Goals",
+        "Core Activities & Learning Approach",
+        "Expected Outcomes for every member",
+        "Membership & The Journey Ahead"
+      ]
     },
     {
       "id": "slide-10",
@@ -299,11 +242,11 @@
         "members": [
           {
             "name": "Dr. Subhasish Mohapatra",
-            "role": "Faculty Mentor, CSE"
+            "role": "Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE"
           },
           {
             "name": "Prof. Suvendu Tripathy",
-            "role": "Faculty Mentor & PIC, CSE"
+            "role": "Associate Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE"
           }
         ]
       },
@@ -392,58 +335,22 @@
       }
     },
     {
-      "id": "slide-11",
-      "segment": "9+10",
-      "type": "content",
-      "title": "Membership & Future Plans",
-      "subtitle": "Join the Movement — Your Journey Starts Here",
-      "speakers": [
-        {
-          "name": "Abhijeet Nayak",
-          "role": "Treasurer"
-        }
-      ],
-      "leftColumn": {
-        "heading": "✅ How to Join",
-        "points": [
-          "Open to ALL DRIEMS University students",
-          "No prior coding experience required",
-          "Fill the official membership form",
-          "Attend the onboarding orientation session",
-          "Pick your domain of interest",
-          "Start building — from day one"
-        ]
-      },
-      "rightColumn": {
-        "heading": "📅 Future Plans",
-        "points": [
-          "Monthly coding workshops & skill-building sessions",
-          "Inter-college hackathons & competitions",
-          "Industry guest lecture series",
-          "Open source contribution drives",
-          "Annual project showcase & exhibition",
-          "Certifications & recognition programs"
-        ]
-      },
-      "banner": "The best time to join a movement — is at the very beginning."
-    },
-    {
       "id": "slide-12",
       "segment": 11,
       "type": "speaker",
       "title": "Vote of Thanks",
       "speaker": {
-        "name": "Om Prakash Nayak",
-        "role": "Vice President, DRIEMS Coders Guild"
+        "name": "Prof. Suvendu Tripathy",
+        "role": "Asst. Professor, CSE",
+        "guildRole": "Associate Coordinator — DRIEMS Coders Guild",
+        "photo": "/images/suvenduSir.jpeg"
       },
       "acknowledgements": [
-        "Prof. (Dr.) P. K. Hota — Hon'ble Vice-Chancellor",
+        "Prof. (Dr.) P. K. Hota — Hon'ble Vice-Chancellor, DRIEMS University",
         "Prof. (Dr.) Nayan Ranjan Samal — Dean, SOET",
-        "Dr. Amiya Kumar Sahoo — HOD, CSE",
-        "Prof. Surajit Mohanty — Co-Convenor, DRIEMS Coders Guild",
-        "Dr. Subhasish Mohapatra & Prof. Suvendu Tripathy — Faculty Mentors",
-        "The entire founding team of DRIEMS Coders Guild",
-        "Every student who showed up and made this moment real"
+        "Dr. Amiya Kumar Sahoo — HOD, CSE | Prof. (Dr.) Alok Ranjan Biswal — Director IQAC",
+        "Dr. Subhasish Mohapatra — Coordinator, DRIEMS Coders Guild",
+        "The entire founding team & every student who made this possible"
       ]
     },
     {
@@ -451,7 +358,7 @@
       "segment": 12,
       "type": "outro",
       "title": "The Guild Has Risen",
-      "subtitle": "DRIEMS Coders Guild — Official & Alive",
+      "subtitle": "DRIEMS Coders Guild — Alive & Growing",
       "tagline": "Code. Create. Collab.",
       "closingLines": [
         "What ends here is only a ceremony.",

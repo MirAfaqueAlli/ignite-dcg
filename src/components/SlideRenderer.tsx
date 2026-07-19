@@ -64,7 +64,7 @@ function IntroSlide({ slide }: { slide: Slide }) {
         className="relative z-10 flex flex-col items-center gap-4 max-w-3xl w-full"
       >
         {/* Top badge */}
-        <motion.div variants={pop}><PillBadge label="Official Inauguration" /></motion.div>
+        <motion.div variants={pop}><PillBadge label="Expansion Ceremony" /></motion.div>
 
         {/* Main title with decorative side lines */}
         <div className="flex items-center gap-4 w-full justify-center">
@@ -129,15 +129,16 @@ function CeremonySlide({ slide }: { slide: Slide }) {
 
   const ColumnCard = ({ heading, points, accent }: { heading: string; points: string[]; accent: boolean }) => (
     <motion.div variants={stagger} initial="hidden" animate="show"
-      className="flex-1 rounded-3xl flex flex-col gap-3 overflow-hidden"
+      className="flex-1 rounded-3xl flex flex-col gap-1 min-h-0"
       style={{
         background: 'rgba(255,255,255,0.7)',
         boxShadow: accent ? `0 8px 32px rgba(122,26,26,0.12), inset 0 0 0 1.5px rgba(122,26,26,0.15)` : `0 8px 32px rgba(200,145,42,0.10), inset 0 0 0 1.5px rgba(200,145,42,0.25)`,
         backdropFilter: 'blur(12px)',
+        overflow: 'visible',
       }}
     >
       {/* Card header bar */}
-      <div className="flex items-center gap-3 px-6 pt-5 pb-3 border-b"
+      <div className="flex items-center gap-3 px-5 pt-3 pb-2 border-b"
         style={{ borderColor: accent ? 'rgba(122,26,26,0.1)' : 'rgba(200,145,42,0.18)' }}
       >
         <div className="w-1.5 rounded-full" style={{ height: 20, background: accent ? `linear-gradient(to bottom,${M},${G})` : `linear-gradient(to bottom,${G},${M})` }} />
@@ -148,10 +149,10 @@ function CeremonySlide({ slide }: { slide: Slide }) {
       </div>
 
       {/* Bullets */}
-      <ul className="flex flex-col gap-3 px-5 py-4">
+      <ul className="flex flex-col gap-1.5 px-4 py-2 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
         {points.map((p, i) => (
           <motion.li key={i} variants={up}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-2xl"
+            className="flex items-center gap-3 px-3 py-2 rounded-2xl"
             style={{ background: i % 2 === 0 ? 'rgba(122,26,26,0.04)' : 'rgba(200,145,42,0.05)' }}
           >
             <div className="shrink-0 w-7 h-7 rounded-xl flex items-center justify-center text-white shadow-sm"
@@ -166,7 +167,7 @@ function CeremonySlide({ slide }: { slide: Slide }) {
   );
 
   return (
-    <div className="relative flex flex-col h-full px-8 py-5 gap-4 overflow-hidden">
+    <div className="relative flex flex-col h-full px-8 py-3 gap-3">
       <Orb style={{ width: 350, height: 350, top: '-20%', right: '-10%' }} />
 
       {/* Header */}
@@ -175,7 +176,7 @@ function CeremonySlide({ slide }: { slide: Slide }) {
           <PillBadge label="Ceremony" />
         </div>
         <motion.h2 variants={up} className="font-black leading-tight"
-          style={{ fontSize: 'clamp(1.5rem,2.8vw,2.4rem)', color: MD }}>
+          style={{ fontSize: 'clamp(1.3rem,2.4vw,2rem)', color: MD }}>
           {slide.title}
         </motion.h2>
         {slide.subtitle && (
@@ -187,7 +188,7 @@ function CeremonySlide({ slide }: { slide: Slide }) {
       </motion.div>
 
       {/* Two columns */}
-      <div className="flex gap-5 flex-1 min-h-0">
+      <div className="flex gap-3 flex-1 min-h-0 overflow-visible">
         {slide.leftColumn && <ColumnCard heading={slide.leftColumn.heading} points={leftPts} accent={true} />}
         {slide.rightColumn && <ColumnCard heading={slide.rightColumn.heading} points={rightPts} accent={false} />}
       </div>
