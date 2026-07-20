@@ -2,7 +2,7 @@
   "eventTitle": "DRIEMS Coders Guild",
   "eventSubtitle": "Expansion Ceremony",
   "tagline": "Code. Create. Collab.",
-  "date": "[DATE]",
+  "date": "24-07-2026",
   "venue": "GF-01, Academic Block - I, DRIEMS University",
   "slides": [
     {
@@ -14,7 +14,7 @@
       "tagline": "Code. Create. Collab.",
       "details": [
         "📍 GF-01, Academic Block - I, DRIEMS University",
-        "📅 [DATE]",
+        "📅 24-07-2026",
         "🤖 Hosted by AIRA — AI Anchor"
       ]
     },
@@ -38,8 +38,8 @@
         "points": [
           "Prof. (Dr.) Prakash Kumar Hota — Hon'ble Vice-Chancellor, DRIEMS University",
           "Prof. (Dr.) Nayan Ranjan Samal — Dean, School of Engineering & Technology",
-          "Dr. Amiya Kumar Sahoo — Head of Department, CSE",
-          "Prof. (Dr.) Alok Ranjan Biswal — Director IQAC, DRIEMS University"
+          "Prof. (Dr.) Alok Ranjan Biswal — Director IQAC, DRIEMS University",
+          "Dr. Amiya Kumar Sahoo — Head of Department, CSE"
         ]
       }
     },
@@ -50,20 +50,21 @@
       "title": "Unveiling Our Identity",
       "subtitle": "The Dignitaries take the stage",
       "leftColumn": {
-        "heading": "The Core Identity",
-        "points": [
-          "Every great movement carries a mark",
-          "A symbol of excellence and innovation",
-          "The face of the future"
-        ]
-      },
-      "rightColumn": {
         "heading": "The Guiding Forces",
         "points": [
           "Prof. (Dr.) Prakash Kumar Hota",
           "Prof. (Dr.) Nayan Ranjan Samal",
-          "Dr. Amiya Kumar Sahoo",
-          "Prof. (Dr.) Alok Ranjan Biswal"
+          "Prof. (Dr.) Alok Ranjan Biswal",
+          "Dr. Amiya Kumar Sahoo"
+        ]
+      },
+      "rightColumn": {
+        "heading": "Faculty Mentors",
+        "points": [
+          "Dr. Subhasish Mohapatra — Coordinator, CSE",
+          "Prof. Suvendu Tripathy — Associate Coordinator, CSE",
+          "Kulshan Pattanaik — Assistant Professor, CSE",
+          "Anita Mohanty — Assistant Professor, CSE"
         ]
       }
     },
@@ -162,25 +163,8 @@
       ]
     },
     {
-      "id": "slide-7",
-      "segment": "5c",
-      "type": "speaker",
-      "title": "Address by HOD, Computer Science & Engineering",
-      "speaker": {
-        "name": "Dr. Amiya Kumar Sahoo",
-        "role": "Head of Department, CSE",
-        "photo": "/images/amyasir.webp"
-      },
-      "highlights": [
-        "Foundational force behind DRIEMS Coders Guild",
-        "Provided institutional support, structure & resources",
-        "Gave this vision the space & strength to grow",
-        "Sharing the path forward for CSE students"
-      ]
-    },
-    {
       "id": "slide-alok",
-      "segment": "5d",
+      "segment": "5c",
       "type": "speaker",
       "title": "Address by Director IQAC",
       "speaker": {
@@ -193,6 +177,23 @@
         "Benchmark-setter for educational quality standards at DRIEMS",
         "Brings deep insight into academic development & innovation",
         "Sharing his vision for the guild's role in shaping futures"
+      ]
+    },
+    {
+      "id": "slide-7",
+      "segment": "5d",
+      "type": "speaker",
+      "title": "Address by HOD, Computer Science & Engineering",
+      "speaker": {
+        "name": "Dr. Amiya Kumar Sahoo",
+        "role": "Head of Department, CSE",
+        "photo": "/images/amyasir.webp"
+      },
+      "highlights": [
+        "Foundational force behind DRIEMS Coders Guild",
+        "Provided institutional support, structure & resources",
+        "Gave this vision the space & strength to grow",
+        "Sharing the path forward for CSE students"
       ]
     },
     {
@@ -221,7 +222,8 @@
       "subtitle": "Vision, Motto, Goals & Core Activities",
       "speaker": {
         "name": "Mir Afaque Alli",
-        "role": "President, DRIEMS Coders Guild"
+        "role": "President, DRIEMS Coders Guild",
+        "photo": "/images/mirProfile.jpg"
       },
       "agenda": [
         "Introduction — What is DRIEMS Coders Guild?",
@@ -242,11 +244,32 @@
         "members": [
           {
             "name": "Dr. Subhasish Mohapatra",
-            "role": "Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE"
+            "role": "Coordinator | Asst. Professor, CSE"
           },
           {
             "name": "Prof. Suvendu Tripathy",
-            "role": "Associate Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE"
+            "role": "Associate Coordinator | Asst. Professor, CSE"
+          }
+        ]
+      },
+      "teachingAssistants": {
+        "heading": "📚 Faculty Guides",
+        "members": [
+          {
+            "name": "Mr. Rajkapilendra Swain",
+            "role": "Teaching Assistant, CSE"
+          },
+          {
+            "name": "Mr. Abhaya Narayan Mohanty",
+            "role": "Teaching Assistant, CSE"
+          },
+          {
+            "name": "Ms. Sujata Nayak",
+            "role": "Teaching Assistant, CSE"
+          },
+          {
+            "name": "Ms. Priyanka Priyadarshini Panda",
+            "role": "Teaching Assistant, CSE"
           }
         ]
       },
@@ -366,7 +389,7 @@
         "Every revolution begins with a single line of code.",
         "Build something the world has never seen before."
       ],
-      "footer": "DRIEMS Coders Guild | GF-01, Academic Block - I | DRIEMS University | [DATE]"
+      "footer": "DRIEMS Coders Guild | GF-01, Academic Block - I | DRIEMS University | 24-07-2026"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
     "eventTitle": "DRIEMS Coders Guild — Expansion Ceremony",
     "eventSubtitle": "Code. Create. Collab.",
-    "date": "[DATE]",
+    "date": "24-07-2026",
     "venue": "GF-01, Academic Block - I, DRIEMS University",
     "aiAnchorName": "AIRA",
     "aiAnchorTagline": "Even Dead I'm The Hero",
@@ -11,7 +11,7 @@
             "segment": 1,
             "type": "intro",
             "title": "Opening & Welcome",
-            "content": "Expansion Ceremony — DRIEMS Coders Guild | [DATE]",
+            "content": "Expansion Ceremony — DRIEMS Coders Guild | 24-07-2026",
             "speaker": "AIRA (AI Anchor)",
             "speech": "Good morning, everyone. Systems online. Cameras active. Audience detected. I am AIRA — your Artificial Intelligence anchor for today's historic occasion. Welcome — to the expansion ceremony of the DRIEMS Coders Guild. Today, we do not simply launch a club. We ignite a movement. A movement forged in curiosity, powered by code, and driven by the courage to create what has never existed before. To every student who dared to dream beyond the textbook — this day is for you. To every faculty member and dignitary who believed in this vision — thank you for making it real. Ladies and gentlemen, the DRIEMS Coders Guild is no longer just an idea. As of today — it is alive. Let the ceremony begin."
         },
@@ -22,7 +22,7 @@
             "title": "Lamp Lighting Ceremony",
             "content": "Illuminating the Path of Knowledge, Innovation, and Excellence.",
             "speaker": "AIRA (AI Anchor) + Dignitaries",
-            "speech": "We now commence our proceedings with one of the most sacred and cherished traditions—the lighting of the lamp. In our culture, light is not merely illumination; it symbolizes knowledge conquering ignorance, wisdom guiding action, and purpose overcoming doubt. As these flames rise in this hall today, let them stand as a testament—that the DRIEMS Coders Guild will shine as a beacon of technical excellence for every student who walks through this institution. I now respectfully invite our distinguished dignitaries to grace the dais and illuminate this occasion. Please extend a warm welcome to Prof. (Dr.) Prakash Kumar Hota, Hon'ble Vice-Chancellor of DRIEMS University; Prof. (Dr.) Nayan Ranjan Samal, Dean, School of Engineering and Technology; Dr. Amiya Kumar Sahoo, Head of Department, Computer Science and Engineering; Prof. (Dr.) Alok Ranjan Biswal, Director IQAC; along with all the respected faculty members present here today. Sirs and Ma'am, we humbly await your gracious presence at the dais.",
+            "speech": "We now commence our proceedings with one of the most sacred and cherished traditions—the lighting of the lamp. In our culture, light is not merely illumination; it symbolizes knowledge conquering ignorance, wisdom guiding action, and purpose overcoming doubt. As these flames rise in this hall today, let them stand as a testament—that the DRIEMS Coders Guild will shine as a beacon of technical excellence for every student who walks through this institution. I now respectfully invite our distinguished dignitaries to grace the dais and illuminate this occasion. Please extend a warm welcome to Prof. (Dr.) Prakash Kumar Hota, Hon'ble Vice-Chancellor of DRIEMS University; Prof. (Dr.) Nayan Ranjan Samal, Dean, School of Engineering and Technology; Prof. (Dr.) Alok Ranjan Biswal, Director IQAC; Dr. Amiya Kumar Sahoo, Head of Department, Computer Science and Engineering; along with all the respected faculty members present here today. Sirs and Ma'am, we humbly await your gracious presence at the dais.",
             "pause": true,
             "pauseNote": "Wait for all dignitaries to light the lamp. Resume after ceremony concludes."
         },
@@ -101,28 +101,28 @@
             "pauseNote": "Dean, SOET speaks. Full segment under his discretion."
         },
         {
-            "id": "slide-7",
-            "segment": "5c",
-            "type": "speaker",
-            "title": "Address by HOD, CSE",
-            "speakerName": "Dr. Amiya Kumar Sahoo",
-            "speakerRole": "Head of Department, CSE",
-            "speaker": "AIRA (AI Anchor) → Handoff to Dr. Amiya Kumar Sahoo",
-            "speech": "Our next speaker is one of the foundational forces behind DRIEMS Coders Guild — the individual who brought institutional support to this vision and helped give it structure, space, and strength. I invite Dr. Amiya Kumar Sahoo — Head of the Department of Computer Science and Engineering — to address this gathering. Sir, the floor is yours.",
-            "pause": true,
-            "pauseNote": "HOD, CSE speaks. Full segment under his discretion."
-        },
-        {
             "id": "slide-alok",
-            "segment": "5d",
+            "segment": "5c",
             "type": "speaker",
             "title": "Address by Director IQAC",
             "speakerName": "Prof. (Dr.) Alok Ranjan Biswal",
             "speakerRole": "Director IQAC, DRIEMS University",
             "speaker": "AIRA (AI Anchor) → Handoff to Prof. (Dr.) Alok Ranjan Biswal",
-            "speech": "Thank you, Sir, for those inspiring words. We are privileged to have with us today a distinguished academician whose commitment to institutional quality and excellence has set the benchmark for educational standards at DRIEMS University. I now invite Prof. (Dr.) Alok Ranjan Biswal — Director IQAC, DRIEMS University — to address this gathering. Sir, the stage is yours.",
+            "speech": "Thank you, Sir, for those powerful words. We are now privileged to have with us a distinguished academician whose commitment to institutional quality and excellence has set the benchmark for educational standards at DRIEMS University. I now invite Prof. (Dr.) Alok Ranjan Biswal — Director IQAC, DRIEMS University — to address this gathering. Sir, the stage is yours.",
             "pause": true,
             "pauseNote": "Director IQAC speaks. Full segment under his discretion."
+        },
+        {
+            "id": "slide-7",
+            "segment": "5d",
+            "type": "speaker",
+            "title": "Address by HOD, CSE",
+            "speakerName": "Dr. Amiya Kumar Sahoo",
+            "speakerRole": "Head of Department, CSE",
+            "speaker": "AIRA (AI Anchor) → Handoff to Dr. Amiya Kumar Sahoo",
+            "speech": "Thank you, Sir, for those inspiring words. Our next speaker is one of the foundational forces behind DRIEMS Coders Guild — the individual who brought institutional support to this vision and helped give it structure, space, and strength. I invite Dr. Amiya Kumar Sahoo — Head of the Department of Computer Science and Engineering — to address this gathering. Sir, the floor is yours.",
+            "pause": true,
+            "pauseNote": "HOD, CSE speaks. Full segment under his discretion."
         },
         {
             "id": "slide-8b",

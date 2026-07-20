@@ -196,7 +196,7 @@ function WebsiteRevealPanel({ onNext, zIndex = 8990 }: { onNext: () => void; zIn
               fontSize: 13, fontWeight: 800, letterSpacing: '0.1em',
               color: '#F0DC7A',
             }}>
-              🌐 psddriems.vercel.app
+              🌐 dcgofficial-three.vercel.app
             </div>
             <div style={{ flex: 1 }} />
             <button
@@ -213,7 +213,7 @@ function WebsiteRevealPanel({ onNext, zIndex = 8990 }: { onNext: () => void; zIn
           </div>
           <iframe
             ref={iframeRef}
-            src="https://psddriems.vercel.app"
+            src="https://dcgofficial-three.vercel.app"
             style={{ flex: 1, border: 'none', width: '100%' }}
             title="DRIEMS Coders Guild Website"
           />
@@ -257,7 +257,7 @@ function WebsiteRevealPanel({ onNext, zIndex = 8990 }: { onNext: () => void; zIn
               filter: 'drop-shadow(0 0 30px rgba(201,162,39,0.5))',
               margin: '0 0 12px',
             }}>
-              psddriems.vercel.app
+              dcgofficial-three.vercel.app
             </h2>
 
             <p style={{

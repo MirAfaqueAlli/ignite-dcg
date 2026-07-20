@@ -54,6 +54,7 @@ export interface Slide {
 
   /* team */
   facultyMentors?: TeamGroup;
+  teachingAssistants?: TeamGroup;
   executiveBoard?: TeamGroup;
   coreTeam?: TeamGroup;
   domainLeads?: TeamGroup;

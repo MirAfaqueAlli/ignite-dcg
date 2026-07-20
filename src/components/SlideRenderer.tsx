@@ -528,7 +528,7 @@ function TeamSlide({ slide }: { slide: Slide }) {
           {ini}
         </div>
         <div className="min-w-0">
-          <p style={{ fontSize: 10.5, fontWeight: 700, color: MD, lineHeight: 1.1 }} className="truncate">{name}</p>
+          <p style={{ fontSize: 10.5, fontWeight: 700, color: MD, lineHeight: 1.2 }} className="leading-tight break-words">{name}</p>
           <p style={{ fontSize: 7.5, fontWeight: 700, color: accent ? M : GD, textTransform: 'uppercase', letterSpacing: '0.04em' }} className="truncate">{role}</p>
         </div>
       </motion.div>
@@ -563,11 +563,18 @@ function TeamSlide({ slide }: { slide: Slide }) {
       </motion.div>
 
       <div className="flex-1 min-h-0 flex flex-col gap-1.5 overflow-hidden pb-1">
-        <div className="grid grid-cols-[1fr_2.5fr] gap-1.5 shrink-0">
+        <div className="grid grid-cols-[1fr_1fr_2fr] gap-1.5 shrink-0">
           {slide.facultyMentors && (
             <Section heading={slide.facultyMentors.heading}>
               <div className="grid grid-cols-1 gap-1 py-0.5">
                 {slide.facultyMentors.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={false} />)}
+              </div>
+            </Section>
+          )}
+          {slide.teachingAssistants && (
+            <Section heading={slide.teachingAssistants.heading}>
+              <div className="grid grid-cols-1 gap-1 py-0.5">
+                {slide.teachingAssistants.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={false} />)}
               </div>
             </Section>
           )}
