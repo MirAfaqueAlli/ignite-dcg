@@ -129,36 +129,37 @@ function CeremonySlide({ slide }: { slide: Slide }) {
 
   const ColumnCard = ({ heading, points, accent }: { heading: string; points: string[]; accent: boolean }) => (
     <motion.div variants={stagger} initial="hidden" animate="show"
-      className="flex-1 rounded-2xl flex flex-col min-h-0 py-0.5"
+      className="flex-1 rounded-2xl flex flex-col gap-0.5 min-h-0"
       style={{
         background: 'rgba(255,255,255,0.7)',
         boxShadow: accent ? `0 8px 32px rgba(122,26,26,0.12), inset 0 0 0 1.5px rgba(122,26,26,0.15)` : `0 8px 32px rgba(200,145,42,0.10), inset 0 0 0 1.5px rgba(200,145,42,0.25)`,
         backdropFilter: 'blur(12px)',
+        overflow: 'visible',
       }}
     >
       {/* Card header bar */}
-      <div className="flex items-center gap-2.5 px-4.5 pt-3 pb-2 border-b shrink-0"
+      <div className="flex items-center gap-2.5 px-4 pt-2.5 pb-1.5 border-b"
         style={{ borderColor: accent ? 'rgba(122,26,26,0.1)' : 'rgba(200,145,42,0.18)' }}
       >
         <div className="w-1.5 rounded-full" style={{ height: 18, background: accent ? `linear-gradient(to bottom,${M},${G})` : `linear-gradient(to bottom,${G},${M})` }} />
         <span className="font-black uppercase tracking-widest bg-clip-text text-transparent"
-          style={{ fontSize: 11, backgroundImage: `linear-gradient(90deg,${MD},${M})` }}>
+          style={{ fontSize: 10.5, backgroundImage: `linear-gradient(90deg,${MD},${M})` }}>
           {heading}
         </span>
       </div>
 
       {/* Bullets */}
-      <ul className="flex flex-col gap-2.5 px-4 py-2.5 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+      <ul className="flex flex-col justify-evenly gap-1.5 px-3.5 py-1.5 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
         {points.map((p, i) => (
           <motion.li key={i} variants={up}
-            className="flex items-center gap-3 px-3.5 py-2 rounded-xl"
+            className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl"
             style={{ background: i % 2 === 0 ? 'rgba(122,26,26,0.04)' : 'rgba(200,145,42,0.05)' }}
           >
-            <div className="shrink-0 w-[26px] h-[26px] rounded-xl flex items-center justify-center text-white shadow-sm font-bold"
-              style={{ background: `linear-gradient(135deg,${i % 2 === 0 ? M : G},${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 10.5, minWidth: 26, height: 26 }}>
+            <div className="shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-white shadow-sm font-bold"
+              style={{ background: `linear-gradient(135deg,${i % 2 === 0 ? M : G},${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 10, minWidth: 24, height: 24 }}>
               {i + 1}
             </div>
-            <span style={{ fontSize: 12.5, fontWeight: 500, color: MD, lineHeight: 1.35 }}>{p}</span>
+            <span style={{ fontSize: 12, fontWeight: 500, color: MD, lineHeight: 1.3 }}>{p}</span>
           </motion.li>
         ))}
       </ul>
@@ -166,7 +167,7 @@ function CeremonySlide({ slide }: { slide: Slide }) {
   );
 
   return (
-    <div className="relative flex flex-col h-full px-8 pt-8 pb-2 gap-2">
+    <div className="relative flex flex-col h-full px-8 py-2 gap-2">
       <Orb style={{ width: 350, height: 350, top: '-20%', right: '-10%' }} />
 
       {/* Header */}
@@ -187,7 +188,7 @@ function CeremonySlide({ slide }: { slide: Slide }) {
       </motion.div>
 
       {/* Two columns */}
-      <div className="flex gap-4 w-full min-h-0 overflow-visible my-auto max-h-[72%]">
+      <div className="flex gap-1 flex-1 min-h-0 overflow-visible my-auto max-h-[60%]">
         {slide.leftColumn && <ColumnCard heading={slide.leftColumn.heading} points={leftPts} accent={true} />}
         {slide.rightColumn && <ColumnCard heading={slide.rightColumn.heading} points={rightPts} accent={false} />}
       </div>
@@ -300,20 +301,20 @@ function SpeakerSlide({ slide }: { slide: Slide }) {
                 {slide.agenda ? 'Agenda' : slide.acknowledgements ? 'Acknowledgements' : 'Highlights'}
               </span>
             </div>
-            <ul className="flex flex-col gap-1.5 py-1.5 px-1 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+            <ul className="flex flex-col justify-evenly gap-2 py-2 px-1 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
               {listItems.map((p, i) => (
                 <motion.li key={i} variants={up}
-                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl"
+                  className="flex items-center gap-3 px-3.5 py-2 rounded-xl"
                   style={{
                     background: i % 2 === 0 ? 'rgba(122,26,26,0.04)' : 'rgba(200,145,42,0.05)',
                     border: `1px solid ${i % 2 === 0 ? 'rgba(122,26,26,0.08)' : 'rgba(200,145,42,0.15)'}`,
                   }}
                 >
-                  <span className="w-6 h-6 rounded-lg flex items-center justify-center text-white shrink-0 font-bold shadow"
-                    style={{ background: `linear-gradient(135deg, ${i % 2 === 0 ? M : G}, ${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 10, minWidth: 24, height: 24 }}>
+                  <span className="w-6.5 h-6.5 rounded-lg flex items-center justify-center text-white shrink-0 font-bold shadow"
+                    style={{ background: `linear-gradient(135deg, ${i % 2 === 0 ? M : G}, ${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 10.5, minWidth: 26, height: 26 }}>
                     {i + 1}
                   </span>
-                  <span style={{ fontSize: 12, fontWeight: 500, color: MD, lineHeight: 1.3 }}>{p}</span>
+                  <span style={{ fontSize: 12.5, fontWeight: 500, color: MD, lineHeight: 1.35 }}>{p}</span>
                 </motion.li>
               ))}
             </ul>
