@@ -517,19 +517,25 @@ function TeamSlide({ slide }: { slide: Slide }) {
     const ini = name.split(' ').map((w: string) => w[0]).slice(0, 2).join('').toUpperCase();
     return (
       <motion.div variants={pop}
-        className="flex items-center gap-1.5 px-2 py-1 rounded-lg border bg-white"
+        className="flex items-center rounded-lg border bg-white"
         style={{
+          gap: 'clamp(4px, 0.8vh, 8px)',
+          padding: 'clamp(3px, 0.5vh, 6px) clamp(6px, 0.8vh, 10px)',
           borderColor: accent ? 'rgba(122,26,26,0.1)' : 'rgba(200,145,42,0.18)',
           boxShadow: '0 2px 5px rgba(0,0,0,0.02)',
         }}
       >
-        <div className="w-5 h-5 rounded flex items-center justify-center text-[9px] font-black text-white shrink-0"
-          style={{ background: `linear-gradient(135deg,${accent ? M : G},${accent ? 'var(--maroon-light)' : '#FFE4B0'})`, minWidth: 20 }}>
-          {ini}
-        </div>
+        <div className="rounded flex items-center justify-center font-black text-white shrink-0"
+          style={{
+            background: `linear-gradient(135deg,${accent ? M : G},${accent ? 'var(--maroon-light)' : '#FFE4B0'})`,
+            width: 'clamp(18px, 2.8vh, 28px)',
+            height: 'clamp(18px, 2.8vh, 28px)',
+            minWidth: 'clamp(18px, 2.8vh, 28px)',
+            fontSize: 'clamp(7px, 1.2vh, 11px)',
+          }}>{ini}</div>
         <div className="min-w-0">
-          <p style={{ fontSize: 10.5, fontWeight: 700, color: MD, lineHeight: 1.2 }} className="leading-tight break-words">{name}</p>
-          <p style={{ fontSize: 7.5, fontWeight: 700, color: accent ? M : GD, textTransform: 'uppercase', letterSpacing: '0.04em' }} className="truncate">{role}</p>
+          <p style={{ fontSize: 'clamp(9px, 1.5vh, 14px)', fontWeight: 700, color: MD, lineHeight: 1.2 }} className="leading-tight break-words">{name}</p>
+          <p style={{ fontSize: 'clamp(6px, 1vh, 10px)', fontWeight: 700, color: accent ? M : GD, textTransform: 'uppercase', letterSpacing: '0.04em' }} className="truncate">{role}</p>
         </div>
       </motion.div>
     );
@@ -540,16 +546,20 @@ function TeamSlide({ slide }: { slide: Slide }) {
       className={`rounded-xl flex flex-col ${className}`}
       style={{ background: 'rgba(255,255,255,0.55)', boxShadow: '0 4px 15px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(122,26,26,0.08)', backdropFilter: 'blur(12px)' }}
     >
-      <div className="flex items-center gap-1.5 px-2.5 pt-1.5 pb-1 border-b" style={{ borderColor: 'rgba(122,26,26,0.08)' }}>
-        <div className="w-1 rounded-full" style={{ height: 10, background: `linear-gradient(to bottom,${M},${G})` }} />
-        <span className="font-black uppercase tracking-widest" style={{ fontSize: 8.5, color: MD }}>{heading}</span>
+      <div className="flex items-center border-b" style={{
+        gap: 'clamp(4px, 0.6vh, 8px)',
+        padding: 'clamp(4px, 0.8vh, 10px) clamp(8px, 1vh, 14px)',
+        borderColor: 'rgba(122,26,26,0.08)'
+      }}>
+        <div className="rounded-full" style={{ width: 'clamp(3px, 0.4vh, 5px)', height: 'clamp(8px, 1.4vh, 14px)', background: `linear-gradient(to bottom,${M},${G})` }} />
+        <span className="font-black uppercase tracking-widest" style={{ fontSize: 'clamp(7px, 1.2vh, 11px)', color: MD }}>{heading}</span>
       </div>
-      <div className="p-1.5 flex-1 flex flex-col justify-center">{children}</div>
+      <div className="flex-1 flex flex-col justify-center" style={{ padding: 'clamp(4px, 0.6vh, 8px)' }}>{children}</div>
     </motion.div>
   );
 
   return (
-    <div className="relative flex flex-col h-full px-8 py-2 gap-1.5 overflow-hidden">
+    <div className="relative flex flex-col h-full px-8 py-2" style={{ gap: 'clamp(4px, 0.8vh, 10px)' }}>
       <Orb style={{ width: 300, height: 300, top: '-15%', right: '-5%' }} />
 
       <motion.div variants={stagger} initial="hidden" animate="show" className="shrink-0 flex flex-col gap-0.5">
@@ -558,29 +568,29 @@ function TeamSlide({ slide }: { slide: Slide }) {
           style={{ fontSize: 'clamp(1.2rem,2.2vw,1.8rem)', color: MD }}>
           {slide.title}
         </motion.h2>
-        {slide.subtitle && <motion.p variants={fade} style={{ fontSize: 11, color: 'var(--muted-text)', fontWeight: 500 }}>{slide.subtitle}</motion.p>}
+        {slide.subtitle && <motion.p variants={fade} style={{ fontSize: 'clamp(10px, 1.4vh, 14px)', color: 'var(--muted-text)', fontWeight: 500 }}>{slide.subtitle}</motion.p>}
         <AccentBar />
       </motion.div>
 
-      <div className="flex-1 min-h-0 flex flex-col gap-1.5 overflow-hidden pb-1">
-        <div className="grid grid-cols-[1fr_1fr_2fr] gap-1.5 shrink-0">
+      <div className="flex-1 min-h-0 flex flex-col pb-1" style={{ gap: 'clamp(4px, 0.8vh, 10px)' }}>
+        <div className="grid grid-cols-[1fr_1fr_2fr] shrink-0" style={{ gap: 'clamp(4px, 0.8vh, 10px)' }}>
           {slide.facultyMentors && (
             <Section heading={slide.facultyMentors.heading}>
-              <div className="grid grid-cols-1 gap-1 py-0.5">
+              <div className="grid grid-cols-1" style={{ gap: 'clamp(3px, 0.4vh, 6px)', padding: 'clamp(1px, 0.2vh, 3px) 0' }}>
                 {slide.facultyMentors.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={false} />)}
               </div>
             </Section>
           )}
           {slide.teachingAssistants && (
             <Section heading={slide.teachingAssistants.heading}>
-              <div className="grid grid-cols-1 gap-1 py-0.5">
+              <div className="grid grid-cols-1" style={{ gap: 'clamp(3px, 0.4vh, 6px)', padding: 'clamp(1px, 0.2vh, 3px) 0' }}>
                 {slide.teachingAssistants.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={false} />)}
               </div>
             </Section>
           )}
           {slide.executiveBoard && (
             <Section heading={slide.executiveBoard.heading}>
-              <div className="grid grid-cols-3 gap-1 py-0.5">
+              <div className="grid grid-cols-3" style={{ gap: 'clamp(3px, 0.4vh, 6px)', padding: 'clamp(1px, 0.2vh, 3px) 0' }}>
                 {slide.executiveBoard.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={true} />)}
               </div>
             </Section>
@@ -588,8 +598,8 @@ function TeamSlide({ slide }: { slide: Slide }) {
         </div>
 
         {slide.coreTeam && (
-          <Section heading={slide.coreTeam.heading} className="flex-1">
-            <div className="grid grid-cols-3 gap-1 py-0.5">
+          <Section heading={slide.coreTeam.heading} className="flex-1 min-h-0">
+            <div className="grid grid-cols-3" style={{ gap: 'clamp(3px, 0.4vh, 6px)', padding: 'clamp(1px, 0.2vh, 3px) 0' }}>
               {slide.coreTeam.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={i % 2 === 0} />)}
             </div>
           </Section>
@@ -597,7 +607,7 @@ function TeamSlide({ slide }: { slide: Slide }) {
 
         {slide.domainLeads && (
           <Section heading={slide.domainLeads.heading} className="shrink-0">
-            <div className="grid grid-cols-3 gap-1 py-0.5">
+            <div className="grid grid-cols-3" style={{ gap: 'clamp(3px, 0.4vh, 6px)', padding: 'clamp(1px, 0.2vh, 3px) 0' }}>
               {slide.domainLeads.members.map((m, i) => <Pill key={i} name={m.name} role={m.role} accent={i % 2 !== 0} />)}
             </div>
           </Section>
