@@ -304,8 +304,8 @@ export default function PresentationPage() {
       <div
         className="absolute inset-0 overflow-hidden"
         style={{
-          paddingTop: 'clamp(2.2rem, 5vh, 3.8rem)',
-          paddingBottom: 'clamp(2.2rem, 5vh, 4rem)',
+          paddingTop: 'clamp(3.2rem, 5.5vh, 4.2rem)',
+          paddingBottom: 'clamp(4.2rem, 7vh, 5.2rem)',
           paddingLeft: 'clamp(1.5rem, 4vw, 3.5rem)',
           paddingRight: 'clamp(260px, 32%, 480px)'
         }}
