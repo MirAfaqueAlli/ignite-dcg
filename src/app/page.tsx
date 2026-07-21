@@ -304,10 +304,10 @@ export default function PresentationPage() {
       <div
         className="absolute inset-0 overflow-hidden"
         style={{
-          paddingTop: '6rem', // give room for top floating UI
-          paddingBottom: '5.5rem', // give room for bottom player UI
-          paddingLeft: '5vw',
-          paddingRight: 'clamp(280px, 34%, 500px)'
+          paddingTop: 'clamp(2.2rem, 5vh, 3.8rem)',
+          paddingBottom: 'clamp(2.2rem, 5vh, 4rem)',
+          paddingLeft: 'clamp(1.5rem, 4vw, 3.5rem)',
+          paddingRight: 'clamp(260px, 32%, 480px)'
         }}
       >
         {/* Start screen overlay */}

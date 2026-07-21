@@ -149,17 +149,17 @@ function CeremonySlide({ slide }: { slide: Slide }) {
       </div>
 
       {/* Bullets */}
-      <ul className="flex flex-col gap-1.5 px-4 py-2 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+      <ul className="flex flex-col gap-1 px-3 py-1 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
         {points.map((p, i) => (
           <motion.li key={i} variants={up}
-            className="flex items-center gap-3 px-3 py-2 rounded-2xl"
+            className="flex items-center gap-2.5 px-2.5 py-1.5 rounded-xl"
             style={{ background: i % 2 === 0 ? 'rgba(122,26,26,0.04)' : 'rgba(200,145,42,0.05)' }}
           >
-            <div className="shrink-0 w-7 h-7 rounded-xl flex items-center justify-center text-white shadow-sm"
-              style={{ background: `linear-gradient(135deg,${i % 2 === 0 ? M : G},${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 11, fontWeight: 800 }}>
+            <div className="shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-white shadow-sm font-bold"
+              style={{ background: `linear-gradient(135deg,${i % 2 === 0 ? M : G},${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 10, minWidth: 24 }}>
               {i + 1}
             </div>
-            <span style={{ fontSize: 13, fontWeight: 500, color: MD, lineHeight: 1.4 }}>{p}</span>
+            <span style={{ fontSize: 12, fontWeight: 500, color: MD, lineHeight: 1.3 }}>{p}</span>
           </motion.li>
         ))}
       </ul>
@@ -176,11 +176,11 @@ function CeremonySlide({ slide }: { slide: Slide }) {
           <PillBadge label="Ceremony" />
         </div>
         <motion.h2 variants={up} className="font-black leading-tight"
-          style={{ fontSize: 'clamp(1.3rem,2.4vw,2rem)', color: MD }}>
+          style={{ fontSize: 'clamp(1.1rem,2vw,1.7rem)', color: MD }}>
           {slide.title}
         </motion.h2>
         {slide.subtitle && (
-          <motion.p variants={fade} style={{ fontSize: 12, color: 'var(--muted-text)', fontWeight: 500 }}>
+          <motion.p variants={fade} style={{ fontSize: 11, color: 'var(--muted-text)', fontWeight: 500 }}>
             {slide.subtitle}
           </motion.p>
         )}
@@ -210,24 +210,24 @@ function SpeakerSlide({ slide }: { slide: Slide }) {
   const listItems = slide.agenda || slide.highlights || slide.acknowledgements || [];
 
   return (
-    <div className="relative flex flex-col h-full px-8 py-5 gap-4 overflow-hidden">
+    <div className="relative flex flex-col h-full px-6 py-2 gap-2 overflow-hidden">
       <Orb style={{ width: 280, height: 280, top: '10%', left: '-8%' }} />
 
       {/* Header */}
-      <motion.div variants={stagger} initial="hidden" animate="show" className="shrink-0 flex flex-col gap-1">
+      <motion.div variants={stagger} initial="hidden" animate="show" className="shrink-0 flex flex-col gap-0.5">
         <PillBadge label={slide.title} />
-        {slide.subtitle && <motion.p variants={fade} style={{ fontSize: 12, color: 'var(--muted-text)', fontWeight: 500 }}>{slide.subtitle}</motion.p>}
+        {slide.subtitle && <motion.p variants={fade} style={{ fontSize: 11, color: 'var(--muted-text)', fontWeight: 500 }}>{slide.subtitle}</motion.p>}
         <AccentBar />
       </motion.div>
 
       <div className="flex gap-6 flex-1 min-h-0">
         {/* Speaker portrait card */}
         <motion.div variants={stagger} initial="hidden" animate="show"
-          className="flex flex-col items-center justify-center gap-4 rounded-3xl overflow-hidden shrink-0 relative"
+          className="flex flex-col items-center justify-center gap-2 rounded-2xl overflow-hidden shrink-0 relative py-2"
           style={{
-            width: 210,
+            width: 180,
             background: `linear-gradient(160deg, rgba(122,26,26,0.95) 0%, rgba(80,10,10,0.98) 100%)`,
-            boxShadow: '0 20px 60px rgba(80,10,10,0.4)',
+            boxShadow: '0 12px 40px rgba(80,10,10,0.4)',
           }}
         >
           {/* Top decorative line */}
@@ -235,15 +235,15 @@ function SpeakerSlide({ slide }: { slide: Slide }) {
             style={{ background: `linear-gradient(90deg, transparent, ${G}, transparent)` }} />
 
           {/* Avatar ring */}
-          <motion.div variants={pop} className="relative flex items-center justify-center" style={{ marginTop: 28 }}>
+          <motion.div variants={pop} className="relative flex items-center justify-center mt-2">
             {/* Outer glow ring */}
             <div className="absolute rounded-full"
-              style={{ width: 108, height: 108, border: `2px solid rgba(200,145,42,0.4)`, animation: 'ringPulse 2.5s ease-in-out infinite' }} />
+              style={{ width: 88, height: 88, border: `2px solid rgba(200,145,42,0.4)`, animation: 'ringPulse 2.5s ease-in-out infinite' }} />
             <div className="absolute rounded-full"
-              style={{ width: 122, height: 122, border: `1px solid rgba(200,145,42,0.2)` }} />
+              style={{ width: 98, height: 98, border: `1px solid rgba(200,145,42,0.2)` }} />
             {/* Avatar */}
-            <div className="w-24 h-24 rounded-full flex items-center justify-center font-black text-white relative overflow-hidden bg-white/10"
-              style={{ background: photo ? '#000' : `linear-gradient(135deg, rgba(200,145,42,0.7), rgba(200,145,42,0.3))`, fontSize: 30 }}>
+            <div className="w-20 h-20 rounded-full flex items-center justify-center font-black text-white relative overflow-hidden bg-white/10"
+              style={{ background: photo ? '#000' : `linear-gradient(135deg, rgba(200,145,42,0.7), rgba(200,145,42,0.3))`, fontSize: 24 }}>
               {photo ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={photo} alt={name} className="w-full h-full object-cover object-top" />
@@ -258,18 +258,18 @@ function SpeakerSlide({ slide }: { slide: Slide }) {
 
           {/* "Now Speaking" pill */}
           <motion.div variants={pop}
-            className="px-3 py-1 rounded-full font-bold tracking-widest"
-            style={{ background: `linear-gradient(135deg,${G},${GD})`, color: '#3D1F1F', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+            className="px-2.5 py-0.5 rounded-full font-bold tracking-widest"
+            style={{ background: `linear-gradient(135deg,${G},${GD})`, color: '#3D1F1F', fontSize: 8.5, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
             🎙 Now Speaking
           </motion.div>
 
           {/* Name / role */}
-          <motion.div variants={up} className="text-center px-4" style={{ marginBottom: 16 }}>
-            <p className="font-extrabold leading-tight" style={{ fontSize: 16, color: '#FFF8F0', lineHeight: 1.25 }}>{name}</p>
-            {role && <p className="mt-1.5 font-medium" style={{ fontSize: 10.5, color: 'rgba(255,248,240,0.6)', lineHeight: 1.4 }}>{role}</p>}
+          <motion.div variants={up} className="text-center px-3 mb-1">
+            <p className="font-extrabold leading-tight" style={{ fontSize: 14, color: '#FFF8F0', lineHeight: 1.2 }}>{name}</p>
+            {role && <p className="mt-1 font-medium" style={{ fontSize: 9.5, color: 'rgba(255,248,240,0.6)', lineHeight: 1.3 }}>{role}</p>}
             {gRole && (
-              <p className="mt-2 pt-2 font-bold uppercase tracking-widest border-t"
-                style={{ fontSize: 9, color: G, borderColor: 'rgba(200,145,42,0.3)', letterSpacing: '0.1em' }}>
+              <p className="mt-1.5 pt-1.5 font-bold uppercase tracking-widest border-t"
+                style={{ fontSize: 8.5, color: G, borderColor: 'rgba(200,145,42,0.3)', letterSpacing: '0.1em' }}>
                 {gRole}
               </p>
             )}
@@ -292,29 +292,29 @@ function SpeakerSlide({ slide }: { slide: Slide }) {
         {/* List */}
         {listItems.length > 0 && (
           <motion.div variants={stagger} initial="hidden" animate="show"
-            className="flex-1 flex flex-col gap-2 rounded-3xl p-5 overflow-hidden"
+            className="flex-1 flex flex-col rounded-2xl p-4 overflow-hidden"
             style={{ background: 'rgba(255,255,255,0.55)', boxShadow: '0 8px 32px rgba(122,26,26,0.08), inset 0 0 0 1.5px rgba(122,26,26,0.1)', backdropFilter: 'blur(12px)' }}
           >
-            <div className="flex items-center gap-2 shrink-0 pb-3 border-b" style={{ borderColor: 'rgba(122,26,26,0.1)' }}>
-              <div className="w-1 rounded-full" style={{ height: 16, background: `linear-gradient(to bottom,${M},${G})` }} />
-              <span className="font-black uppercase tracking-widest" style={{ fontSize: 11, color: MD }}>
+            <div className="flex items-center gap-2 shrink-0 pb-2 border-b" style={{ borderColor: 'rgba(122,26,26,0.1)' }}>
+              <div className="w-1 rounded-full" style={{ height: 14, background: `linear-gradient(to bottom,${M},${G})` }} />
+              <span className="font-black uppercase tracking-widest" style={{ fontSize: 10, color: MD }}>
                 {slide.agenda ? 'Agenda' : slide.acknowledgements ? 'Acknowledgements' : 'Highlights'}
               </span>
             </div>
-            <ul className="flex flex-col gap-2.5 py-2">
+            <ul className="flex flex-col gap-1.5 py-1.5 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
               {listItems.map((p, i) => (
                 <motion.li key={i} variants={up}
-                  className="flex items-center gap-3 px-4 py-2.5 rounded-2xl"
+                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl"
                   style={{
                     background: i % 2 === 0 ? 'rgba(122,26,26,0.04)' : 'rgba(200,145,42,0.05)',
                     border: `1px solid ${i % 2 === 0 ? 'rgba(122,26,26,0.08)' : 'rgba(200,145,42,0.15)'}`,
                   }}
                 >
-                  <span className="w-7 h-7 rounded-xl flex items-center justify-center text-white shrink-0 font-bold shadow"
-                    style={{ background: `linear-gradient(135deg, ${i % 2 === 0 ? M : G}, ${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 11, minWidth: 28 }}>
+                  <span className="w-6 h-6 rounded-lg flex items-center justify-center text-white shrink-0 font-bold shadow"
+                    style={{ background: `linear-gradient(135deg, ${i % 2 === 0 ? M : G}, ${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 10, minWidth: 24 }}>
                     {i + 1}
                   </span>
-                  <span style={{ fontSize: 13, fontWeight: 500, color: MD, lineHeight: 1.4 }}>{p}</span>
+                  <span style={{ fontSize: 12, fontWeight: 500, color: MD, lineHeight: 1.3 }}>{p}</span>
                 </motion.li>
               ))}
             </ul>
@@ -682,8 +682,8 @@ function PausedBanner() {
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: [0.7, 1, 0.7], y: 0 }}
       transition={{ opacity: { repeat: Infinity, duration: 2 }, y: { duration: 0.3 } }}
-      className="shrink-0 flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border-2 border-dashed"
-      style={{ borderColor: G, background: 'rgba(200,145,42,0.05)', color: GD, fontSize: 13, fontWeight: 600 }}
+      className="shrink-0 flex items-center justify-center gap-2 px-4 py-1 rounded-lg border border-dashed my-0.5"
+      style={{ borderColor: G, background: 'rgba(200,145,42,0.05)', color: GD, fontSize: 11, fontWeight: 600 }}
     >
       ⏸ Presentation paused — press <strong>Next →</strong> when ready
     </motion.div>
