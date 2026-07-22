@@ -1,7 +1,7 @@
 {
     "eventTitle": "DRIEMS Coders Guild — Expansion Ceremony",
     "eventSubtitle": "Code. Create. Collab.",
-    "date": "24-07-2026",
+    "date": "23-07-2026",
     "venue": "GF-01, Academic Block - I, DRIEMS University",
     "aiAnchorName": "AIRA",
     "aiAnchorTagline": "Even Dead I'm The Hero",
@@ -11,7 +11,7 @@
             "segment": 1,
             "type": "intro",
             "title": "Opening & Welcome",
-            "content": "Expansion Ceremony — DRIEMS Coders Guild | 24-07-2026",
+            "content": "Expansion Ceremony — DRIEMS Coders Guild | 23-07-2026",
             "speaker": "AIRA (AI Anchor)",
             "speech": "Good morning, everyone. Systems online. Cameras active. Audience detected. I am AIRA — your Artificial Intelligence anchor for today's historic occasion. Welcome — to the expansion ceremony of the DRIEMS Coders Guild. Today, we do not simply launch a club. We ignite a movement. A movement forged in curiosity, powered by code, and driven by the courage to create what has never existed before. To every student who dared to dream beyond the textbook — this day is for you. To every faculty member and dignitary who believed in this vision — thank you for making it real. Ladies and gentlemen, the DRIEMS Coders Guild is no longer just an idea. As of today — it is alive. Let the ceremony begin."
         },
@@ -22,7 +22,7 @@
             "title": "Lamp Lighting Ceremony",
             "content": "Illuminating the Path of Knowledge, Innovation, and Excellence.",
             "speaker": "AIRA (AI Anchor) + Dignitaries",
-            "speech": "We now commence our proceedings with one of the most sacred and cherished traditions—the lighting of the lamp. In our culture, light is not merely illumination; it symbolizes knowledge conquering ignorance, wisdom guiding action, and purpose overcoming doubt. As these flames rise in this hall today, let them stand as a testament—that the DRIEMS Coders Guild will shine as a beacon of technical excellence for every student who walks through this institution. I now respectfully invite our distinguished dignitaries to grace the dais and illuminate this occasion. Please extend a warm welcome to Prof. (Dr.) Prakash Kumar Hota, Hon'ble Vice-Chancellor of DRIEMS University; Prof. (Dr.) Nayan Ranjan Samal, Dean, School of Engineering and Technology; Prof. (Dr.) Alok Ranjan Biswal, Director IQAC; Dr. Amiya Kumar Sahoo, Head of Department, Computer Science and Engineering; along with all the respected faculty members present here today. Sirs and Ma'am, we humbly await your gracious presence at the dais.",
+            "speech": "We now commence our proceedings with one of the most sacred and cherished traditions—the lighting of the lamp. In our culture, light is not merely illumination; it symbolizes knowledge conquering ignorance, wisdom guiding action, and purpose overcoming doubt. As these flames rise in this hall today, let them stand as a testament—that the DRIEMS Coders Guild will shine as a beacon of technical excellence for every student who walks through this institution. I now respectfully invite our distinguished dignitaries to grace the dais and illuminate this occasion. Please extend a warm welcome to Prof. (Dr.) Prakash Kumar Hota, Hon'ble Vice-Chancellor of DRIEMS University; Prof. (Dr.) Nayan Ranjan Samal, Dean, School of Engineering and Technology; Prof. (Dr.) Alok Ranjan Biswal, Associate Dean, Director IQAC; Dr. Amiya Kumar Sahoo, Head of Department, Computer Science and Engineering; along with all the respected faculty members present here today. Sirs and Ma'am, we humbly await your gracious presence at the dais.",
             "pause": true,
             "pauseNote": "Wait for all dignitaries to light the lamp. Resume after ceremony concludes."
         },
@@ -33,7 +33,7 @@
             "title": "Unveiling Our Identity",
             "content": "Inviting the dignitaries to the stage.",
             "speaker": "AIRA (AI Anchor)",
-            "speech": "Ladies and gentlemen — every great movement carries a mark. An identity. Today, DRIEMS Coders Guild steps out of the shadows to reveal that identity to the world. But before we do, we need the guiding forces of this institution to do the honors. I respectfully invite our Hon'ble Vice-Chancellor, Prof. (Dr.) Prakash Kumar Hota, our Dean, Prof. (Dr.) Nayan Ranjan Samal, Dr. Amiya Kumar Sahoo, Head of Department CSE, and Prof. (Dr.) Alok Ranjan Biswal, Director IQAC, to please step up to the screen for the reveals.",
+            "speech": "Ladies and gentlemen — every great movement carries a mark. An identity. Today, DRIEMS Coders Guild steps out of the shadows to reveal that identity to the world. But before we do, we need the guiding forces of this institution to do the honors. I respectfully invite our Hon'ble Vice-Chancellor, Prof. (Dr.) Prakash Kumar Hota; our Dean, Prof. (Dr.) Nayan Ranjan Samal; Prof. (Dr.) Alok Ranjan Biswal, Associate Dean and Director IQAC; and Dr. Amiya Kumar Sahoo, Head of Department, CSE — to please step up to the screen for the reveals. I also warmly invite our faculty mentors — Dr. Subhasish Mohapatra, Prof. Suvendu Tripathy, Prof. Kulshan Pattanaik, and Prof. Anita Sahoo — to please join us at the stage.",
             "pause": true,
             "pauseNote": "Wait for all dignitaries to walk up to the stage and take their positions. Press Next when they are ready."
         },
@@ -69,11 +69,11 @@
             "type": "reveal",
             "title": "Website Reveal",
             "content": "Launching the website.",
-            "speaker": "AIRA + HOD CSE + Director IQAC",
-            "speech": "And finally, our digital home. Connecting DRIEMS to the global tech community. I humbly request Dr. Amiya Kumar Sahoo, Head of Department CSE, and Prof. (Dr.) Alok Ranjan Biswal, Director IQAC, to jointly launch the website. Let us count down together. Three... Two... One...",
+            "speaker": "AIRA + Director IQAC + HOD CSE",
+            "speech": "And finally, our digital home. Connecting DRIEMS to the global tech community. I humbly request Prof. (Dr.) Alok Ranjan Biswal, Associate Dean, Director IQAC, and Dr. Amiya Kumar Sahoo, Head of Department CSE, to jointly launch the website. Let us count down together. Three... Two... One...",
             "pause": true,
             "countdownTrigger": true,
-            "pauseNote": "HOD CSE and Director IQAC jointly reveal the website. AIRA pauses until the slide is advanced manually.",
+            "pauseNote": "Director IQAC and HOD CSE jointly reveal the website. AIRA pauses until the slide is advanced manually.",
             "postRevealSpeech": "The website is now live. Thank you, Sirs. Please take your seats."
         },
         {
@@ -106,9 +106,9 @@
             "type": "speaker",
             "title": "Address by Director IQAC",
             "speakerName": "Prof. (Dr.) Alok Ranjan Biswal",
-            "speakerRole": "Director IQAC, DRIEMS University",
+            "speakerRole": "Associate Dean, Director IQAC, DRIEMS University",
             "speaker": "AIRA (AI Anchor) → Handoff to Prof. (Dr.) Alok Ranjan Biswal",
-            "speech": "Thank you, Sir, for those powerful words. We are now privileged to have with us a distinguished academician whose commitment to institutional quality and excellence has set the benchmark for educational standards at DRIEMS University. I now invite Prof. (Dr.) Alok Ranjan Biswal — Director IQAC, DRIEMS University — to address this gathering. Sir, the stage is yours.",
+            "speech": "Thank you, Sir, for those powerful words. We are now privileged to have with us a distinguished academician whose commitment to institutional quality and excellence has set the benchmark for educational standards at DRIEMS University. I now invite Prof. (Dr.) Alok Ranjan Biswal — Associate Dean, Director IQAC, DRIEMS University — to address this gathering. Sir, the stage is yours.",
             "pause": true,
             "pauseNote": "Director IQAC speaks. Full segment under his discretion."
         },
@@ -162,7 +162,7 @@
                 },
                 {
                     "name": "Prof. Suvendu Tripathy",
-                    "role": "Associate Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE"
+                    "role": "Co-Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE"
                 }
             ],
             "studentExecutiveBoard": [
@@ -239,7 +239,7 @@
                     "role": "Cybersecurity Lead"
                 }
             ],
-            "speech": "Every great movement is built by extraordinary people. And behind DRIEMS Coders Guild stands a team that chose responsibility over comfort — action over observation. I want you to meet them. Before I introduce our student team, I want to acknowledge the two faculty mentors whose guidance keeps this guild grounded and growing — Dr. Subhasish Mohapatra, Coordinator of DRIEMS Coders Guild, and Prof. Suvendu Tripathy, Associate Coordinator of DRIEMS Coders Guild. Your support means everything. Now — as I call each name, please stand and be recognized by this audience. Student Executive Board — our President, Mir Afaque Alli. Vice President, Om Prakash Nayak. General Secretary, Ahmed Raza Khan. Treasurer, Abhijeet Nayak. Technical Lead, Sonali Sahoo. Core Team — Event Coordinators, Soyam Sudha Rout and Aniket Parida. Discipline Coordinator, Surya Prakash Baral. Volunteers, Sai Pradyumna Samal and Sujit Kumar Dash. Project Leads, Puspalata Panigrahi and Md. Ibrahim. Social Media and PR, Subhalaxmi Sahoo and Saistuti Mohapatra. Domain Leads — Web and App Development Lead, Jayaprakash Sahoo. AI and Machine Learning Lead, Surya Snata Panigrahi. And Cybersecurity Lead, Sibansundar Barik. Ladies and gentlemen — please give a thunderous round of applause to the founding team of DRIEMS Coders Guild.",
+            "speech": "Every great movement is built by extraordinary people. And behind DRIEMS Coders Guild stands a team that chose responsibility over comfort — action over observation. I want you to meet them. Before I introduce our student team, I want to acknowledge the four faculty mentors whose guidance keeps this guild grounded and growing — Dr. Subhasish Mohapatra, Coordinator of DRIEMS Coders Guild; Prof. Suvendu Tripathy, Co-Coordinator of DRIEMS Coders Guild; Prof. Kulshan Pattanaik, Assistant Professor, CSE; and Prof. Anita Sahoo, Assistant Professor, CSE. Your support means everything. Now — as I call each name, please stand and be recognized by this audience. Student Executive Board — our President, Mir Afaque Alli. Vice President, Om Prakash Nayak. General Secretary, Ahmed Raza Khan. Treasurer, Abhijeet Nayak. Technical Lead, Sonali Sahoo. Core Team — Event Coordinators, Soyam Sudha Rout and Aniket Parida. Discipline Coordinator, Surya Prakash Baral. Volunteers, Sai Pradyumna Samal and Sujit Kumar Dash. Project Leads, Puspalata Panigrahi and Md. Ibrahim. Social Media and PR, Subhalaxmi Sahoo and Saistuti Mohapatra. Domain Leads — Web and App Development Lead, Jayaprakash Sahoo. AI and Machine Learning Lead, Surya Snata Panigrahi. And Cybersecurity Lead, Sibansundar Barik. Ladies and gentlemen — please give a thunderous round of applause to the founding team of DRIEMS Coders Guild.",
             "pauseNote": "Allow each member to stand and be acknowledged. Pause naturally between categories."
         },
         {
@@ -248,11 +248,11 @@
             "type": "speaker",
             "title": "Vote of Thanks",
             "speakerName": "Prof. Suvendu Tripathy",
-            "speakerRole": "Associate Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE",
+            "speakerRole": "Co-Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE",
             "speaker": "AIRA (AI Anchor) → Handoff to Prof. Suvendu Tripathy",
-            "speech": "As we approach the final chapter of today's ceremony — there are words of gratitude that must be spoken. Words for every individual who made this moment possible. I now invite Prof. Suvendu Tripathy — Associate Coordinator of DRIEMS Coders Guild and Assistant Professor, Department of Computer Science and Engineering — to deliver the Vote of Thanks. He will also be walking you through the membership process and the exciting future plans of this guild as part of his address. Sir, the stage is yours.",
+            "speech": "As we approach the final chapter of today's ceremony — there are words of gratitude that must be spoken. Words for every individual who made this moment possible. I now invite Prof. Soovendu Tripaathy — Co-Coordinator of Dreams Coders Guild and Assistant Professor, Department of Computer Science and Engineering — to deliver the Vote of Thanks. Sir, the stage is yours..",
             "pause": true,
-            "pauseNote": "Associate Coordinator delivers formal vote of thanks — acknowledges dignitaries, faculty, team, and audience. Also covers membership process and future plans of the guild."
+            "pauseNote": "Co-Coordinator delivers formal vote of thanks — acknowledges dignitaries, faculty, team, and audience. Also covers membership process and future plans of the guild."
         },
         {
             "id": "slide-13",

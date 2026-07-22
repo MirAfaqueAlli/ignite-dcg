@@ -2,7 +2,7 @@
   "eventTitle": "DRIEMS Coders Guild",
   "eventSubtitle": "Expansion Ceremony",
   "tagline": "Code. Create. Collab.",
-  "date": "24-07-2026",
+  "date": "23-07-2026",
   "venue": "GF-01, Academic Block - I, DRIEMS University",
   "slides": [
     {
@@ -14,7 +14,7 @@
       "tagline": "Code. Create. Collab.",
       "details": [
         "📍 GF-01, Academic Block - I, DRIEMS University",
-        "📅 24-07-2026",
+        "📅 23-07-2026",
         "🤖 Hosted by AIRA — AI Anchor"
       ]
     },
@@ -38,7 +38,7 @@
         "points": [
           "Prof. (Dr.) Prakash Kumar Hota — Hon'ble Vice-Chancellor, DRIEMS University",
           "Prof. (Dr.) Nayan Ranjan Samal — Dean, School of Engineering & Technology",
-          "Prof. (Dr.) Alok Ranjan Biswal — Director IQAC, DRIEMS University",
+          "Prof. (Dr.) Alok Ranjan Biswal — Associate Dean, Director IQAC, DRIEMS University",
           "Dr. Amiya Kumar Sahoo — Head of Department, CSE"
         ]
       }
@@ -62,7 +62,7 @@
         "heading": "Faculty Mentors",
         "points": [
           "Dr. Subhasish Mohapatra — Coordinator, CSE",
-          "Prof. Suvendu Tripathy — Associate Coordinator, CSE",
+          "Prof. Suvendu Tripathy — Co-Coordinator, CSE",
           "Prof. Kulshan Pattanaik — Assistant Professor, CSE",
           "Prof. Anita Sahoo — Assistant Professor, CSE"
         ]
@@ -124,7 +124,7 @@
         "The central hub of our guild",
         "Showcasing our projects and members",
         "Connecting DRIEMS to the global tech community",
-        "Revealed by Dr. Amiya Kumar Sahoo & Prof. (Dr.) Alok Ranjan Biswal"
+        "Revealed by Prof. (Dr.) Alok Ranjan Biswal & Dr. Amiya Kumar Sahoo"
       ],
       "revealLine": "The website is live. The world is watching."
     },
@@ -169,7 +169,7 @@
       "title": "Address by Director IQAC",
       "speaker": {
         "name": "Prof. (Dr.) Alok Ranjan Biswal",
-        "role": "Director IQAC, DRIEMS University",
+        "role": "Associate Dean, Director IQAC, DRIEMS University",
         "photo": "/images/alokSir.jpg"
       },
       "highlights": [
@@ -248,7 +248,15 @@
           },
           {
             "name": "Prof. Suvendu Tripathy",
-            "role": "Associate Coordinator | Asst. Professor, CSE"
+            "role": "Co-Coordinator | Asst. Professor, CSE"
+          },
+          {
+            "name": "Prof. Kulshan Pattanaik",
+            "role": "Asst. Professor, CSE"
+          },
+          {
+            "name": "Prof. Anita Sahoo",
+            "role": "Asst. Professor, CSE"
           }
         ]
       },
@@ -365,14 +373,15 @@
       "speaker": {
         "name": "Prof. Suvendu Tripathy",
         "role": "Asst. Professor, CSE",
-        "guildRole": "Associate Coordinator — DRIEMS Coders Guild",
+        "guildRole": "Co-Coordinator — DRIEMS Coders Guild",
         "photo": "/images/suvenduSir.jpeg"
       },
       "acknowledgements": [
         "Prof. (Dr.) P. K. Hota — Hon'ble Vice-Chancellor, DRIEMS University",
         "Prof. (Dr.) Nayan Ranjan Samal — Dean, SOET",
-        "Dr. Amiya Kumar Sahoo — HOD, CSE | Prof. (Dr.) Alok Ranjan Biswal — Director IQAC",
-        "Dr. Subhasish Mohapatra — Coordinator, DRIEMS Coders Guild",
+        "Prof. (Dr.) Alok Ranjan Biswal — Associate Dean, Director IQAC, DRIEMS University",
+        "Dr. Amiya Kumar Sahoo — Head of Department, CSE",
+        "All Faculty Mentors — Dr. Subhasish Mohapatra, Prof. Kulshan Pattanaik & Prof. Anita Sahoo",
         "The entire founding team & every student who made this possible"
       ]
     },
@@ -389,7 +398,7 @@
         "Every revolution begins with a single line of code.",
         "Build something the world has never seen before."
       ],
-      "footer": "DRIEMS Coders Guild | GF-01, Academic Block - I | DRIEMS University | 24-07-2026"
+      "footer": "DRIEMS Coders Guild | GF-01, Academic Block - I | DRIEMS University | 23-07-2026"
     }
   ]
 }
