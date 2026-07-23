@@ -129,37 +129,38 @@
       "revealLine": "The website is live. The world is watching."
     },
     {
-      "id": "slide-5",
+      "id": "slide-8b",
       "segment": "5a",
       "type": "speaker",
-      "title": "Address by Hon'ble Vice-Chancellor",
+      "title": "Address by Coordinator, DRIEMS Coders Guild",
       "speaker": {
-        "name": "Prof. (Dr.) P. K. Hota",
-        "role": "Hon'ble Vice-Chancellor, DRIEMS University",
-        "photo": "/images/vcsir.png"
+        "name": "Dr. Subhasish Mohapatra",
+        "role": "Asst. Professor, CSE",
+        "guildRole": "Coordinator — DRIEMS Coders Guild",
+        "photo": "/images/subhasishSir.jpg"
       },
       "highlights": [
-        "Highest academic authority of DRIEMS University",
-        "Visionary leader shaping thousands of student futures",
-        "Under his leadership — DRIEMS is a center of excellence",
-        "Sharing words of wisdom & inspiration"
+        "Guiding light behind the guild since its conception",
+        "Brings academic depth & mentoring wisdom",
+        "Committed to seeing every student grow beyond limits",
+        "Sharing words of guidance for the road ahead"
       ]
     },
     {
-      "id": "slide-6",
+      "id": "slide-7",
       "segment": "5b",
       "type": "speaker",
-      "title": "Address by Dean, SOET",
+      "title": "Address by HOD, Computer Science & Engineering",
       "speaker": {
-        "name": "Prof. (Dr.) Nayan Ranjan Samal",
-        "role": "Dean, School of Engineering & Technology",
-        "photo": "/images/deansir.png"
+        "name": "Dr. Amiya Kumar Sahoo",
+        "role": "Head of Department, CSE",
+        "photo": "/images/amyasir.webp"
       },
       "highlights": [
-        "Pillar of engineering education at DRIEMS",
-        "Dedicated to raising technical learning standards",
-        "Bridges academia with real-world engineering",
-        "Sharing guidance for the guild's journey ahead"
+        "Foundational force behind DRIEMS Coders Guild",
+        "Provided institutional support, structure & resources",
+        "Gave this vision the space & strength to grow",
+        "Sharing the path forward for CSE students"
       ]
     },
     {
@@ -180,38 +181,37 @@
       ]
     },
     {
-      "id": "slide-7",
+      "id": "slide-6",
       "segment": "5d",
       "type": "speaker",
-      "title": "Address by HOD, Computer Science & Engineering",
+      "title": "Address by Dean, SOET",
       "speaker": {
-        "name": "Dr. Amiya Kumar Sahoo",
-        "role": "Head of Department, CSE",
-        "photo": "/images/amyasir.webp"
+        "name": "Prof. (Dr.) Nayan Ranjan Samal",
+        "role": "Dean, School of Engineering & Technology",
+        "photo": "/images/deansir.png"
       },
       "highlights": [
-        "Foundational force behind DRIEMS Coders Guild",
-        "Provided institutional support, structure & resources",
-        "Gave this vision the space & strength to grow",
-        "Sharing the path forward for CSE students"
+        "Pillar of engineering education at DRIEMS",
+        "Dedicated to raising technical learning standards",
+        "Bridges academia with real-world engineering",
+        "Sharing guidance for the guild's journey ahead"
       ]
     },
     {
-      "id": "slide-8b",
+      "id": "slide-5",
       "segment": "5e",
       "type": "speaker",
-      "title": "Address by Coordinator, DRIEMS Coders Guild",
+      "title": "Address by Hon'ble Vice-Chancellor",
       "speaker": {
-        "name": "Dr. Subhasish Mohapatra",
-        "role": "Asst. Professor, CSE",
-        "guildRole": "Coordinator — DRIEMS Coders Guild",
-        "photo": "/images/subhasishSir.jpg"
+        "name": "Prof. (Dr.) P. K. Hota",
+        "role": "Hon'ble Vice-Chancellor, DRIEMS University",
+        "photo": "/images/vcsir.png"
       },
       "highlights": [
-        "Guiding light behind the guild since its conception",
-        "Brings academic depth & mentoring wisdom",
-        "Committed to seeing every student grow beyond limits",
-        "Sharing words of guidance for the road ahead"
+        "Highest academic authority of DRIEMS University",
+        "Visionary leader shaping thousands of student futures",
+        "Under his leadership — DRIEMS is a center of excellence",
+        "Sharing words of wisdom & inspiration"
       ]
     },
     {

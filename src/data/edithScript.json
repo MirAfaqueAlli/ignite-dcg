@@ -77,20 +77,44 @@
             "postRevealSpeech": "The website is now live. Thank you, Sirs. Please take your seats."
         },
         {
-            "id": "slide-5",
+            "id": "slide-8b",
             "segment": "5a",
             "type": "speaker",
-            "title": "Address by Hon'ble Vice-Chancellor",
-            "speakerName": "Prof. (Dr.) P. K. Hota",
-            "speakerRole": "Hon'ble Vice-Chancellor, DRIEMS University",
-            "speaker": "AIRA (AI Anchor) → Handoff to Prof. Dr. P. K. Hota",
-            "speech": "We are now deeply honored to hear from the highest academic authority of DRIEMS University — a visionary leader whose guidance shapes not just this institution, but the futures of thousands of students within it. Under his leadership, DRIEMS University has grown into a center of academic and technical excellence. It is with the greatest respect that I now invite Prof. Dr. P. K. Hota — Hon'ble Vice-Chancellor of DRIEMS University — to share his invaluable words of wisdom and inspiration with us. Sir, the stage is yours.",
+            "title": "Address by Coordinator, DRIEMS Coders Guild",
+            "speakerName": "Dr. Subhasish Mohapatra",
+            "speakerRole": "Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE",
+            "speaker": "AIRA (AI Anchor) → Handoff to Dr. Subhasish Mohapatra",
+            "speech": "We are now privileged to begin our faculty addresses with someone whose vision, dedication, and mentoring spirit have been the very foundation of DRIEMS Coders Guild since its conception. As Coordinator of this guild, he has guided this initiative from an idea to the movement you see today. I respectfully invite Dr. Subhasish Mohapatra — Assistant Professor, Department of Computer Science and Engineering, and Coordinator of DRIEMS Coders Guild — to address this gathering. Sir, please.",
             "pause": true,
-            "pauseNote": "Vice-Chancellor speaks. Full segment under his discretion."
+            "pauseNote": "Coordinator, Dr. Subhasish Mohapatra speaks. Full segment under his discretion."
+        },
+        {
+            "id": "slide-7",
+            "segment": "5b",
+            "type": "speaker",
+            "title": "Address by HOD, CSE",
+            "speakerName": "Dr. Amiya Kumar Sahoo",
+            "speakerRole": "Head of Department, CSE",
+            "speaker": "AIRA (AI Anchor) → Handoff to Dr. Amiya Kumar Sahoo",
+            "speech": "Thank you, Sir, for those thoughtful words. Our next speaker is one of the foundational forces behind DRIEMS Coders Guild — the individual who brought institutional support to this vision and helped give it structure, space, and strength. I invite Dr. Amiya Kumar Sahoo — Head of the Department of Computer Science and Engineering — to address this gathering. Sir, the floor is yours.",
+            "pause": true,
+            "pauseNote": "HOD, CSE speaks. Full segment under his discretion."
+        },
+        {
+            "id": "slide-alok",
+            "segment": "5c",
+            "type": "speaker",
+            "title": "Address by Director IQAC",
+            "speakerName": "Prof. (Dr.) Alok Ranjan Biswal",
+            "speakerRole": "Associate Dean, Director IQAC, DRIEMS University",
+            "speaker": "AIRA (AI Anchor) → Handoff to Prof. (Dr.) Alok Ranjan Biswal",
+            "speech": "Thank you, Sir, for those inspiring words. We are now privileged to have with us a distinguished academician whose commitment to institutional quality and excellence has set the benchmark for educational standards at DRIEMS University. I now invite Prof. (Dr.) Alok Ranjan Biswal — Associate Dean, Director IQAC, DRIEMS University — to address this gathering. Sir, the stage is yours.",
+            "pause": true,
+            "pauseNote": "Director IQAC speaks. Full segment under his discretion."
         },
         {
             "id": "slide-6",
-            "segment": "5b",
+            "segment": "5d",
             "type": "speaker",
             "title": "Address by Dean, SOET",
             "speakerName": "Prof. (Dr.) Nayan Ranjan Samal",
@@ -101,40 +125,16 @@
             "pauseNote": "Dean, SOET speaks. Full segment under his discretion."
         },
         {
-            "id": "slide-alok",
-            "segment": "5c",
-            "type": "speaker",
-            "title": "Address by Director IQAC",
-            "speakerName": "Prof. (Dr.) Alok Ranjan Biswal",
-            "speakerRole": "Associate Dean, Director IQAC, DRIEMS University",
-            "speaker": "AIRA (AI Anchor) → Handoff to Prof. (Dr.) Alok Ranjan Biswal",
-            "speech": "Thank you, Sir, for those powerful words. We are now privileged to have with us a distinguished academician whose commitment to institutional quality and excellence has set the benchmark for educational standards at DRIEMS University. I now invite Prof. (Dr.) Alok Ranjan Biswal — Associate Dean, Director IQAC, DRIEMS University — to address this gathering. Sir, the stage is yours.",
-            "pause": true,
-            "pauseNote": "Director IQAC speaks. Full segment under his discretion."
-        },
-        {
-            "id": "slide-7",
-            "segment": "5d",
-            "type": "speaker",
-            "title": "Address by HOD, CSE",
-            "speakerName": "Dr. Amiya Kumar Sahoo",
-            "speakerRole": "Head of Department, CSE",
-            "speaker": "AIRA (AI Anchor) → Handoff to Dr. Amiya Kumar Sahoo",
-            "speech": "Thank you, Sir, for those inspiring words. Our next speaker is one of the foundational forces behind DRIEMS Coders Guild — the individual who brought institutional support to this vision and helped give it structure, space, and strength. I invite Dr. Amiya Kumar Sahoo — Head of the Department of Computer Science and Engineering — to address this gathering. Sir, the floor is yours.",
-            "pause": true,
-            "pauseNote": "HOD, CSE speaks. Full segment under his discretion."
-        },
-        {
-            "id": "slide-8b",
+            "id": "slide-5",
             "segment": "5e",
             "type": "speaker",
-            "title": "Address by Coordinator, DRIEMS Coders Guild",
-            "speakerName": "Dr. Subhasish Mohapatra",
-            "speakerRole": "Coordinator, DRIEMS Coders Guild | Asst. Professor, CSE",
-            "speaker": "AIRA (AI Anchor) → Handoff to Dr. Subhasish Mohapatra",
-            "speech": "To close this distinguished sequence of faculty addresses, I invite a gentleman whose academic depth and mentoring spirit have been a guiding light for this guild since its very conception. As Coordinator of DRIEMS Coders Guild, he brings not just expertise — but wisdom, perspective, and a commitment to seeing every student grow beyond what they believe they are capable of. I respectfully invite Dr. Subhasish Mohapatra — Assistant Professor, Department of Computer Science and Engineering, and Coordinator of DRIEMS Coders Guild — to address this gathering. Sir, please.",
+            "title": "Address by Hon'ble Vice-Chancellor",
+            "speakerName": "Prof. (Dr.) P. K. Hota",
+            "speakerRole": "Hon'ble Vice-Chancellor, DRIEMS University",
+            "speaker": "AIRA (AI Anchor) → Handoff to Prof. Dr. P. K. Hota",
+            "speech": "Thank you, Sir, for those remarkable words. We are now deeply honored to hear from the highest academic authority of DRIEMS University — a visionary leader whose guidance shapes not just this institution, but the futures of thousands of students within it. Under his leadership, DRIEMS University has grown into a center of academic and technical excellence. It is with the greatest respect that I now invite Prof. Dr. P. K. Hota — Hon'ble Vice-Chancellor of DRIEMS University — to share his invaluable words of wisdom and inspiration with us. Sir, the stage is yours.",
             "pause": true,
-            "pauseNote": "Coordinator, Dr. Subhasish Mohapatra speaks. Full segment under his discretion."
+            "pauseNote": "Vice-Chancellor speaks. Full segment under his discretion."
         },
         {
             "id": "slide-3",
