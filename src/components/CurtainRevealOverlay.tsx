@@ -129,25 +129,72 @@ function FoldEdge({ position }: { position: 'top' | 'bottom' }) {
   );
 }
 
+
+/* ════════════════════════════════════════════════════════════════
+   CELEBRATE BANNER — golden text that pops up during reveal
+════════════════════════════════════════════════════════════════ */
+function CelebrateBanner({ active, text = '✦ Official Portal Launched ✦', subtitle = 'icetict.driems.ac.in is now Live' }: { active: boolean; text?: string; subtitle?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!active || !ref.current) return;
+    gsap.fromTo(ref.current,
+      { y: 60, opacity: 0, scale: 0.7 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(2)',
+        onComplete: () => {
+          gsap.to(ref.current, { opacity: 0, y: -30, scale: 0.9, duration: 0.8, delay: 2.0, ease: 'power2.in' });
+        }
+      }
+    );
+  }, [active]);
+
+  return (
+    <div ref={ref} style={{
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: 9995,
+      pointerEvents: 'none',
+      opacity: 0,
+      textAlign: 'center',
+    }}>
+      <div style={{
+        fontFamily: 'serif',
+        fontSize: 'clamp(2rem, 6vw, 4.5rem)',
+        fontWeight: 800,
+        background: 'linear-gradient(135deg, #F0DC7A 0%, #FFE680 30%, #C9A227 60%, #F0DC7A 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        filter: 'drop-shadow(0 0 30px rgba(255,220,80,0.6))',
+        letterSpacing: '0.04em',
+      }}>{text}</div>
+      <div style={{
+        fontFamily: 'sans-serif',
+        fontSize: 'clamp(0.7rem, 1.5vw, 0.9rem)',
+        letterSpacing: '0.3em',
+        color: 'rgba(240,220,120,0.8)',
+        marginTop: 8,
+        textTransform: 'uppercase',
+      }}>{subtitle}</div>
+    </div>
+  );
+}
+
 /* ════════════════════════════════════════════════════════════════
    WEBSITE EMBED REVEAL — flashy iframe reveal panel
 ════════════════════════════════════════════════════════════════ */
-function WebsiteRevealPanel({ onNext, zIndex = 8990 }: { onNext: () => void; zIndex?: number }) {
-  const panelRef  = useRef<HTMLDivElement>(null);
+function WebsiteRevealPanel({ onNext, zIndex = 8990, isCurtainGone = false }: { onNext: () => void; zIndex?: number; isCurtainGone?: boolean }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [clicked, setClicked]   = useState(false);
-  const [flashing, setFlashing] = useState(false);
-  const [showIframe, setShowIframe] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
 
-  /* entrance: panel bg is immediate, only inner content animates */
+  /* smooth scale-in animation — website emerges from behind curtains */
   useEffect(() => {
     if (!panelRef.current) return;
-    // Animate only the inner content div child
-    const inner = panelRef.current.querySelector('[data-website-inner]') as HTMLDivElement | null;
-    if (!inner) return;
-    gsap.fromTo(inner,
-      { opacity: 0, scale: 0.85, y: 60 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.4)', delay: 0.9 }
+    gsap.fromTo(panelRef.current,
+      { scale: 0.92, opacity: 0.6 },
+      { scale: 1, opacity: 1, duration: 2.2, delay: 0.3, ease: 'power2.out' }
     );
   }, []);
 
@@ -160,169 +207,65 @@ function WebsiteRevealPanel({ onNext, zIndex = 8990 }: { onNext: () => void; zIn
     return () => window.removeEventListener('keydown', h);
   }, [onNext]);
 
-  const handleLinkClick = useCallback(() => {
-    if (clicked) return;
-    setClicked(true);
-    setFlashing(true);
-    setTimeout(() => { setFlashing(false); setShowIframe(true); }, 900);
-  }, [clicked]);
-
   return (
-    <>
-      {/* Full-screen flash */}
-      {flashing && (
+    <div ref={panelRef} style={{
+      position: 'fixed', inset: 0, zIndex, background: '#0D0400',
+      display: 'flex', flexDirection: 'column',
+      pointerEvents: isCurtainGone ? 'auto' : 'none',
+      opacity: 0.6, transform: 'scale(0.92)',
+    }}>
+      {/* Top bar */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 14,
+        padding: '10px 22px',
+        background: 'linear-gradient(90deg, #1A0800, #3A1200)',
+        borderBottom: '2px solid #C9A227',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+      }}>
         <div style={{
-          position: 'fixed', inset: 0, zIndex: 9999, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse at 50% 50%, rgba(255,220,60,0.95) 0%, rgba(201,162,39,0.7) 40%, rgba(0,0,0,0.85) 100%)',
-          animation: 'websiteFlash 0.9s ease-out forwards',
-        }} />
-      )}
-
-      {/* Fullscreen iframe */}
-      {showIframe && (
+          display: 'flex', alignItems: 'center', gap: 10,
+          fontSize: 14, fontWeight: 800, letterSpacing: '0.08em',
+          color: '#F0DC7A',
+        }}>
+          <span style={{ fontSize: 18 }}>🌐</span>
+          <span>ICETICT-2027 Official Portal</span>
+          <span style={{
+            fontSize: 11, background: '#22c55e', color: '#fff',
+            padding: '2px 8px', borderRadius: 999, fontWeight: 700,
+            letterSpacing: '0.05em', textTransform: 'uppercase'
+          }}>● Live</span>
+        </div>
         <div style={{
-          position: 'fixed', inset: 0, zIndex: 10000, background: '#000',
-          display: 'flex', flexDirection: 'column',
+          fontSize: 12, color: 'rgba(240,220,120,0.7)',
+          fontFamily: 'monospace', marginLeft: 8
         }}>
-          {/* Top bar */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 12,
-            padding: '10px 18px',
-            background: 'linear-gradient(90deg, #1A0800, #3A1200)',
-            borderBottom: '2px solid #C9A227',
-          }}>
-            <div style={{
-              display: 'flex', gap: 8,
-              fontSize: 13, fontWeight: 800, letterSpacing: '0.1em',
-              color: '#F0DC7A',
-            }}>
-              🌐 dcgofficial-three.vercel.app
-            </div>
-            <div style={{ flex: 1 }} />
-            <button
-              onClick={onNext}
-              style={{
-                background: 'linear-gradient(135deg, #C9A227, #8B6914)',
-                color: '#1C0A00', fontWeight: 800, fontSize: 12,
-                padding: '6px 18px', borderRadius: 999, border: 'none',
-                cursor: 'pointer', letterSpacing: '0.08em',
-              }}
-            >
-              → Next Slide
-            </button>
-          </div>
-          <iframe
-            ref={iframeRef}
-            src="https://dcgofficial-three.vercel.app"
-            style={{ flex: 1, border: 'none', width: '100%' }}
-            title="DRIEMS Coders Guild Website"
-          />
+          https://icetict.driems.ac.in/
         </div>
-      )}
+        <div style={{ flex: 1 }} />
+        <a
+          href="https://icetict.driems.ac.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            background: 'rgba(201,162,39,0.2)',
+            border: '1px solid #C9A227',
+            color: '#F0DC7A', fontWeight: 700, fontSize: 12,
+            padding: '6px 16px', borderRadius: 999,
+            textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6,
+          }}
+        >
+          <span>Open in New Tab</span> ↗
+        </a>
+      </div>
 
-      {/* Card panel — immediately opaque background */}
-      {!showIframe && (
-        <div ref={panelRef} style={{
-          position: 'fixed', inset: 0, zIndex,
-          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          background: 'radial-gradient(ellipse at 50% 50%, #080200 0%, #020100 100%)',
-          backdropFilter: 'none',
-        }}>
-          {/* Glow orb */}
-          <div style={{
-            position: 'absolute', width: 500, height: 500,
-            borderRadius: '50%', top: '50%', left: '50%',
-            transform: 'translate(-50%,-50%)',
-            background: 'radial-gradient(circle, rgba(201,162,39,0.18) 0%, transparent 70%)',
-            pointerEvents: 'none',
-          }} />
-
-          <div data-website-inner style={{ position: 'relative', textAlign: 'center', maxWidth: 600 }}>
-            {/* Badge */}
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'linear-gradient(135deg, #C9A227, #8B6914)',
-              color: '#1C0A00', fontWeight: 800, fontSize: 11, letterSpacing: '0.15em',
-              padding: '6px 18px', borderRadius: 999, marginBottom: 28,
-              textTransform: 'uppercase',
-            }}>
-              <span>🌐</span> Website Live
-            </div>
-
-            <h2 style={{
-              fontFamily: 'serif', fontWeight: 900,
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              background: 'linear-gradient(140deg, #A87010 0%, #E8C547 35%, #FFF0A0 50%, #E8C547 65%, #C9A227 100%)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              filter: 'drop-shadow(0 0 30px rgba(201,162,39,0.5))',
-              margin: '0 0 12px',
-            }}>
-              dcgofficial-three.vercel.app
-            </h2>
-
-            <p style={{
-              color: 'rgba(240,220,120,0.65)', fontSize: 15, fontWeight: 500,
-              letterSpacing: '0.05em', marginBottom: 40,
-            }}>
-              The official digital home of DRIEMS Coders Guild — now live.
-            </p>
-
-            {/* The glowing reveal button */}
-            <div
-              onClick={handleLinkClick}
-              style={{
-                display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 12,
-                padding: '18px 48px', borderRadius: 12,
-                background: 'linear-gradient(180deg, #E0B53A 0%, #C9A227 22%, #A87818 50%, #C9A227 78%, #E0B53A 100%)',
-                boxShadow: '0 6px 40px rgba(201,162,39,0.65), 0 0 80px rgba(201,162,39,0.2)',
-                cursor: 'pointer', userSelect: 'none',
-                fontSize: 18, fontWeight: 800, color: '#1C0A00',
-                letterSpacing: '0.08em',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                position: 'relative', overflow: 'hidden',
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLDivElement).style.transform = 'scale(1.06)';
-                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 8px 60px rgba(201,162,39,0.9), 0 0 120px rgba(201,162,39,0.35)';
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLDivElement).style.transform = 'scale(1)';
-                (e.currentTarget as HTMLDivElement).style.boxShadow = '0 6px 40px rgba(201,162,39,0.65), 0 0 80px rgba(201,162,39,0.2)';
-              }}
-            >
-              {/* Shine sweep */}
-              <div style={{
-                position: 'absolute', inset: 0, borderRadius: 12,
-                background: 'linear-gradient(108deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%)',
-                animation: 'rshine 2.5s ease-in-out infinite',
-              }} />
-              🚀 &nbsp;Visit Website
-            </div>
-
-            {/* hint */}
-            <p style={{
-              marginTop: 24, fontSize: 11, letterSpacing: '0.2em',
-              color: 'rgba(201,162,39,0.45)', textTransform: 'uppercase',
-            }}>
-              Press → to continue to next slide
-            </p>
-          </div>
-        </div>
-      )}
-
-      <style>{`
-        @keyframes websiteFlash {
-          0%   { opacity: 0; }
-          20%  { opacity: 1; }
-          100% { opacity: 0; }
-        }
-        @keyframes rshine {
-          0%   { background-position: -120% 0; }
-          55%  { background-position: 220% 0; }
-          100% { background-position: 220% 0; }
-        }
-      `}</style>
-    </>
+      {/* Direct Fullscreen Live Website */}
+      <iframe
+        ref={iframeRef}
+        src="https://icetict.driems.ac.in/"
+        style={{ flex: 1, border: 'none', width: '100%', height: '100%', background: '#fff' }}
+        title="ICETICT-2027 Official Portal"
+      />
+    </div>
   );
 }
 
@@ -440,6 +383,7 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
   const [isReady,     setIsReady]     = useState(false);
   const [curtainGone, setCurtainGone] = useState(false);
   const [showRevealed, setShowRevealed] = useState(false);
+  const [bannerActive, setBannerActive] = useState(false);
 
   /* ── Entrance animation ── */
   useEffect(() => {
@@ -481,18 +425,30 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
       setSparks(sparkArr);
     }
 
-    /* confetti */
-    const COLORS = ['#FFD700','#C9A227','#F5DC6E','#FF6B6B','#FF8E53','#FF4E6A','#A855F7','#60A5FA','#34D399','#F472B6','#FBBF24','#FFF'];
-    const SHAPES: ConfettiProps['shape'][] = ['rect', 'circle', 'star'];
+    /* confetti — two waves of vibrant celebratory pieces */
+    const COLORS = ['#FFD700','#C9A227','#F5DC6E','#FF6B6B','#FF8E53','#FF4E6A','#A855F7','#60A5FA','#34D399','#F472B6','#FBBF24','#FFF','#00E5FF','#76FF03','#E040FB','#FFAB40'];
+    const SHAPES: ConfettiProps['shape'][] = ['rect', 'circle', 'star', 'rect', 'circle'];
     const now = Date.now();
-    setConfetti(Array.from({ length: 110 }, (_, i) => ({
+    const w = typeof window !== 'undefined' ? window.innerWidth : 1440;
+    /* Wave 1: starts as curtains begin parting (delay ~0.8s) */
+    const wave1 = Array.from({ length: 100 }, (_, i) => ({
       id: now + i,
-      startX: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1440),
+      startX: Math.random() * w,
       color:  COLORS[Math.floor(Math.random() * COLORS.length)],
-      size:   6 + Math.random() * 10,
+      size:   5 + Math.random() * 12,
       shape:  SHAPES[Math.floor(Math.random() * SHAPES.length)],
-      delay:  2.1 + Math.random() * 0.6,
-    })));
+      delay:  0.8 + Math.random() * 1.0,
+    }));
+    /* Wave 2: as portal fully clears (delay ~1.8s) */
+    const wave2 = Array.from({ length: 90 }, (_, i) => ({
+      id: now + 1000 + i,
+      startX: Math.random() * w,
+      color:  COLORS[Math.floor(Math.random() * COLORS.length)],
+      size:   6 + Math.random() * 14,
+      shape:  SHAPES[Math.floor(Math.random() * SHAPES.length)],
+      delay:  1.8 + Math.random() * 1.4,
+    }));
+    setConfetti([...wave1, ...wave2]);
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -525,6 +481,7 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
       .to(bottomPanelRef.current, { yPercent: 72,   duration: 0.85, ease: 'power2.in' }, '<')
       .to(topPanelRef.current,    { yPercent: -107, duration: 1.0,  ease: 'power3.out' })
       .to(bottomPanelRef.current, { yPercent: 107,  duration: 1.0,  ease: 'power3.out' }, '<')
+      .call(() => setBannerActive(true), undefined, '-=1.0')
       .to([seam1Ref.current, seam2Ref.current], { opacity: 0, duration: 0.4 }, '-=0.8')
       .to(curtainRef.current, { opacity: 0, duration: 0.55, ease: 'power2.out' }, '-=0.2');
   }, [hasCut]);
@@ -543,26 +500,28 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
 
   /* label shown on curtain */
   const curtainLabel =
-    revealType === 'opening'  ? 'DRIEMS Coders Guild'
+    revealType === 'opening'  ? 'ICETICT-2027'
     : revealType === 'logo'   ? 'Logo Reveal'
     : revealType === 'poster' ? 'Poster Reveal'
-    : revealType === 'website'? 'Website Reveal'
+    : revealType === 'website'? 'Conference Portal Launch'
     : 'Reveal';
 
   const curtainSubtitle =
-    revealType === 'opening'  ? 'Expansion Ceremony'
-    : 'DRIEMS Coders Guild · Expansion Ceremony';
+    revealType === 'opening'  ? '2nd International Conference on Emerging Trends in Intelligent Computing Techniques'
+    : revealType === 'website'? 'Honored Dignitary: Mrs. Chinmayee Rath · Director, Coordination'
+    : 'ICETICT-2027 · DRIEMS University';
 
   const ribbonText =
-    revealType === 'opening'  ? '✦ Unveil the Ceremony ✦'
+    revealType === 'opening'  ? '✦ Inaugurate Conference Portal ✦'
+    : revealType === 'website'? '✦ Launch Official Website ✦'
     : '✦ Click to Reveal ✦';
 
   /* The emoji icon for the ribbon */
   const ribbonIcon =
-    revealType === 'opening'  ? '🎓'
+    revealType === 'opening'  ? '🌐'
     : revealType === 'logo'   ? '⚡'
     : revealType === 'poster' ? '🖼️'
-    : revealType === 'website'? '🌐'
+    : revealType === 'website'? '🚀'
     : '✦';
 
   return (
@@ -580,7 +539,10 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
       <BloomFlash active={bloomActive} />
 
       {/* REVEALED CONTENT PANELS (mounted behind the curtain immediately on cut) */}
-      {showRevealed && revealType === 'website' && <WebsiteRevealPanel onNext={onDone} zIndex={8990} />}
+      {showRevealed && revealType === 'website' && <WebsiteRevealPanel onNext={onDone} zIndex={8990} isCurtainGone={curtainGone} />}
+      
+      {/* Celebrate Banner — golden text flash during website reveal */}
+      {revealType === 'website' && <CelebrateBanner active={bannerActive} />}
       {showRevealed && (revealType === 'logo' || revealType === 'poster') && <RevealedImagePanel revealType={revealType} onNext={onDone} zIndex={8990} />}
 
       {/* ── CURTAIN ── */}

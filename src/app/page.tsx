@@ -31,14 +31,19 @@ function buildMergedSlides(): EventData {
   // Index edithScript slides by id
   (edithScript as { slides: { id: string; speech?: string; pause?: boolean }[] }).slides.forEach(s => {
     if (s.id && s.speech) speechMap[s.id] = s.speech;
-    if (s.id && s.pause)  pauseMap[s.id]  = true;
+    if (s.id && typeof s.pause === 'boolean') pauseMap[s.id] = s.pause;
   });
 
-  const merged: Slide[] = (eventData as EventData).slides.map(slide => ({
-    ...slide,
-    speech: slide.id ? (speechMap[slide.id] ?? slide.speech ?? '') : (slide.speech ?? ''),
-    pause:  slide.id ? (pauseMap[slide.id]  ?? slide.pause ?? false) : (slide.pause ?? false),
-  }));
+  const merged: Slide[] = (eventData as EventData).slides.map(slide => {
+    // event.json pause is the base; edithScript can override
+    const basePause = slide.pause ?? false;
+    const scriptPause = slide.id ? pauseMap[slide.id] : undefined;
+    return {
+      ...slide,
+      speech: slide.id ? (speechMap[slide.id] ?? slide.speech ?? '') : (slide.speech ?? ''),
+      pause: scriptPause !== undefined ? scriptPause : basePause,
+    };
+  });
 
   return { ...(eventData as EventData), slides: merged };
 }
@@ -47,9 +52,7 @@ const mergedEventData = buildMergedSlides();
 
 /* ─── Reveal slide ID → curtain type mapping ─── */
 const REVEAL_SLIDE_MAP: Record<string, RevealType> = {
-  'slide-4a': 'logo',
-  'slide-4b': 'poster',
-  'slide-4c': 'website',
+  'slide-2': 'website',
 };
 
 /* ─── tiny icon helpers ─── */
@@ -133,8 +136,9 @@ export default function PresentationPage() {
     const slide = slides[currentSlideIndex];
     if (!slide) return;
     speechController.stop();
-    // Reset curtain when slide changes
-    setCurtainRevealType(null);
+    // Set curtain immediately if this is a reveal slide
+    const revType = slide.id ? REVEAL_SLIDE_MAP[slide.id] ?? null : null;
+    setCurtainRevealType(revType);
     const text = slideEngine.getNarration(slide);
     if (!isMuted && text) {
       const t = setTimeout(() => {
@@ -250,6 +254,7 @@ export default function PresentationPage() {
   /* Called when the opening inauguration curtain is cut */
   const handleOpeningCurtainDone = useCallback(() => {
     setShowOpeningCurtain(false);
+    setHasStarted(true);
   }, []);
 
   const handlePrev = useCallback(() => {
@@ -304,55 +309,12 @@ export default function PresentationPage() {
       <div
         className="absolute inset-0 overflow-hidden"
         style={{
-          paddingTop: 'clamp(3.2rem, 5.5vh, 4.2rem)',
-          paddingBottom: 'clamp(4.2rem, 7vh, 5.2rem)',
-          paddingLeft: 'clamp(1.5rem, 4vw, 3.5rem)',
-          paddingRight: 'clamp(260px, 32%, 480px)'
+          paddingTop: 'clamp(2rem, 3.5vh, 3rem)',
+          paddingBottom: 'clamp(2.5rem, 4.5vh, 3.5rem)',
+          paddingLeft: 'clamp(1.5rem, 3vw, 3rem)',
+          paddingRight: 'clamp(240px, 30%, 460px)'
         }}
       >
-        {/* Start screen overlay */}
-        <AnimatePresence>
-          {!hasStarted && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-6"
-              style={{ background: 'rgba(251,244,230,0.95)', backdropFilter: 'blur(4px)' }}
-            >
-              <motion.div
-                initial={{ scale: 0.85, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="flex flex-col items-center gap-4 text-center"
-              >
-                <div
-                  className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl font-black text-white shadow-xl"
-                  style={{ background: 'var(--maroon)' }}
-                >
-                  E
-                </div>
-                <h1 className="text-4xl font-extrabold" style={{ color: 'var(--maroon)' }}>
-                  {stored?.eventTitle ?? mergedEventData.eventTitle}
-                </h1>
-                <p className="text-base" style={{ color: 'var(--muted-text)' }}>
-                  {stored?.eventSubtitle ?? mergedEventData.eventSubtitle}
-                </p>
-                <div className="gold-line w-32 mt-1" />
-                <p className="text-sm mt-2" style={{ color: 'var(--muted-text)' }}>
-                  Press <kbd className="px-2 py-0.5 rounded bg-white border text-xs font-mono" style={{ borderColor: 'var(--card-border)' }}>Space</kbd> to begin — AIRA will guide you
-                </p>
-                <button
-                  onClick={() => setHasStarted(true)}
-                  className="btn btn-primary mt-2 px-8 py-3 text-base"
-                >
-                  Begin Presentation
-                </button>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         {currentSlide
           ? <SlideRenderer slide={currentSlide} slideIndex={currentSlideIndex} />
           : <div className="h-full flex items-center justify-center text-[#A08060]">Loading…</div>
@@ -385,15 +347,15 @@ export default function PresentationPage() {
               style={{ background: 'rgba(255,252,248,0.85)', borderColor: 'var(--card-border)', backdropFilter: 'blur(10px)' }}
             >
               <div
-                className="w-7 h-7 rounded-lg flex items-center justify-center font-black text-sm text-white"
+                className="w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs text-white"
                 style={{ background: 'var(--maroon)' }}
-              >E</div>
+              >🌐</div>
               <div>
                 <div className="text-xs font-bold leading-none" style={{ color: 'var(--maroon)' }}>
-                  {stored?.eventTitle ?? 'Coding Club Inauguration'}
+                  {stored?.eventTitle ?? 'ICETICT-2027'}
                 </div>
                 <div className="text-[10px] leading-none mt-0.5" style={{ color: 'var(--muted-text)' }}>
-                  {stored?.date}
+                  {stored?.date ?? 'July 16-17, 2027'}
                 </div>
               </div>
             </div>
@@ -414,7 +376,7 @@ export default function PresentationPage() {
                   }}
                 />
                 <span style={{ color: 'var(--maroon)' }}>
-                  AIRA — {isSpeaking ? 'Speaking' : isPaused ? 'Paused' : isWaiting ? 'Waiting…' : isFinished ? 'Done' : 'Ready'}
+                  AIRA — {isSpeaking ? 'Speaking' : isPaused ? 'Paused' : isWaiting ? 'Ready' : isFinished ? 'Done' : 'Ready'}
                 </span>
               </div>
 

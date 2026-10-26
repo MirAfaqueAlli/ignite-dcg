@@ -138,8 +138,8 @@ class SpeechController {
       this.audio.pause();
       this.audio.onended = null;
       this.audio.onerror = null;
-      this.audio = null;
-      this._cleanup();
+      this.audio.currentTime = 0;
+      // Don't null out this.audio — preserve the AudioContext/sourceNode chain
     }
     /* Also cancel any fallback Web Speech */
     if (typeof window !== 'undefined') window.speechSynthesis?.cancel();

@@ -1,404 +1,62 @@
 {
-  "eventTitle": "DRIEMS Coders Guild",
-  "eventSubtitle": "Expansion Ceremony",
-  "tagline": "Code. Create. Collab.",
-  "date": "23-07-2026",
-  "venue": "GF-01, Academic Block - I, DRIEMS University",
+  "eventTitle": "ICETICT-2027",
+  "eventSubtitle": "2nd International Conference on Emerging Trends in Intelligent Computing Techniques",
+  "tagline": "School of Engineering & Technology, DRIEMS University | In association with IEEE Bhubaneswar Section",
+  "date": "July 16th – 17th, 2027",
+  "venue": "Smart Class Room, Block - I, DRIEMS University",
+  "website": "https://icetict.driems.ac.in/",
+  "ieeeRecord": "IEEE Record Number #72666",
   "slides": [
     {
       "id": "slide-1",
       "segment": 1,
-      "type": "intro",
-      "title": "DRIEMS Coders Guild",
-      "subtitle": "Expansion Ceremony",
-      "tagline": "Code. Create. Collab.",
+      "type": "ceremony",
+      "badge": "IEEE Conf #72666 • Scopus Indexed",
+      "title": "ICETICT-2027 Portal Launch",
+      "subtitle": "2nd International Conference on Emerging Trends in Intelligent Computing Techniques",
+      "tagline": "School of Engineering & Technology, DRIEMS University · In association with IEEE Bhubaneswar Section",
+      "pause": false,
       "details": [
-        "📍 GF-01, Academic Block - I, DRIEMS University",
-        "📅 23-07-2026",
-        "🤖 Hosted by AIRA — AI Anchor"
-      ]
+        "📍 Smart Class Room, Block - I, DRIEMS University",
+        "📅 Conference Dates: July 16th – 17th, 2027",
+        "📚 IEEE Xplore & Scopus Indexed (#72666)",
+        "🤝 In Association with IEEE Bhubaneswar Section",
+        "🌐 Hybrid Mode Presentation"
+      ],
+      "leftColumn": {
+        "heading": "Distinguished Dignitaries",
+        "points": [
+          "Sj. Balaram Kar — Director, Administration",
+          "Mrs. Chinmayee Rath — Director, Coordination",
+          "Prof. (Dr.) Alok Ranjan Biswal — Associate Dean & Director IQAC",
+          "Prof. (Dr.) Nayan Ranjan Samal — Dean, School of Engineering & Technology",
+          "Prof. (Dr.) Biswaranjan Mohanty — Dean Research"
+        ]
+      },
+      "rightColumn": {
+        "heading": "Convenors & Heads of Department (SOET)",
+        "points": [
+          "Dr. Amiya Kumar Sahoo — HOD, CSE & Convenor, ICETICT-2027",
+          "Dr. Bajra Panjar Mishra — Assistant Professor, Department of ENTC & Co-Convenor",
+          "Dr. Debayani Mishra — Assistant Professor, Department of EE & Co-Convenor",
+          "Prof. (Dr.) Jibanananda Mehena — HOD, ENTC",
+          "Dr. Deepak Ranjan Biswal — HOD, Mechanical Engineering",
+          "Dr. Anurekha Nayak — HOD, Electrical Engineering",
+          "Dr. Pratap Chandra Pradhan — HOD, Electrical & Electronics Engineering",
+          "Dr. Sritam Swapnadarshi Sahu — HOD, Civil Engineering",
+          "Respected Faculty Members — School of Engineering & Technology (SOET)"
+        ]
+      }
     },
     {
       "id": "slide-2",
       "segment": 2,
-      "type": "ceremony",
-      "title": "🪔 Lamp Lighting Ceremony",
-      "subtitle": "Illuminating the Path of Knowledge, Innovation & Excellence",
-      "leftColumn": {
-        "heading": "Significance of the Lamp",
-        "points": [
-          "Light — symbol of knowledge over ignorance",
-          "Wisdom guiding every action",
-          "Purpose conquering all doubt",
-          "DRIEMS Coders Guild lights its first flame today"
-        ]
-      },
-      "rightColumn": {
-        "heading": "Dignitaries on the Dais",
-        "points": [
-          "Prof. (Dr.) Prakash Kumar Hota — Hon'ble Vice-Chancellor, DRIEMS University",
-          "Prof. (Dr.) Nayan Ranjan Samal — Dean, School of Engineering & Technology",
-          "Prof. (Dr.) Alok Ranjan Biswal — Associate Dean, Director IQAC, DRIEMS University",
-          "Dr. Amiya Kumar Sahoo — Head of Department, CSE"
-        ]
-      }
-    },
-    {
-      "id": "slide-4-invite",
-      "segment": "4-invite",
-      "type": "content",
-      "title": "Unveiling Our Identity",
-      "subtitle": "The Dignitaries take the stage",
-      "leftColumn": {
-        "heading": "The Guiding Forces",
-        "points": [
-          "Prof. (Dr.) Prakash Kumar Hota",
-          "Prof. (Dr.) Nayan Ranjan Samal",
-          "Prof. (Dr.) Alok Ranjan Biswal",
-          "Dr. Amiya Kumar Sahoo"
-        ]
-      },
-      "rightColumn": {
-        "heading": "Faculty Mentors",
-        "points": [
-          "Dr. Subhasish Mohapatra — Coordinator, CSE",
-          "Prof. Suvendu Tripathy — Co-Coordinator, CSE",
-          "Prof. Kulshan Pattanaik — Assistant Professor, CSE",
-          "Prof. Anita Sahoo — Assistant Professor, CSE"
-        ]
-      }
-    },
-    {
-      "id": "slide-4a",
-      "segment": "4a",
       "type": "reveal",
-      "title": "Logo Reveal",
-      "subtitle": "Unveiling the Identity of DRIEMS Coders Guild",
-      "countdown": [
-        "3",
-        "2",
-        "1",
-        "⚡"
-      ],
-      "points": [
-        "The mark that stands for excellence",
-        "The mark that stands for innovation",
-        "The face of a future that starts today",
-        "Revealed by Prof. (Dr.) Prakash Kumar Hota"
-      ],
-      "revealLine": "The symbol of DRIEMS Coders Guild — revealed"
-    },
-    {
-      "id": "slide-4b",
-      "segment": "4b",
-      "type": "reveal",
-      "title": "Poster Reveal",
-      "subtitle": "Carrying our vision to the world",
-      "countdown": [
-        "3",
-        "2",
-        "1",
-        "🖼️"
-      ],
-      "points": [
-        "Visualizing our mission",
-        "A beacon for every coder",
-        "The start of our journey",
-        "Revealed by Prof. (Dr.) Nayan Ranjan Samal"
-      ],
-      "revealLine": "The poster that defines our movement is now unveiled."
-    },
-    {
-      "id": "slide-4c",
-      "segment": "4c",
-      "type": "reveal",
-      "title": "Website Reveal",
-      "subtitle": "Our digital home goes live",
-      "countdown": [
-        "3",
-        "2",
-        "1",
-        "🌐"
-      ],
-      "points": [
-        "The central hub of our guild",
-        "Showcasing our projects and members",
-        "Connecting DRIEMS to the global tech community",
-        "Revealed by Prof. (Dr.) Alok Ranjan Biswal & Dr. Amiya Kumar Sahoo"
-      ],
-      "revealLine": "The website is live. The world is watching."
-    },
-    {
-      "id": "slide-8b",
-      "segment": "5a",
-      "type": "speaker",
-      "title": "Address by Coordinator, DRIEMS Coders Guild",
-      "speaker": {
-        "name": "Dr. Subhasish Mohapatra",
-        "role": "Asst. Professor, CSE",
-        "guildRole": "Coordinator — DRIEMS Coders Guild",
-        "photo": "/images/subhasishSir.jpg"
-      },
-      "highlights": [
-        "Guiding light behind the guild since its conception",
-        "Brings academic depth & mentoring wisdom",
-        "Committed to seeing every student grow beyond limits",
-        "Sharing words of guidance for the road ahead"
-      ]
-    },
-    {
-      "id": "slide-7",
-      "segment": "5b",
-      "type": "speaker",
-      "title": "Address by HOD, Computer Science & Engineering",
-      "speaker": {
-        "name": "Dr. Amiya Kumar Sahoo",
-        "role": "Head of Department, CSE",
-        "photo": "/images/amyasir.webp"
-      },
-      "highlights": [
-        "Foundational force behind DRIEMS Coders Guild",
-        "Provided institutional support, structure & resources",
-        "Gave this vision the space & strength to grow",
-        "Sharing the path forward for CSE students"
-      ]
-    },
-    {
-      "id": "slide-alok",
-      "segment": "5c",
-      "type": "speaker",
-      "title": "Address by Director IQAC",
-      "speaker": {
-        "name": "Prof. (Dr.) Alok Ranjan Biswal",
-        "role": "Associate Dean, Director IQAC, DRIEMS University",
-        "photo": "/images/alokSir.jpg"
-      },
-      "highlights": [
-        "Distinguished academician committed to institutional excellence",
-        "Benchmark-setter for educational quality standards at DRIEMS",
-        "Brings deep insight into academic development & innovation",
-        "Sharing his vision for the guild's role in shaping futures"
-      ]
-    },
-    {
-      "id": "slide-6",
-      "segment": "5d",
-      "type": "speaker",
-      "title": "Address by Dean, SOET",
-      "speaker": {
-        "name": "Prof. (Dr.) Nayan Ranjan Samal",
-        "role": "Dean, School of Engineering & Technology",
-        "photo": "/images/deansir.png"
-      },
-      "highlights": [
-        "Pillar of engineering education at DRIEMS",
-        "Dedicated to raising technical learning standards",
-        "Bridges academia with real-world engineering",
-        "Sharing guidance for the guild's journey ahead"
-      ]
-    },
-    {
-      "id": "slide-5",
-      "segment": "5e",
-      "type": "speaker",
-      "title": "Address by Hon'ble Vice-Chancellor",
-      "speaker": {
-        "name": "Prof. (Dr.) P. K. Hota",
-        "role": "Hon'ble Vice-Chancellor, DRIEMS University",
-        "photo": "/images/vcsir.png"
-      },
-      "highlights": [
-        "Highest academic authority of DRIEMS University",
-        "Visionary leader shaping thousands of student futures",
-        "Under his leadership — DRIEMS is a center of excellence",
-        "Sharing words of wisdom & inspiration"
-      ]
-    },
-    {
-      "id": "slide-3",
-      "segment": "5f",
-      "type": "speaker",
-      "title": "Presidential Address",
-      "subtitle": "Vision, Motto, Goals & Core Activities",
-      "speaker": {
-        "name": "Mir Afaque Alli",
-        "role": "President, DRIEMS Coders Guild",
-        "photo": "/images/mirProfile.jpg"
-      },
-      "agenda": [
-        "Introduction — What is DRIEMS Coders Guild?",
-        "Our Vision, Motto & Goals",
-        "Core Activities & Learning Approach",
-        "Expected Outcomes for every member",
-        "Membership & The Journey Ahead"
-      ]
-    },
-    {
-      "id": "slide-10",
-      "segment": 8,
-      "type": "team",
-      "title": "Meet the Founding Guild",
-      "subtitle": "The people who will build the future of DRIEMS Coders Guild",
-      "facultyMentors": {
-        "heading": "👨‍🏫 Faculty Mentors",
-        "members": [
-          {
-            "name": "Dr. Subhasish Mohapatra",
-            "role": "Coordinator | Asst. Professor, CSE"
-          },
-          {
-            "name": "Prof. Suvendu Tripathy",
-            "role": "Co-Coordinator | Asst. Professor, CSE"
-          },
-          {
-            "name": "Prof. Kulshan Pattanaik",
-            "role": "Asst. Professor, CSE"
-          },
-          {
-            "name": "Prof. Anita Sahoo",
-            "role": "Asst. Professor, CSE"
-          }
-        ]
-      },
-      "teachingAssistants": {
-        "heading": "📚 Faculty Guides",
-        "members": [
-          {
-            "name": "Mr. Rajkapilendra Swain",
-            "role": "Teaching Assistant, CSE"
-          },
-          {
-            "name": "Mr. Abhaya Narayan Mohanty",
-            "role": "Teaching Assistant, CSE"
-          },
-          {
-            "name": "Ms. Sujata Nayak",
-            "role": "Teaching Assistant, CSE"
-          },
-          {
-            "name": "Ms. Priyanka Priyadarshini Panda",
-            "role": "Teaching Assistant, CSE"
-          }
-        ]
-      },
-      "executiveBoard": {
-        "heading": "👑 Student Executive Board",
-        "members": [
-          {
-            "name": "Mir Afaque Alli",
-            "role": "President"
-          },
-          {
-            "name": "Om Prakash Nayak",
-            "role": "Vice President"
-          },
-          {
-            "name": "Ahmed Raza Khan",
-            "role": "General Secretary"
-          },
-          {
-            "name": "Abhijeet Nayak",
-            "role": "Treasurer"
-          },
-          {
-            "name": "Sonali Sahoo",
-            "role": "Technical Lead"
-          }
-        ]
-      },
-      "coreTeam": {
-        "heading": "⚙️ Core Team",
-        "members": [
-          {
-            "name": "Soyam Sudha Rout",
-            "role": "Event Coordinator"
-          },
-          {
-            "name": "Aniket Parida",
-            "role": "Event Coordinator"
-          },
-          {
-            "name": "Surya Prakash Baral",
-            "role": "Discipline Coordinator (Head)"
-          },
-          {
-            "name": "Sai Pradyumna Samal",
-            "role": "Volunteer"
-          },
-          {
-            "name": "Sujit Kumar Dash",
-            "role": "Volunteer"
-          },
-          {
-            "name": "Puspalata Panigrahi",
-            "role": "Project Lead"
-          },
-          {
-            "name": "Md. Ibrahim",
-            "role": "Project Lead"
-          },
-          {
-            "name": "Subhalaxmi Sahoo",
-            "role": "Social Media & PR"
-          },
-          {
-            "name": "Saistuti Mohapatra",
-            "role": "Social Media & PR"
-          }
-        ]
-      },
-      "domainLeads": {
-        "heading": "🔬 Domain Leads",
-        "members": [
-          {
-            "name": "Jayaprakash Sahoo",
-            "role": "Web & App Development Lead"
-          },
-          {
-            "name": "Surya Snata Panigrahi",
-            "role": "AI / ML Lead"
-          },
-          {
-            "name": "Sibansundar Barik",
-            "role": "Cybersecurity Lead"
-          }
-        ]
-      }
-    },
-    {
-      "id": "slide-12",
-      "segment": 11,
-      "type": "speaker",
-      "title": "Vote of Thanks",
-      "speaker": {
-        "name": "Prof. Suvendu Tripathy",
-        "role": "Asst. Professor, CSE",
-        "guildRole": "Co-Coordinator — DRIEMS Coders Guild",
-        "photo": "/images/suvenduSir.jpeg"
-      },
-      "acknowledgements": [
-        "Prof. (Dr.) P. K. Hota — Hon'ble Vice-Chancellor, DRIEMS University",
-        "Prof. (Dr.) Nayan Ranjan Samal — Dean, SOET",
-        "Prof. (Dr.) Alok Ranjan Biswal — Associate Dean, Director IQAC, DRIEMS University",
-        "Dr. Amiya Kumar Sahoo — Head of Department, CSE",
-        "All Faculty Mentors — Dr. Subhasish Mohapatra, Prof. Kulshan Pattanaik & Prof. Anita Sahoo",
-        "The entire founding team & every student who made this possible"
-      ]
-    },
-    {
-      "id": "slide-13",
-      "segment": 12,
-      "type": "outro",
-      "title": "The Guild Has Risen",
-      "subtitle": "DRIEMS Coders Guild — Alive & Growing",
-      "tagline": "Code. Create. Collab.",
-      "closingLines": [
-        "What ends here is only a ceremony.",
-        "What begins here — is a legacy.",
-        "Every revolution begins with a single line of code.",
-        "Build something the world has never seen before."
-      ],
-      "footer": "DRIEMS Coders Guild | GF-01, Academic Block - I | DRIEMS University | 23-07-2026"
+      "title": "Official Website Launch",
+      "subtitle": "Unveiling the Official Conference Portal of ICETICT-2027",
+      "dignitary": "Mrs. Chinmayee Rath — Director, Coordination",
+      "pause": true,
+      "revealLine": "The official conference portal is now live at icetict.driems.ac.in"
     }
   ]
 }

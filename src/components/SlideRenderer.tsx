@@ -64,7 +64,7 @@ function IntroSlide({ slide }: { slide: Slide }) {
         className="relative z-10 flex flex-col items-center gap-4 max-w-3xl w-full"
       >
         {/* Top badge */}
-        <motion.div variants={pop}><PillBadge label="Expansion Ceremony" /></motion.div>
+        <motion.div variants={pop}><PillBadge label={slide.badge || "IEEE Conf #72666 • Scopus Indexed"} gold /></motion.div>
 
         {/* Main title with decorative side lines */}
         <div className="flex items-center gap-4 w-full justify-center">
@@ -129,66 +129,121 @@ function CeremonySlide({ slide }: { slide: Slide }) {
 
   const ColumnCard = ({ heading, points, accent }: { heading: string; points: string[]; accent: boolean }) => (
     <motion.div variants={stagger} initial="hidden" animate="show"
-      className="flex-1 rounded-2xl flex flex-col gap-0.5 min-h-0"
+      className="w-full rounded-2xl flex flex-col shadow-md overflow-hidden border shrink-0"
       style={{
-        background: 'rgba(255,255,255,0.7)',
-        boxShadow: accent ? `0 8px 32px rgba(122,26,26,0.12), inset 0 0 0 1.5px rgba(122,26,26,0.15)` : `0 8px 32px rgba(200,145,42,0.10), inset 0 0 0 1.5px rgba(200,145,42,0.25)`,
-        backdropFilter: 'blur(12px)',
-        overflow: 'visible',
+        background: 'rgba(255,255,255,0.92)',
+        borderColor: accent ? 'rgba(122,26,26,0.22)' : 'rgba(200,145,42,0.32)',
+        boxShadow: accent
+          ? `0 6px 24px rgba(122,26,26,0.12), inset 0 0 0 1px rgba(122,26,26,0.1)`
+          : `0 6px 24px rgba(200,145,42,0.12), inset 0 0 0 1px rgba(200,145,42,0.15)`,
+        backdropFilter: 'blur(16px)',
       }}
     >
       {/* Card header bar */}
-      <div className="flex items-center gap-2.5 px-4 pt-2.5 pb-1.5 border-b"
-        style={{ borderColor: accent ? 'rgba(122,26,26,0.1)' : 'rgba(200,145,42,0.18)' }}
+      <div className="flex items-center gap-3 px-5 py-2.5 sm:py-3 border-b shrink-0"
+        style={{
+          background: accent ? 'linear-gradient(90deg, rgba(122,26,26,0.08), transparent)' : 'linear-gradient(90deg, rgba(200,145,42,0.1), transparent)',
+          borderColor: accent ? 'rgba(122,26,26,0.16)' : 'rgba(200,145,42,0.24)'
+        }}
       >
-        <div className="w-1.5 rounded-full" style={{ height: 18, background: accent ? `linear-gradient(to bottom,${M},${G})` : `linear-gradient(to bottom,${G},${M})` }} />
-        <span className="font-black uppercase tracking-widest bg-clip-text text-transparent"
-          style={{ fontSize: 10.5, backgroundImage: `linear-gradient(90deg,${MD},${M})` }}>
+        <div className="w-2.5 rounded-full" style={{ height: 20, background: accent ? `linear-gradient(to bottom,${M},${G})` : `linear-gradient(to bottom,${G},${M})` }} />
+        <span className="font-black uppercase tracking-wider bg-clip-text text-transparent"
+          style={{ fontSize: 'clamp(13px, 1.1vw, 15px)', backgroundImage: `linear-gradient(90deg,${MD},${M})` }}>
           {heading}
         </span>
       </div>
 
-      {/* Bullets */}
-      <ul className="flex flex-col justify-evenly gap-1.5 px-3.5 py-1.5 flex-1 min-h-0 overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
-        {points.map((p, i) => (
-          <motion.li key={i} variants={up}
-            className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl"
-            style={{ background: i % 2 === 0 ? 'rgba(122,26,26,0.04)' : 'rgba(200,145,42,0.05)' }}
-          >
-            <div className="shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-white shadow-sm font-bold"
-              style={{ background: `linear-gradient(135deg,${i % 2 === 0 ? M : G},${i % 2 === 0 ? 'var(--maroon-light)' : '#FFE4B0'})`, fontSize: 10, minWidth: 24, height: 24 }}>
-              {i + 1}
-            </div>
-            <span style={{ fontSize: 12, fontWeight: 500, color: MD, lineHeight: 1.3 }}>{p}</span>
-          </motion.li>
-        ))}
-      </ul>
+      {/* Items Grid: Prominent text, generous padding, screen-filling executive aesthetic */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2.5 p-3 sm:p-4">
+        {points.map((p, i) => {
+          const parts = p.split(' — ');
+          const pName = parts[0];
+          const pRole = parts.slice(1).join(' — ');
+          const isFullSpan = i === points.length - 1 && points.length % 2 === 1;
+
+          return (
+            <motion.div
+              key={i}
+              variants={up}
+              className={`flex items-center gap-3 px-4 py-2.5 sm:py-3 rounded-xl border transition-all duration-200 hover:shadow-md ${isFullSpan ? 'md:col-span-2' : ''}`}
+              style={{
+                background: i % 2 === 0 ? 'rgba(122,26,26,0.04)' : 'rgba(200,145,42,0.05)',
+                borderColor: i % 2 === 0 ? 'rgba(122,26,26,0.10)' : 'rgba(200,145,42,0.15)',
+              }}
+            >
+              <div
+                className="shrink-0 rounded-xl flex items-center justify-center text-white shadow-xs font-black"
+                style={{
+                  background: `linear-gradient(135deg, ${accent ? M : G}, ${accent ? 'var(--maroon-light)' : '#E5B94A'})`,
+                  width: 28,
+                  height: 28,
+                  fontSize: 13,
+                }}
+              >
+                {i + 1}
+              </div>
+              <div className="flex flex-wrap items-baseline gap-x-2 leading-snug min-w-0">
+                <span className="font-extrabold text-[#5C0F0F]" style={{ fontSize: 'clamp(14px, 1.15vw, 17px)' }}>
+                  {pName}
+                </span>
+                {pRole && (
+                  <span className="font-semibold text-[var(--muted-text)]" style={{ fontSize: 'clamp(12px, 1.0vw, 14.5px)' }}>
+                    — {pRole}
+                  </span>
+                )}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
     </motion.div>
   );
 
   return (
-    <div className="relative flex flex-col h-full px-8 py-2 gap-2">
-      <Orb style={{ width: 350, height: 350, top: '-20%', right: '-10%' }} />
+    <div className="relative flex flex-col h-full px-4 sm:px-6 py-2 gap-3 justify-center items-center overflow-y-auto custom-scroll w-full">
+      <Orb style={{ width: 450, height: 450, top: '-20%', right: '-10%' }} />
 
-      {/* Header */}
-      <motion.div variants={stagger} initial="hidden" animate="show" className="shrink-0 flex flex-col gap-1">
-        <div className="flex items-center gap-3">
-          <PillBadge label="Ceremony" />
-        </div>
-        <motion.h2 variants={up} className="font-black leading-tight"
-          style={{ fontSize: 'clamp(1.1rem,2vw,1.7rem)', color: MD }}>
+      {/* Centered Starting Header */}
+      <motion.div variants={stagger} initial="hidden" animate="show" className="shrink-0 flex flex-col items-center text-center gap-1.5 w-full my-0.5">
+        <PillBadge label={slide.badge || "IEEE Conf #72666 • Scopus Indexed"} gold />
+
+        <motion.h1 variants={up} className="font-black leading-tight text-center tracking-tight"
+          style={{ fontSize: 'clamp(2rem, 3.4vw, 3.2rem)', color: MD }}>
           {slide.title}
-        </motion.h2>
+        </motion.h1>
+
         {slide.subtitle && (
-          <motion.p variants={fade} style={{ fontSize: 11, color: 'var(--muted-text)', fontWeight: 500 }}>
+          <motion.p variants={fade} className="text-center font-bold" style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.25rem)', color: M }}>
             {slide.subtitle}
           </motion.p>
         )}
-        <AccentBar />
+
+        <div className="flex justify-center my-0.5">
+          <AccentBar />
+        </div>
+
+        {/* 5 Venue & Highlights Details Boxes — Centered, Much Bigger, Crisp Contrast */}
+        {slide.details && (
+          <motion.div variants={stagger} className="flex flex-wrap items-center justify-center gap-2.5 max-w-5xl mt-1">
+            {slide.details.map((d, i) => (
+              <motion.span key={i} variants={up}
+                className="inline-flex items-center gap-2 px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-xl border text-[13px] sm:text-[14.5px] font-bold shadow-sm transition hover:scale-105"
+                style={{
+                  background: i === 0 ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.92)',
+                  borderColor: i === 0 ? 'var(--maroon)' : 'rgba(200,145,42,0.45)',
+                  color: i === 0 ? 'var(--maroon-dark)' : 'var(--brown-text)',
+                  boxShadow: i === 0 ? '0 4px 14px rgba(122,26,26,0.18)' : '0 3px 10px rgba(200,145,42,0.12)',
+                }}
+              >
+                {d}
+              </motion.span>
+            ))}
+          </motion.div>
+        )}
       </motion.div>
 
-      {/* Two columns */}
-      <div className="flex gap-1 flex-1 min-h-0 overflow-visible my-auto max-h-[60%]">
+      {/* 2 Big Boxes: Up and Down — Fills Screen Comfortably */}
+      <div className="flex flex-col gap-3.5 flex-1 w-full justify-center my-auto">
         {slide.leftColumn && <ColumnCard heading={slide.leftColumn.heading} points={leftPts} accent={true} />}
         {slide.rightColumn && <ColumnCard heading={slide.rightColumn.heading} points={rightPts} accent={false} />}
       </div>

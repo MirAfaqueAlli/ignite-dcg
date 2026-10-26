@@ -22,6 +22,7 @@ export interface Slide {
   title: string;
   subtitle?: string;
   tagline?: string;
+  badge?: string;
   content?: string;
   image?: string;
   speech?: string;        // injected from edithScript.json

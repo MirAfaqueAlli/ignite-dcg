@@ -15,10 +15,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'JARVIS — Coding Club Inauguration',
+  title: 'ICETICT-2027 — International Conference Portal Inauguration | DRIEMS University',
   description:
-    'AI-powered presentation host for the Coding Club Inauguration. Futuristic JARVIS-style narrated slide system.',
-  keywords: ['coding club', 'inauguration', 'AI', 'JARVIS', 'presentation'],
+    'Official Portal Inauguration for the 2nd International Conference on Emerging Trends in Intelligent Computing Techniques (ICETICT-2027) at DRIEMS University.',
+  keywords: ['ICETICT-2027', 'IEEE', 'Scopus', 'conference', 'DRIEMS University', 'intelligent computing'],
 };
 
 export default function RootLayout({

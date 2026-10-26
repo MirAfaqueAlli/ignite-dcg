@@ -5,8 +5,8 @@ import { Slide } from '@/types/slide';
  * Priority: explicit `speech` from edithScript.json → template fallback
  */
 export function generateNarration(slide: Slide): string {
-  // Always prefer the explicit EDITH script injected from edithScript.json
-  if (slide.speech && slide.speech.trim().length > 0) {
+  // Always prefer the explicit script injected from edithScript.json
+  if (typeof slide.speech === 'string') {
     return slide.speech.trim();
   }
 
@@ -35,7 +35,7 @@ export function generateNarration(slide: Slide): string {
     }
 
     case 'team':
-      return `Allow me to introduce the founding team of the guild. ${slide.subtitle ?? ''}`.trim();
+      return `Allow me to introduce the team. ${slide.subtitle ?? ''}`.trim();
 
     case 'outro':
       return (slide.closingLines?.join(' ') ?? `Thank you. ${title}`).trim();
