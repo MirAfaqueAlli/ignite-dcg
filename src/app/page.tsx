@@ -12,6 +12,7 @@ import { slideEngine }          from '@/lib/slideEngine';
 import eventData                from '@/data/event.json';
 import edithScript              from '@/data/edithScript.json';
 import { EventData, Slide, PresentationStatus } from '@/types/slide';
+import { preloadCriticalAssets } from '@/lib/assetPreloader';
 
 const Avatar = dynamic(() => import('@/components/Avatar'), {
   ssr: false,
@@ -114,10 +115,11 @@ export default function PresentationPage() {
   /* ── Opening inauguration curtain (shown before anything else) ── */
   const [showOpeningCurtain, setShowOpeningCurtain] = useState(true);
 
-  /* ── Init: Load merged data ── */
+  /* ── Init: Load merged data & pre-cache assets ── */
   useEffect(() => {
     setEventData(mergedEventData);
     slideEngine.load(mergedEventData);
+    preloadCriticalAssets();
     speechController.init({
       rate: 0.90, pitch: 1.35,
       onStart: () => setStatus('speaking'),
