@@ -12,7 +12,8 @@ export const CRITICAL_ASSETS = [
   // 3D Avatar Model
   '/edith.glb',
 
-  // Celebration Audio
+  // Celebration & Speech Audio
+  '/audio/slide-1.mp3',
   '/audio/Birthday Fireworks.mp3',
   '/audio/soothing_celebration_bgm.wav',
 
