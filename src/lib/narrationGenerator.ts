@@ -6,8 +6,12 @@ import { Slide } from '@/types/slide';
  */
 export function generateNarration(slide: Slide): string {
   // Always prefer the explicit script injected from edithScript.json
-  if (typeof slide.speech === 'string') {
+  if (typeof slide.speech === 'string' && slide.speech.trim().length > 0) {
     return slide.speech.trim();
+  }
+  // Empty string means intentionally silent — return empty to suppress audio
+  if (typeof slide.speech === 'string' && slide.speech.trim().length === 0) {
+    return '';
   }
 
   const title = slide.title || '';
