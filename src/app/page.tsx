@@ -309,10 +309,10 @@ export default function PresentationPage() {
       <div
         className="absolute inset-0 overflow-hidden"
         style={{
-          paddingTop: 'clamp(1.8rem, 3vh, 3rem)',
-          paddingBottom: 'clamp(2rem, 3.5vh, 3.2rem)',
-          paddingLeft: 'clamp(1rem, 2vw, 2.5rem)',
-          paddingRight: 'clamp(220px, 28%, 440px)'
+          paddingTop: 'clamp(0.5rem, 1.0vh, 1.2rem)',
+          paddingBottom: 'clamp(1.4rem, 2.8vh, 2.4rem)',
+          paddingLeft: 'clamp(0.8rem, 1.6vw, 2.0rem)',
+          paddingRight: 'clamp(210px, 27%, 420px)'
         }}
       >
         {currentSlide

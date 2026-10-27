@@ -120,6 +120,24 @@ function IntroSlide({ slide }: { slide: Slide }) {
   );
 }
 
+const DIGNITARY_IMAGE_MAP: Record<string, string> = {
+  'Gopal Krishna Nayak': '/images/vcsir.png',
+  'Balaram Kar': '/images/Sj-Balaram-Kar.jpg',
+  'Chinmayee Rath': '/images/Smt.-Chinmayee-Rath-300x300.jpg',
+  'Alok Ranjan Biswal': '/images/alokSir.jpg',
+  'Nayan Ranjan Samal': '/images/deansir.png',
+  'Biswaranjan Mohanty': '/images/biswaranjanSir.jpg',
+};
+
+function getDignitaryImage(name: string): string | null {
+  for (const [key, src] of Object.entries(DIGNITARY_IMAGE_MAP)) {
+    if (name.toLowerCase().includes(key.toLowerCase())) {
+      return src;
+    }
+  }
+  return null;
+}
+
 /* ══════════════════════════════════════════════════════════════
    SLIDE 2 — CEREMONY  (Split accent + cards)
 ══════════════════════════════════════════════════════════════ */
@@ -127,75 +145,137 @@ function CeremonySlide({ slide }: { slide: Slide }) {
   const leftPts = slide.leftColumn?.points ?? [];
   const rightPts = slide.rightColumn?.points ?? [];
 
-  const ColumnCard = ({ heading, points, accent }: { heading: string; points: string[]; accent: boolean }) => (
+  const ColumnCard = ({
+    heading,
+    points,
+    accent,
+    flexWeight = 1,
+  }: {
+    heading: string;
+    points: string[];
+    accent: boolean;
+    flexWeight?: number;
+  }) => (
     <motion.div variants={stagger} initial="hidden" animate="show"
-      className="w-full rounded-xl flex flex-col overflow-hidden border min-h-0 flex-1"
+      className="w-full rounded-2xl flex flex-col overflow-hidden border min-h-0"
       style={{
-        background: 'rgba(255,255,255,0.92)',
+        flex: flexWeight,
+        background: 'rgba(255,255,255,0.94)',
         borderColor: accent ? 'rgba(122,26,26,0.22)' : 'rgba(200,145,42,0.32)',
         boxShadow: accent
-          ? `0 4px 16px rgba(122,26,26,0.10), inset 0 0 0 1px rgba(122,26,26,0.08)`
-          : `0 4px 16px rgba(200,145,42,0.10), inset 0 0 0 1px rgba(200,145,42,0.12)`,
+          ? `0 4px 18px rgba(122,26,26,0.08), inset 0 0 0 1px rgba(122,26,26,0.06)`
+          : `0 4px 18px rgba(200,145,42,0.08), inset 0 0 0 1px rgba(200,145,42,0.10)`,
         backdropFilter: 'blur(16px)',
       }}
     >
       {/* Card header bar */}
-      <div className="flex items-center gap-2 px-4 border-b shrink-0"
+      <div className="flex items-center gap-2 px-3.5 border-b shrink-0"
         style={{
-          paddingTop: 'clamp(5px, 0.7vh, 9px)',
-          paddingBottom: 'clamp(5px, 0.7vh, 9px)',
+          paddingTop: 'clamp(4px, 0.5vh, 6px)',
+          paddingBottom: 'clamp(4px, 0.5vh, 6px)',
           background: accent ? 'linear-gradient(90deg, rgba(122,26,26,0.08), transparent)' : 'linear-gradient(90deg, rgba(200,145,42,0.1), transparent)',
           borderColor: accent ? 'rgba(122,26,26,0.16)' : 'rgba(200,145,42,0.24)'
         }}
       >
-        <div className="w-2 rounded-full shrink-0" style={{ height: 16, background: accent ? `linear-gradient(to bottom,${M},${G})` : `linear-gradient(to bottom,${G},${M})` }} />
+        <div className="w-1.5 rounded-full shrink-0" style={{ height: 13, background: accent ? `linear-gradient(to bottom,${M},${G})` : `linear-gradient(to bottom,${G},${M})` }} />
         <span className="font-black uppercase tracking-wider bg-clip-text text-transparent"
-          style={{ fontSize: 'clamp(11px, 1.0vw, 14px)', backgroundImage: `linear-gradient(90deg,${MD},${M})` }}>
+          style={{ fontSize: 'clamp(10.5px, 0.84vw, 12.5px)', backgroundImage: `linear-gradient(90deg,${MD},${M})` }}>
           {heading}
         </span>
       </div>
 
-      {/* Items Grid — TV-safe: vh-based gaps, all text visible, no overflow */}
-      <div className="grid grid-cols-1 md:grid-cols-2 p-2"
-        style={{ gap: 'clamp(4px, 0.55vh, 8px)' }}>
+      {/* Items Grid — rows strictly divide card height evenly */}
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 flex-1 min-h-0 items-stretch"
+        style={{
+          padding: 'clamp(3px, 0.4vh, 6px) clamp(4px, 0.5vw, 8px)',
+          gap: 'clamp(3px, 0.45vh, 6px)',
+          gridTemplateRows: `repeat(${Math.ceil(points.length / 2)}, minmax(0, 1fr))`,
+        }}
+      >
         {points.map((p, i) => {
           const parts = p.split(' — ');
           const pName = parts[0];
           const pRole = parts.slice(1).join(' — ');
           const isFullSpan = i === points.length - 1 && points.length % 2 === 1;
+          const imgSrc = accent ? getDignitaryImage(pName) : null;
 
           return (
             <motion.div
               key={i}
               variants={up}
-              className={`flex items-center gap-2 rounded-lg border ${isFullSpan ? 'md:col-span-2' : ''}`}
+              className={`flex items-center gap-2 rounded-xl border h-full min-h-0 overflow-hidden ${isFullSpan ? 'md:col-span-2' : ''}`}
               style={{
-                paddingTop: 'clamp(4px, 0.5vh, 8px)',
-                paddingBottom: 'clamp(4px, 0.5vh, 8px)',
-                paddingLeft: 'clamp(8px, 0.8vw, 14px)',
-                paddingRight: 'clamp(8px, 0.8vw, 14px)',
+                paddingTop: 'clamp(2px, 0.35vh, 5px)',
+                paddingBottom: 'clamp(2px, 0.35vh, 5px)',
+                paddingLeft: 'clamp(6px, 0.7vw, 12px)',
+                paddingRight: 'clamp(6px, 0.7vw, 12px)',
                 background: i % 2 === 0 ? 'rgba(122,26,26,0.04)' : 'rgba(200,145,42,0.05)',
                 borderColor: i % 2 === 0 ? 'rgba(122,26,26,0.10)' : 'rgba(200,145,42,0.15)',
               }}
             >
-              <div
-                className="shrink-0 rounded-lg flex items-center justify-center text-white font-black"
-                style={{
-                  background: `linear-gradient(135deg, ${accent ? M : G}, ${accent ? 'var(--maroon-light)' : '#E5B94A'})`,
-                  width: 'clamp(20px, 1.8vw, 26px)',
-                  height: 'clamp(20px, 1.8vw, 26px)',
-                  fontSize: 'clamp(10px, 0.9vw, 13px)',
-                }}
-              >
-                {i + 1}
-              </div>
-              <div className="flex flex-wrap items-baseline gap-x-1.5 leading-tight min-w-0">
-                <span className="font-extrabold text-[#5C0F0F]" style={{ fontSize: 'clamp(12px, 1.05vw, 15px)' }}>
+              {imgSrc ? (
+                <div
+                  className="shrink-0 relative rounded-full overflow-hidden shadow-md"
+                  style={{
+                    width: 'clamp(34px, min(3.4vw, 5.2vh), 56px)',
+                    height: 'clamp(34px, min(3.4vw, 5.2vh), 56px)',
+                    border: `2px solid ${accent ? 'var(--maroon)' : 'var(--gold)'}`,
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.16)',
+                    background: '#f8fafc',
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={imgSrc}
+                    alt={pName}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 20%' }}
+                  />
+                </div>
+              ) : (
+                <div
+                  className="shrink-0 rounded-lg flex items-center justify-center text-white font-black shadow-sm"
+                  style={{
+                    background: `linear-gradient(135deg, ${accent ? M : G}, ${accent ? 'var(--maroon-light)' : '#E5B94A'})`,
+                    width: 'clamp(18px, 1.4vw, 24px)',
+                    height: 'clamp(18px, 1.4vw, 24px)',
+                    fontSize: 'clamp(9px, 0.75vw, 11.5px)',
+                  }}
+                >
+                  {i + 1}
+                </div>
+              )}
+              <div className="flex flex-col min-w-0 justify-center flex-1" style={{ lineHeight: 1.15 }}>
+                <span
+                  className="font-extrabold text-[#5C0F0F] tracking-tight leading-tight"
+                  style={{
+                    fontSize: 'clamp(10px, 0.84vw, 13.5px)',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    wordBreak: 'break-word',
+                  }}
+                  title={pName}
+                >
                   {pName}
                 </span>
                 {pRole && (
-                  <span className="font-semibold text-[var(--muted-text)]" style={{ fontSize: 'clamp(10.5px, 0.9vw, 13px)' }}>
-                    — {pRole}
+                  <span
+                    className="font-semibold text-[var(--muted-text)] leading-tight"
+                    style={{
+                      fontSize: 'clamp(8.5px, 0.70vw, 11px)',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      wordBreak: 'break-word',
+                      marginTop: 1,
+                    }}
+                    title={pRole}
+                  >
+                    {pRole}
                   </span>
                 )}
               </div>
@@ -208,22 +288,22 @@ function CeremonySlide({ slide }: { slide: Slide }) {
 
   return (
     <div className="relative flex flex-col h-full w-full overflow-hidden"
-      style={{ padding: 'clamp(6px, 0.8vh, 14px) clamp(8px, 1vw, 16px)', gap: 'clamp(4px, 0.6vh, 10px)' }}>
+      style={{ padding: 'clamp(2px, 0.4vh, 8px) clamp(4px, 0.6vw, 10px)', gap: 'clamp(4px, 0.6vh, 8px)' }}>
       <Orb style={{ width: 400, height: 400, top: '-20%', right: '-10%' }} />
 
-      {/* Centered Starting Header — compact for TV */}
+      {/* Centered Starting Header — bold & authoritative */}
       <motion.div variants={stagger} initial="hidden" animate="show"
         className="shrink-0 flex flex-col items-center text-center w-full"
-        style={{ gap: 'clamp(3px, 0.4vh, 7px)' }}>
+        style={{ gap: 'clamp(1px, 0.2vh, 3px)' }}>
         <PillBadge label={slide.badge || "IEEE Conf #72666 • Scopus Indexed"} gold />
 
         <motion.h1 variants={up} className="font-black leading-tight text-center tracking-tight"
-          style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.8rem)', color: MD }}>
+          style={{ fontSize: 'clamp(1.25rem, 2.0vw, 1.9rem)', color: MD }}>
           {slide.title}
         </motion.h1>
 
         {slide.subtitle && (
-          <motion.p variants={fade} className="text-center font-bold" style={{ fontSize: 'clamp(0.8rem, 1.2vw, 1.1rem)', color: M }}>
+          <motion.p variants={fade} className="text-center font-bold" style={{ fontSize: 'clamp(0.72rem, 0.88vw, 0.95rem)', color: M }}>
             {slide.subtitle}
           </motion.p>
         )}
@@ -233,20 +313,20 @@ function CeremonySlide({ slide }: { slide: Slide }) {
         {/* 5 info chips */}
         {slide.details && (
           <motion.div variants={stagger} className="flex flex-wrap items-center justify-center max-w-5xl"
-            style={{ gap: 'clamp(4px, 0.5vw, 10px)', marginTop: 'clamp(2px, 0.3vh, 6px)' }}>
+            style={{ gap: 'clamp(3px, 0.4vw, 6px)', marginTop: 'clamp(1px, 0.2vh, 3px)' }}>
             {slide.details.map((d, i) => (
               <motion.span key={i} variants={up}
-                className="inline-flex items-center gap-1.5 rounded-xl border font-bold shadow-sm"
+                className="inline-flex items-center gap-1.5 rounded-lg border font-bold shadow-sm"
                 style={{
-                  fontSize: 'clamp(11px, 1.0vw, 13.5px)',
-                  paddingTop: 'clamp(4px, 0.45vh, 7px)',
-                  paddingBottom: 'clamp(4px, 0.45vh, 7px)',
-                  paddingLeft: 'clamp(10px, 1vw, 16px)',
-                  paddingRight: 'clamp(10px, 1vw, 16px)',
+                  fontSize: 'clamp(9px, 0.74vw, 11.5px)',
+                  paddingTop: 'clamp(2px, 0.3vh, 4px)',
+                  paddingBottom: 'clamp(2px, 0.3vh, 4px)',
+                  paddingLeft: 'clamp(6px, 0.6vw, 10px)',
+                  paddingRight: 'clamp(6px, 0.6vw, 10px)',
                   background: i === 0 ? 'rgba(255,255,255,0.98)' : 'rgba(255,255,255,0.92)',
                   borderColor: i === 0 ? 'var(--maroon)' : 'rgba(200,145,42,0.45)',
                   color: i === 0 ? 'var(--maroon-dark)' : 'var(--brown-text)',
-                  boxShadow: i === 0 ? '0 3px 10px rgba(122,26,26,0.15)' : '0 2px 8px rgba(200,145,42,0.10)',
+                  boxShadow: i === 0 ? '0 2px 8px rgba(122,26,26,0.12)' : '0 1px 5px rgba(200,145,42,0.08)',
                 }}
               >
                 {d}
@@ -256,10 +336,10 @@ function CeremonySlide({ slide }: { slide: Slide }) {
         )}
       </motion.div>
 
-      {/* 2 Cards stacked — flex-1 min-h-0 so they share remaining space without overflow */}
-      <div className="flex flex-col flex-1 min-h-0 w-full" style={{ gap: 'clamp(4px, 0.6vh, 10px)' }}>
-        {slide.leftColumn && <ColumnCard heading={slide.leftColumn.heading} points={leftPts} accent={true} />}
-        {slide.rightColumn && <ColumnCard heading={slide.rightColumn.heading} points={rightPts} accent={false} />}
+      {/* 2 Cards stacked — takes full visible space (flex-1) with proportional heights */}
+      <div className="flex flex-col flex-1 min-h-0 w-full" style={{ gap: 'clamp(4px, 0.6vh, 8px)' }}>
+        {slide.leftColumn && <ColumnCard heading={slide.leftColumn.heading} points={leftPts} accent={true} flexWeight={3} />}
+        {slide.rightColumn && <ColumnCard heading={slide.rightColumn.heading} points={rightPts} accent={false} flexWeight={4} />}
       </div>
 
       {slide.pause && <PausedBanner />}

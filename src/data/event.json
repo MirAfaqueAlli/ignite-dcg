@@ -26,6 +26,7 @@
       "leftColumn": {
         "heading": "Distinguished Dignitaries",
         "points": [
+          "Prof. (Dr.) Gopal Krishna Nayak — Vice Chancellor",
           "Sj. Balaram Kar — Director, Administration",
           "Mrs. Chinmayee Rath — Director, Coordination",
           "Prof. (Dr.) Alok Ranjan Biswal — Associate Dean & Director IQAC",
@@ -34,12 +35,10 @@
         ]
       },
       "rightColumn": {
-        "heading": "Convenors & Heads of Department (SOET)",
+        "heading": "Heads of Department (SOET)",
         "points": [
-          "Dr. Amiya Kumar Sahoo — HOD, CSE & Convenor, ICETICT-2027",
-          "Dr. Bajra Panjar Mishra — Assistant Professor, Department of ENTC & Co-Convenor",
-          "Dr. Debayani Mishra — Assistant Professor, Department of EE & Co-Convenor",
-          "Prof. (Dr.) Jibanananda Mehena — HOD, ENTC",
+          "Dr. Amiya Kumar Sahoo — HOD, Computer Science and Engineering",
+          "Prof. (Dr.) Jibanananda Mehena — HOD, Electronics and Telecommunication Engineering",
           "Dr. Deepak Ranjan Biswal — HOD, Mechanical Engineering",
           "Dr. Anurekha Nayak — HOD, Electrical Engineering",
           "Dr. Pratap Chandra Pradhan — HOD, Electrical & Electronics Engineering",
@@ -54,7 +53,7 @@
       "type": "reveal",
       "title": "Official Website Launch",
       "subtitle": "Unveiling the Official Conference Portal of ICETICT-2027",
-      "dignitary": "Mrs. Chinmayee Rath — Director, Coordination",
+      "dignitary": "Distinguished Dignitaries",
       "pause": true,
       "revealLine": "The official conference portal is now live at icetict.driems.ac.in"
     }
