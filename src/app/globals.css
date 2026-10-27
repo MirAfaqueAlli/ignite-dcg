@@ -30,11 +30,17 @@ body {
   color: var(--brown-text);
   font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
+  /* TV-safe: absolutely no scrollbars ever appear */
+  overflow: hidden;
 }
 
-::-webkit-scrollbar { width: 4px; }
+html {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar { width: 0; height: 0; display: none; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--maroon); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: transparent; }
 
 /* Custom elegant scroll bars for inner card containers */
 .custom-scroll {
