@@ -95,7 +95,8 @@ class SpeechController {
       return;
     }
 
-    const url = `/audio/${slideId}.mp3`;
+    // Cache-bust query param ensures browser never serves stale cached audio
+    const url = `/audio/${slideId}.mp3?v=${Date.now()}`;
 
     try {
       if (!this.audio) {

@@ -23,6 +23,7 @@ export const CRITICAL_ASSETS = [
 
   // Dignitary Photos
   '/images/vcsir.jpg',
+  '/images/provc.jpeg',
   '/images/Sj-Balaram-Kar.jpg',
   '/images/Smt.-Chinmayee-Rath-300x300.jpg',
   '/images/alokSir.jpg',
@@ -33,7 +34,7 @@ export const CRITICAL_ASSETS = [
   '/images/robot_thinking.jpg',
 ];
 
-const CACHE_NAME = 'icetict-2027-assets-v1';
+const CACHE_NAME = 'icetict-2027-assets-v2';
 
 export async function preloadCriticalAssets(): Promise<void> {
   if (typeof window === 'undefined') return;
@@ -55,7 +56,7 @@ export async function preloadCriticalAssets(): Promise<void> {
       try {
         const audio = new Audio();
         audio.preload = 'auto';
-        audio.src = url;
+        audio.src = `${url}?v=${Date.now()}`;
         audio.load();
       } catch {}
     });
@@ -66,6 +67,12 @@ export async function preloadCriticalAssets(): Promise<void> {
   setTimeout(async () => {
     if ('caches' in window) {
       try {
+        // Clear any old caches
+        const oldKeys = await caches.keys();
+        for (const k of oldKeys) {
+          if (k !== CACHE_NAME) await caches.delete(k);
+        }
+
         const cache = await caches.open(CACHE_NAME);
 
         const uncachedUrls: string[] = [];
