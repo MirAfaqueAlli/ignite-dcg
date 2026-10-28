@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { gsap } from 'gsap';
+import { speechController } from '@/lib/speechController';
 
 /* ════════════════════════════════════════════════════════════════
    TYPE
@@ -483,7 +484,7 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
     try {
       if (bgmAudioRef.current && !bgmAudioRef.current.paused) return;
 
-      const bgm = new Audio('/audio/soothing_celebration_bgm.wav');
+      const bgm = new Audio('/audio/soothing_celebration_bgm.m4a');
       bgm.loop = true;
       bgm.volume = 0;
       bgmAudioRef.current = bgm;
@@ -582,6 +583,7 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
   const handleCut = useCallback(() => {
     if (hasCut) return;
     setHasCut(true);
+    speechController.unlock();
 
     /* sparks */
     const ribbon = ribbonRef.current;

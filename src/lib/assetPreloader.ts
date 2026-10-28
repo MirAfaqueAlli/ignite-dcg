@@ -3,9 +3,7 @@
  *
  * Ensures all 3D models, audio, dignitary images, and logos are
  * cached permanently in the browser's CacheStorage and pre-decoded
- * in GPU/RAM memory.
- *
- * Subsequent visits & refreshes load instantly (0ms network delay).
+ * in GPU/RAM memory without competing with initial React/Three.js rendering.
  */
 
 export const CRITICAL_ASSETS = [
@@ -15,7 +13,7 @@ export const CRITICAL_ASSETS = [
   // Celebration & Speech Audio
   '/audio/slide-1.mp3',
   '/audio/Birthday Fireworks.mp3',
-  '/audio/soothing_celebration_bgm.wav',
+  '/audio/soothing_celebration_bgm.m4a',
 
   // Event & University Logos
   '/ICETICE-WHITE.webp',
@@ -40,65 +38,65 @@ const CACHE_NAME = 'icetict-2027-assets-v1';
 export async function preloadCriticalAssets(): Promise<void> {
   if (typeof window === 'undefined') return;
 
-  // 1. Pre-decode images into GPU texture memory to prevent any visual hitching
+  // 1. Pre-decode critical visible images into GPU texture memory immediately
   CRITICAL_ASSETS.filter(url => /\.(png|jpg|jpeg|webp)$/i.test(url)).forEach(url => {
     try {
       const img = new Image();
       img.src = url;
       if ('decode' in img) {
-        img.decode().catch(() => {/* ignore decode errors on unsupported formats */});
+        img.decode().catch(() => {/* non-blocking */});
       }
-    } catch {
-      // Ignore background image pre-fetch errors
-    }
+    } catch {}
   });
 
-  // 2. Pre-buffer audio files in the browser audio pipeline
-  CRITICAL_ASSETS.filter(url => /\.(mp3|wav)$/i.test(url)).forEach(url => {
-    try {
-      const audio = new Audio();
-      audio.preload = 'auto';
-      audio.src = url;
-      audio.load();
-    } catch {
-      // Ignore audio pre-buffer errors
-    }
-  });
+  // 2. Pre-buffer audio files in the background after initial render (avoids network clogging on reload)
+  setTimeout(() => {
+    CRITICAL_ASSETS.filter(url => /\.(mp3|wav|m4a)$/i.test(url)).forEach(url => {
+      try {
+        const audio = new Audio();
+        audio.preload = 'auto';
+        audio.src = url;
+        audio.load();
+      } catch {}
+    });
+  }, 1200);
 
   // 3. Persistent CacheStorage API (works offline, instant disk retrieval across reloads)
-  if ('caches' in window) {
-    try {
-      const cache = await caches.open(CACHE_NAME);
+  // Staggered slightly so initial Three.js WebGL and DOM mount take priority
+  setTimeout(async () => {
+    if ('caches' in window) {
+      try {
+        const cache = await caches.open(CACHE_NAME);
 
-      // Check which items are missing from cache
-      const uncachedUrls: string[] = [];
-      for (const url of CRITICAL_ASSETS) {
-        const match = await cache.match(url);
-        if (!match) {
-          uncachedUrls.push(url);
+        const uncachedUrls: string[] = [];
+        for (const url of CRITICAL_ASSETS) {
+          const match = await cache.match(url);
+          if (!match) {
+            uncachedUrls.push(url);
+          }
         }
-      }
 
-      if (uncachedUrls.length > 0) {
-        console.log(`[CacheStorage] Caching ${uncachedUrls.length} assets locally for instant replay...`);
-        await Promise.allSettled(
-          uncachedUrls.map(async url => {
-            try {
-              const res = await fetch(url, { cache: 'force-cache' });
-              if (res.ok) {
-                await cache.put(url, res);
+        if (uncachedUrls.length > 0) {
+          console.log(`[CacheStorage] Caching ${uncachedUrls.length} assets locally for instant replay...`);
+          await Promise.allSettled(
+            uncachedUrls.map(async url => {
+              try {
+                const res = await fetch(url, { cache: 'force-cache' });
+                if (res.ok) {
+                  await cache.put(url, res);
+                }
+              } catch (err) {
+                console.debug(`[CacheStorage] Skipped ${url}`, err);
               }
-            } catch (err) {
-              console.debug(`[CacheStorage] Skipped ${url}`, err);
-            }
-          })
-        );
-        console.log('[CacheStorage] All critical assets cached successfully in browser!');
-      } else {
-        console.log('[CacheStorage] All assets already cached in browser storage (instant mode).');
+            })
+          );
+          console.log('[CacheStorage] All critical assets cached successfully in browser!');
+        } else {
+          console.log('[CacheStorage] All assets already cached in browser storage (instant mode).');
+        }
+      } catch (err) {
+        console.warn('[CacheStorage] CacheStorage not supported or restricted', err);
       }
-    } catch (err) {
-      console.warn('[CacheStorage] CacheStorage not supported or restricted', err);
     }
-  }
+  }, 1800);
 }

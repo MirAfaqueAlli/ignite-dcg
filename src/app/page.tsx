@@ -255,6 +255,7 @@ export default function PresentationPage() {
 
   /* Called when the opening inauguration curtain is cut */
   const handleOpeningCurtainDone = useCallback(() => {
+    speechController.unlock();
     setShowOpeningCurtain(false);
     setHasStarted(true);
   }, []);

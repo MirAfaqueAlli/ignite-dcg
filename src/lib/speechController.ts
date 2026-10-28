@@ -1,6 +1,7 @@
 /**
- * Speech Controller — uses /api/tts (Microsoft Aria Neural, free)
- * Falls back to Web Speech API if the server route fails.
+ * Speech Controller — plays studio-recorded audio for each slide
+ * (/audio/${slideId}.mp3), and gracefully falls back to native Web Speech
+ * synthesis with lipsync support.
  */
 
 export interface SpeechControllerOptions {
@@ -23,6 +24,7 @@ class SpeechController {
   private isPausedFlag   = false;
   private isInitialized  = false;
   private speakCounter   = 0;
+  private currentUtterance: SpeechSynthesisUtterance | null = null;
 
   /* ─── Realtime Lipsync (AudioContext) ─── */
   private audioContext: AudioContext | null = null;
@@ -36,6 +38,42 @@ class SpeechController {
     this.isInitialized = true;
   }
 
+  /**
+   * Unlock AudioContext on direct user gesture (touch, click, keydown)
+   * Prevents browsers from muting audio due to autoplay restrictions.
+   */
+  unlock() {
+    if (typeof window === 'undefined') return;
+    try {
+      if (!this.audio) {
+        this.audio = new Audio();
+      }
+
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (AudioCtx && !this.audioContext) {
+        this.audioContext = new AudioCtx();
+        this.analyser = this.audioContext.createAnalyser();
+        this.analyser.fftSize = 256;
+        this.analyser.smoothingTimeConstant = 0.5;
+        this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+
+        try {
+          this.sourceNode = this.audioContext.createMediaElementSource(this.audio);
+          this.sourceNode.connect(this.analyser);
+          this.analyser.connect(this.audioContext.destination);
+        } catch (e) {
+          console.debug('[SpeechController] Web Audio source hook note:', e);
+        }
+      }
+
+      if (this.audioContext && this.audioContext.state === 'suspended') {
+        this.audioContext.resume().catch(() => {});
+      }
+    } catch (e) {
+      console.debug('[SpeechController] unlock note:', e);
+    }
+  }
+
   /* ─── Speak ─── */
   async speak(text: string, slideId?: string) {
     if (typeof window === 'undefined') return;
@@ -44,48 +82,23 @@ class SpeechController {
     const currentSpeakId = ++this.speakCounter;
     this.isPausedFlag   = false;
 
+    // Wake up Web Audio Context immediately
+    this.unlock();
+
     if (!slideId) {
-      console.warn('[TTS] Offline mode: Cannot play audio without a valid slideId.');
       this._fallbackSpeak(text);
       return;
     }
 
+    const url = `/audio/${slideId}.mp3`;
+
     try {
-      /* Play the pre-generated offline MP3 */
-      const url = `/audio/${slideId}.mp3`;
       if (!this.audio) {
         this.audio = new Audio();
-        this.audio.crossOrigin = 'anonymous'; // Important for AnalyserNode
-
-        // Initialize Web Audio Context once per app lifecycle
-        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-        this.audioContext = new AudioCtx();
-        this.analyser = this.audioContext.createAnalyser();
-        this.analyser.fftSize = 256;
-        this.analyser.smoothingTimeConstant = 0.5;
-        this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
-
-        this.sourceNode = this.audioContext.createMediaElementSource(this.audio);
-        this.sourceNode.connect(this.analyser);
-        this.analyser.connect(this.audioContext.destination);
-      }
-
-      // Resume context if browser suspended it
-      if (this.audioContext?.state === 'suspended') {
-        await this.audioContext.resume();
       }
 
       this.audio.src = url;
       this.currentUrl = url;
-
-    } catch (apiErr) {
-      console.warn('[TTS] API failed, falling back to browser speech:', apiErr);
-      throw apiErr; // Fall through to robotic native speech
-    }
-
-    try {
-      if (!this.audio) throw new Error('Audio not initialized');
-
       this.audio.volume = this.options.volume ?? 1;
 
       this.audio.onended = () => {
@@ -95,21 +108,24 @@ class SpeechController {
         this.options.onEnd?.();
       };
 
-      this.audio.onerror = () => {
+      this.audio.onerror = (e) => {
+        console.warn(`[SpeechController] Audio file ${url} failed or missing, using speech fallback.`, e);
         this.isSpeakingFlag = false;
         this._cleanup();
-        console.warn(`[TTS] Local audio fallback failed to load.`);
         this._fallbackSpeak(text);
       };
 
       if (currentSpeakId !== this.speakCounter) return;
       this.isSpeakingFlag = true;
       this.options.onStart?.();
-      await this.audio.play();
 
+      const playPromise = this.audio.play();
+      if (playPromise !== undefined) {
+        await playPromise;
+      }
     } catch (err) {
       if (currentSpeakId !== this.speakCounter) return;
-      console.warn('[TTS] failed completely, falling back to robotic native speech:', err);
+      console.warn('[SpeechController] audio.play() failed, using fallback:', err);
       this._fallbackSpeak(text);
     }
   }
@@ -121,6 +137,9 @@ class SpeechController {
       this.isPausedFlag = true;
       this.options.onPause?.();
     }
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.pause();
+    }
   }
 
   /* ─── Resume ─── */
@@ -129,6 +148,9 @@ class SpeechController {
       this.audio.play();
       this.isPausedFlag = false;
       this.options.onResume?.();
+    }
+    if (typeof window !== 'undefined' && window.speechSynthesis) {
+      window.speechSynthesis.resume();
     }
   }
 
@@ -139,14 +161,15 @@ class SpeechController {
       this.audio.onended = null;
       this.audio.onerror = null;
       this.audio.currentTime = 0;
-      // Don't null out this.audio — preserve the AudioContext/sourceNode chain
     }
-    /* Also cancel any fallback Web Speech */
-    if (typeof window !== 'undefined') window.speechSynthesis?.cancel();
+    if (typeof window !== 'undefined') {
+      window.speechSynthesis?.cancel();
+    }
 
+    this.currentUtterance = null;
     this.isSpeakingFlag = false;
     this.isPausedFlag   = false;
-    this.speakCounter++; // invalidate any currently loading async speeches
+    this.speakCounter++;
   }
 
   /* ─── Update callbacks ─── */
@@ -160,20 +183,24 @@ class SpeechController {
 
   /* ─── Realtime Volume for Lip Sync ─── */
   getVolume(): number {
-    if (!this.analyser || !this.dataArray || !this.isSpeakingFlag || this.isPausedFlag) return 0;
+    if (!this.analyser || !this.dataArray || !this.isSpeakingFlag || this.isPausedFlag) {
+      // Natural mouth synthesis while fallback speech is active
+      if (this.isSpeakingFlag && !this.isPausedFlag) {
+        return 0.35 + Math.sin(Date.now() * 0.015) * 0.25;
+      }
+      return 0;
+    }
+
     this.analyser.getByteFrequencyData(this.dataArray as any);
     
-    // Sum only the lower-mid vocal frequencies (approx bins 3-15 out of 128)
+    // Lower-mid vocal frequencies
     let sum = 0;
     for (let i = 3; i < 15; i++) {
-        sum += this.dataArray[i];
+      sum += this.dataArray[i];
     }
     
-    // Average and normalize, multiplied to boost small sounds
     const avg = sum / 12; 
     let vol = avg / 255;
-    
-    // Apply a subtle noise gate and multiplier
     vol = vol > 0.05 ? vol * 2.5 : 0; 
     return Math.min(1.0, vol);
   }
@@ -183,41 +210,80 @@ class SpeechController {
     this.currentUrl = null;
   }
 
-  /** Fallback: native Web Speech with best available female voice */
+  /**
+   * Fallback: Native Web Speech API split into sentences to avoid
+   * Chromium's 15-second speech truncation bug and garbage collection pauses.
+   */
   private _fallbackSpeak(text: string) {
+    if (typeof window === 'undefined') return;
     const synth = window.speechSynthesis;
-    synth.cancel();
+    if (!synth) {
+      this.options.onEnd?.();
+      return;
+    }
 
-    const utt   = new SpeechSynthesisUtterance(text);
-    utt.rate    = 0.90;
-    utt.pitch   = 1.35;
-    utt.volume  = this.options.volume ?? 1;
+    try {
+      synth.cancel();
+    } catch {}
 
-    /* Pick best female voice */
-    const voices = synth.getVoices();
-    const priorityNames = [
-      'Microsoft Aria Online (Natural) - English (United States)',
-      'Microsoft Jenny Online (Natural) - English (United States)',
-      'Microsoft Zira Desktop - English (United States)',
-      'Google UK English Female',
-      'Samantha',
-    ];
-    const pick = priorityNames
-      .map(n => voices.find(v => v.name === n))
-      .find(Boolean)
-      ?? voices.find(v => {
-        const ln = v.name.toLowerCase();
-        return ln.includes('zira') || ln.includes('female') || ln.includes('samantha') || ln.includes('hazel');
-      })
-      ?? voices.find(v => v.lang.startsWith('en'));
-    if (pick) utt.voice = pick;
+    const sentences = text.match(/[^.!?]+[.!?]+|\S+/g) || [text];
+    let sentenceIndex = 0;
 
-    utt.onend   = () => { this.isSpeakingFlag = false; this.options.onEnd?.();   };
-    utt.onerror = () => { this.isSpeakingFlag = false; this.options.onError?.('web speech error'); };
-    
+    const speakNext = () => {
+      if (sentenceIndex >= sentences.length) {
+        this.isSpeakingFlag = false;
+        this.currentUtterance = null;
+        this.options.onEnd?.();
+        return;
+      }
+
+      const sentence = sentences[sentenceIndex++].trim();
+      if (!sentence) {
+        speakNext();
+        return;
+      }
+
+      const utt = new SpeechSynthesisUtterance(sentence);
+      this.currentUtterance = utt; // Prevents Chrome garbage collector from destroying utterance
+      utt.rate = 0.92;
+      utt.pitch = 1.25;
+      utt.volume = this.options.volume ?? 1;
+
+      const voices = synth.getVoices();
+      const priorityNames = [
+        'Microsoft Aria Online (Natural) - English (United States)',
+        'Microsoft Jenny Online (Natural) - English (United States)',
+        'Microsoft Zira Desktop - English (United States)',
+        'Google UK English Female',
+        'Samantha',
+      ];
+      const pick = priorityNames
+        .map(n => voices.find(v => v.name === n))
+        .find(Boolean)
+        ?? voices.find(v => {
+          const ln = v.name.toLowerCase();
+          return ln.includes('zira') || ln.includes('female') || ln.includes('samantha') || ln.includes('hazel');
+        })
+        ?? voices.find(v => v.lang.startsWith('en'));
+
+      if (pick) utt.voice = pick;
+
+      utt.onend = () => {
+        speakNext();
+      };
+
+      utt.onerror = () => {
+        this.isSpeakingFlag = false;
+        this.currentUtterance = null;
+        this.options.onError?.('web speech error');
+      };
+
+      synth.speak(utt);
+    };
+
     this.isSpeakingFlag = true;
     this.options.onStart?.();
-    synth.speak(utt);
+    speakNext();
   }
 }
 
