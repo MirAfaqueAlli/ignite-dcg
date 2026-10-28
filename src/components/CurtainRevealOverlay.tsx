@@ -278,7 +278,7 @@ function RevealedImagePanel({ revealType, onNext, zIndex = 8990 }: { revealType:
   const panelRef = useRef<HTMLDivElement>(null);
   const imgRef   = useRef<HTMLImageElement>(null);
 
-  const src = revealType === 'logo' ? '/reveals/logoDCG.png' : '/reveals/poster.png';
+  const src = revealType === 'logo' ? '/reveals/logoDCG.png' : '/reveals/poster.jpg';
   const label = revealType === 'logo' ? 'Official Logo' : 'Official Poster';
 
   useEffect(() => {
@@ -514,36 +514,43 @@ export default function CurtainRevealOverlay({ revealType, onDone }: CurtainReve
     }
   }, []);
 
-  /* ── Firecrackers Sound (triggers BGM once finished) ── */
+  /* ── Firecrackers Sound (triggers BGM only AFTER firecrackers finish) ── */
   const playFirecrackersSound = useCallback(() => {
     let bgmStarted = false;
     const startBgmOnce = () => {
       if (!bgmStarted) {
         bgmStarted = true;
-        playSoothingBGM();
+        // Small delay so there's a clean transition gap
+        setTimeout(() => playSoothingBGM(), 800);
       }
     };
 
     try {
       const audio = new Audio(encodeURI('/audio/Birthday Fireworks.mp3'));
       audio.volume = 0.95;
+      audio.preload = 'auto';
       firecrackerAudioRef.current = audio;
 
-      // Start soothing BGM immediately when the firecrackers track finishes
+      // Start soothing BGM ONLY when firecrackers track finishes naturally
       audio.addEventListener('ended', startBgmOnce);
 
-      audio.play().catch(err => {
-        console.warn('Birthday Fireworks audio play failed, falling back:', err);
-        playSyntheticFirecrackers();
-        setTimeout(startBgmOnce, 14000);
-      });
+      // Wait until audio is loaded before playing to avoid delayed start
+      audio.addEventListener('canplaythrough', () => {
+        audio.play().catch(err => {
+          console.warn('Birthday Fireworks audio play failed:', err);
+          playSyntheticFirecrackers();
+          setTimeout(startBgmOnce, 12000);
+        });
+      }, { once: true });
 
-      // Safety fallback: if audio ends or duration elapses (~15s)
-      setTimeout(startBgmOnce, 15000);
+      audio.load();
+
+      // Safety: if audio somehow never fires 'ended' (e.g. tab hidden), cap at 30s
+      setTimeout(startBgmOnce, 30000);
     } catch (err) {
       console.warn('Audio creation error:', err);
       playSyntheticFirecrackers();
-      setTimeout(startBgmOnce, 14000);
+      setTimeout(startBgmOnce, 12000);
     }
   }, [playSoothingBGM]);
 

@@ -2,6 +2,9 @@
  * Speech Controller — plays studio-recorded audio for each slide
  * (/audio/${slideId}.mp3), and gracefully falls back to native Web Speech
  * synthesis with lipsync support.
+ *
+ * Key design: prevents dual-voice race conditions by fully killing audio
+ * elements before triggering fallback speech, and vice versa.
  */
 
 export interface SpeechControllerOptions {
@@ -24,6 +27,7 @@ class SpeechController {
   private isPausedFlag   = false;
   private isInitialized  = false;
   private speakCounter   = 0;
+  private usingFallback  = false;
   private currentUtterance: SpeechSynthesisUtterance | null = null;
 
   /* ─── Realtime Lipsync (AudioContext) ─── */
@@ -39,16 +43,18 @@ class SpeechController {
   }
 
   /**
-   * Unlock AudioContext on direct user gesture (touch, click, keydown)
-   * Prevents browsers from muting audio due to autoplay restrictions.
+   * Unlock AudioContext on direct user gesture (touch, click, keydown).
+   * Must be called synchronously inside a user-initiated event handler.
    */
   unlock() {
     if (typeof window === 'undefined') return;
     try {
+      // Create audio element early
       if (!this.audio) {
         this.audio = new Audio();
       }
 
+      // Create and resume AudioContext
       const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
       if (AudioCtx && !this.audioContext) {
         this.audioContext = new AudioCtx();
@@ -61,28 +67,27 @@ class SpeechController {
           this.sourceNode = this.audioContext.createMediaElementSource(this.audio);
           this.sourceNode.connect(this.analyser);
           this.analyser.connect(this.audioContext.destination);
-        } catch (e) {
-          console.debug('[SpeechController] Web Audio source hook note:', e);
+        } catch {
+          // source already connected
         }
       }
 
       if (this.audioContext && this.audioContext.state === 'suspended') {
         this.audioContext.resume().catch(() => {});
       }
-    } catch (e) {
-      console.debug('[SpeechController] unlock note:', e);
-    }
+    } catch {}
   }
 
   /* ─── Speak ─── */
   async speak(text: string, slideId?: string) {
     if (typeof window === 'undefined') return;
-    this.stop();
+    this.stop(); // kills any previous audio AND fallback speech
 
     const currentSpeakId = ++this.speakCounter;
     this.isPausedFlag   = false;
+    this.usingFallback  = false;
 
-    // Wake up Web Audio Context immediately
+    // Wake up Web Audio Context
     this.unlock();
 
     if (!slideId) {
@@ -97,78 +102,109 @@ class SpeechController {
         this.audio = new Audio();
       }
 
-      this.audio.src = url;
-      this.currentUrl = url;
-      this.audio.volume = this.options.volume ?? 1;
+      // Wait for the audio to be ready before playing
+      await new Promise<void>((resolve, reject) => {
+        if (!this.audio) { reject(new Error('No audio')); return; }
 
-      this.audio.onended = () => {
+        // Abort if speak() was called again while we wait
+        const checkAbort = () => currentSpeakId !== this.speakCounter;
+
+        this.audio.oncanplaythrough = () => {
+          if (checkAbort()) return;
+          resolve();
+        };
+
+        this.audio.onerror = () => {
+          reject(new Error(`Audio file ${url} failed to load`));
+        };
+
+        this.audio.src = url;
+        this.audio.load();
+      });
+
+      // Double-check we haven't been superseded
+      if (currentSpeakId !== this.speakCounter) return;
+
+      this.audio!.volume = this.options.volume ?? 1;
+
+      this.audio!.onended = () => {
         this.isSpeakingFlag = false;
         this.isPausedFlag   = false;
         this._cleanup();
         this.options.onEnd?.();
       };
 
-      this.audio.onerror = (e) => {
-        console.warn(`[SpeechController] Audio file ${url} failed or missing, using speech fallback.`, e);
-        this.isSpeakingFlag = false;
-        this._cleanup();
-        this._fallbackSpeak(text);
-      };
+      this.audio!.onerror = null; // clear the load error handler
 
-      if (currentSpeakId !== this.speakCounter) return;
       this.isSpeakingFlag = true;
       this.options.onStart?.();
 
-      const playPromise = this.audio.play();
-      if (playPromise !== undefined) {
-        await playPromise;
-      }
+      await this.audio!.play();
+
     } catch (err) {
       if (currentSpeakId !== this.speakCounter) return;
-      console.warn('[SpeechController] audio.play() failed, using fallback:', err);
+      console.warn('[SpeechController] MP3 unavailable, using browser speech:', err);
+
+      // CRITICAL: Kill the audio element's source so it can never auto-play later
+      if (this.audio) {
+        this.audio.oncanplaythrough = null;
+        this.audio.onerror = null;
+        this.audio.onended = null;
+        this.audio.pause();
+        this.audio.removeAttribute('src');
+        this.audio.load(); // resets the element
+      }
+
       this._fallbackSpeak(text);
     }
   }
 
   /* ─── Pause ─── */
   pause() {
-    if (this.audio && this.isSpeakingFlag && !this.isPausedFlag) {
-      this.audio.pause();
+    if (this.isSpeakingFlag && !this.isPausedFlag) {
+      if (this.usingFallback) {
+        window.speechSynthesis?.pause();
+      } else if (this.audio) {
+        this.audio.pause();
+      }
       this.isPausedFlag = true;
       this.options.onPause?.();
-    }
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-      window.speechSynthesis.pause();
     }
   }
 
   /* ─── Resume ─── */
   resume() {
-    if (this.audio && this.isPausedFlag) {
-      this.audio.play();
+    if (this.isPausedFlag) {
+      if (this.usingFallback) {
+        window.speechSynthesis?.resume();
+      } else if (this.audio) {
+        this.audio.play();
+      }
       this.isPausedFlag = false;
       this.options.onResume?.();
-    }
-    if (typeof window !== 'undefined' && window.speechSynthesis) {
-      window.speechSynthesis.resume();
     }
   }
 
   /* ─── Stop ─── */
   stop() {
+    // Stop MP3 audio
     if (this.audio) {
       this.audio.pause();
       this.audio.onended = null;
       this.audio.onerror = null;
+      this.audio.oncanplaythrough = null;
       this.audio.currentTime = 0;
     }
+
+    // Stop fallback Web Speech
     if (typeof window !== 'undefined') {
-      window.speechSynthesis?.cancel();
+      try { window.speechSynthesis?.cancel(); } catch {}
     }
 
     this.currentUtterance = null;
     this.isSpeakingFlag = false;
     this.isPausedFlag   = false;
+    this.usingFallback  = false;
     this.speakCounter++;
   }
 
@@ -183,17 +219,15 @@ class SpeechController {
 
   /* ─── Realtime Volume for Lip Sync ─── */
   getVolume(): number {
-    if (!this.analyser || !this.dataArray || !this.isSpeakingFlag || this.isPausedFlag) {
-      // Natural mouth synthesis while fallback speech is active
-      if (this.isSpeakingFlag && !this.isPausedFlag) {
-        return 0.35 + Math.sin(Date.now() * 0.015) * 0.25;
-      }
-      return 0;
+    // Fallback speech: simulate mouth movement
+    if (this.usingFallback && this.isSpeakingFlag && !this.isPausedFlag) {
+      return 0.35 + Math.sin(Date.now() * 0.015) * 0.25;
     }
+
+    if (!this.analyser || !this.dataArray || !this.isSpeakingFlag || this.isPausedFlag) return 0;
 
     this.analyser.getByteFrequencyData(this.dataArray as any);
     
-    // Lower-mid vocal frequencies
     let sum = 0;
     for (let i = 3; i < 15; i++) {
       sum += this.dataArray[i];
@@ -211,8 +245,9 @@ class SpeechController {
   }
 
   /**
-   * Fallback: Native Web Speech API split into sentences to avoid
-   * Chromium's 15-second speech truncation bug and garbage collection pauses.
+   * Fallback: Native Web Speech API, split into sentences to avoid
+   * Chromium's 15-second speech truncation bug.
+   * Stores utterance on `this` to prevent garbage collection.
    */
   private _fallbackSpeak(text: string) {
     if (typeof window === 'undefined') return;
@@ -222,29 +257,28 @@ class SpeechController {
       return;
     }
 
-    try {
-      synth.cancel();
-    } catch {}
+    try { synth.cancel(); } catch {}
 
-    const sentences = text.match(/[^.!?]+[.!?]+|\S+/g) || [text];
+    this.usingFallback = true;
+
+    // Split by sentence boundaries
+    const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
     let sentenceIndex = 0;
 
     const speakNext = () => {
       if (sentenceIndex >= sentences.length) {
         this.isSpeakingFlag = false;
+        this.usingFallback  = false;
         this.currentUtterance = null;
         this.options.onEnd?.();
         return;
       }
 
       const sentence = sentences[sentenceIndex++].trim();
-      if (!sentence) {
-        speakNext();
-        return;
-      }
+      if (!sentence) { speakNext(); return; }
 
       const utt = new SpeechSynthesisUtterance(sentence);
-      this.currentUtterance = utt; // Prevents Chrome garbage collector from destroying utterance
+      this.currentUtterance = utt; // prevent GC
       utt.rate = 0.92;
       utt.pitch = 1.25;
       utt.volume = this.options.volume ?? 1;
@@ -268,12 +302,10 @@ class SpeechController {
 
       if (pick) utt.voice = pick;
 
-      utt.onend = () => {
-        speakNext();
-      };
-
+      utt.onend = () => speakNext();
       utt.onerror = () => {
         this.isSpeakingFlag = false;
+        this.usingFallback  = false;
         this.currentUtterance = null;
         this.options.onError?.('web speech error');
       };

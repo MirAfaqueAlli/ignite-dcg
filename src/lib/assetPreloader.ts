@@ -22,7 +22,7 @@ export const CRITICAL_ASSETS = [
   '/logo-masterbrand-tagline-white-transparent.webp',
 
   // Dignitary Photos
-  '/images/vcsir.png',
+  '/images/vcsir.jpg',
   '/images/Sj-Balaram-Kar.jpg',
   '/images/Smt.-Chinmayee-Rath-300x300.jpg',
   '/images/alokSir.jpg',

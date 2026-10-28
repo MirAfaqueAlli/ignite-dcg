@@ -121,7 +121,7 @@ function IntroSlide({ slide }: { slide: Slide }) {
 }
 
 const DIGNITARY_IMAGE_MAP: Record<string, string> = {
-  'Gopal Krishna Nayak': '/images/vcsir.png',
+  'Gopal Krishna Nayak': '/images/vcsir.jpg',
   'Balaram Kar': '/images/Sj-Balaram-Kar.jpg',
   'Chinmayee Rath': '/images/Smt.-Chinmayee-Rath-300x300.jpg',
   'Alok Ranjan Biswal': '/images/alokSir.jpg',
